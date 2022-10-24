@@ -2,13 +2,30 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Aria Summary</title>
+    <title>WCAG Aria Workshop</title>
 </head>
 <body>
-<header class="header__wrapper">
+<header class="header__wrapper mt-20">
+    <div class="fixed w-full top-0 bg-white !text-blue-800 border-b-2 border-b-blue-300 z-40">
+        <nav class="menubar__wrapper justify-self-start">
+            <ul class="menubar__container" aria-label="Navigazione del sito" role="menubar" is="menu-bar">
+                <li class="menubar__item"><a href="<%= htmlWebpackPlugin.files.publicPath %>flow.html" role="menuitem">Contenuti di flusso</a></li>
+                <li class="menubar__item"><a href="<%= htmlWebpackPlugin.files.publicPath %>sectioning.html" role="menuitem">Contenuti di sezionamento</a></li>
+                <li class="menubar__item"><a href="<%= htmlWebpackPlugin.files.publicPath %>phrasing.html" role="menuitem">Contenuti di Fraseggio</a></li>
+                <li class="menubar__item"><a href="<%= htmlWebpackPlugin.files.publicPath %>embedded.html" role="menuitem">Contenuti integrati</a></li>
+                <li class="menu__wrapper menubar__item">
+                    <button role="menuitem" aria-haspopup="menu" aria-expanded="false" is="menu-button">Interazione</button>
+                    <div role="menu" aria-label="Interazione" class="menu__container">
+                        <a href="<%= htmlWebpackPlugin.files.publicPath %>interactive.html" class="menu__item" role="menuitem">Elementi interattivi</a>
+                        <a href="<%= htmlWebpackPlugin.files.publicPath %>keyboard_navigation.html" class="menu__item" role="menuitem">navigazione tastiera</a>
+                        <a href="<%= htmlWebpackPlugin.files.publicPath %>aria.html" class="menu__item" role="menuitem">Pattern Aria</a>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+    </div>
     <h1 class="header__title">WCAG Aria Workshop</h1>
     <p>
-        Questo materiale è relativo al workshop sull’accessibilità tenuto da Reply Digital Experience srl.
         È consigliato seguire l’ordine dei capitoli così come proposti.
     </p>
 </header>
@@ -16,8 +33,8 @@
     <div class="grid grid-cols-6 gap-4">
         <div class="col-span-2 order-2">
             <nav aria-labelledby="content-list-title"
-                 class="p-4 border border-blue-200 h-fit rounded-xl shadow-lg sticky top-4">
-                <h2 id="content-list-title" class="text-2xl mb-4 font-semibold text-blue-800">List of contents</h2>
+                 class="p-4 border border-blue-200 h-fit rounded-md shadow-md sticky top-28 pb-12">
+                <h2 id="content-list-title" class="text-2xl mb-4 font-semibold text-blue-800">Tabella dei contenuti</h2>
                 <ul id="table-of-contents">
 
                 </ul>
@@ -50,7 +67,8 @@
                     <dd>Categorie specifiche</dd>
                 </dl>
                 <article class="section__wrapper" aria-labelledby="flow-content">
-                    <h3 id="flow-content" class="text-2xl mb-3"><a href="/flow.html">Contenuti di flusso <span
+                    <h3 id="flow-content" class="text-2xl mb-3"><a
+                            href="<%= htmlWebpackPlugin.files.publicPath %>flow.html">Contenuti di flusso <span
                             class="fa-solid fa-link h-5 w-5 inline-block"></span></a></h3>
                     <p class="mb-2">
                         La categoria di contenuti flusso è una categoria molto ampia che include molti degli elementi
@@ -79,7 +97,8 @@
                     </dl>
                 </article>
                 <article class="section__wrapper" aria-labelledby="sectioning-content">
-                    <h3 id="sectioning-content" class="text-2xl mb-3"><a href="/sectioning.html">Contenuti di
+                    <h3 id="sectioning-content" class="text-2xl mb-3"><a
+                            href="<%= htmlWebpackPlugin.files.publicPath %>sectioning.html">Contenuti di
                         sezionamento <span class="fa-solid fa-link h-5 w-5 inline-block"></span></a></h3>
                     <p class="mb-2">
                         La categoria di contenuti di sezionamento è un sottoinsieme della categoria di contenuti di
@@ -102,7 +121,8 @@
                     </dl>
                 </article>
                 <article class="section__wrapper" aria-labelledby="heading-content">
-                    <h3 id="heading-content" class="text-2xl mb-3"><a href="/sectioning.html">Contenuti di titolazione
+                    <h3 id="heading-content" class="text-2xl mb-3"><a
+                            href="<%= htmlWebpackPlugin.files.publicPath %>sectioning.html">Contenuti di titolazione
                         <span class="fa-solid fa-link h-5 w-5 inline-block"></span></a></h3>
                     <p class="mb-2">
                         La categoria di contenuti di titolazione è un sottoinsieme della categoria di contenuti di
@@ -133,7 +153,8 @@
                     </dl>
                 </article>
                 <article class="section__wrapper" aria-labelledby="phrasing-content">
-                    <h3 id="phrasing-content" class="text-2xl mb-3"><a href="/phrasing.html">Contenuti di fraseggio
+                    <h3 id="phrasing-content" class="text-2xl mb-3"><a
+                            href="<%= htmlWebpackPlugin.files.publicPath %>phrasing.html">Contenuti di fraseggio
                         <span
                                 class="fa-solid fa-link h-5 w-5 inline-block"></span></a></h3>
                     <p class="mb-2">
@@ -157,7 +178,8 @@
                     </dl>
                 </article>
                 <article class="section__wrapper" aria-labelledby="embedded-content">
-                    <h3 id="embedded-content" class="text-2xl mb-3"><a href="/embedded.html">Contenuti integrati <span
+                    <h3 id="embedded-content" class="text-2xl mb-3"><a
+                            href="<%= htmlWebpackPlugin.files.publicPath %>embedded.html">Contenuti integrati <span
                             class="fa-solid fa-link h-5 w-5 inline-block"></span></a></h3>
                     <p class="mb-2">
                         La categoria di contenuti integrati è un sottoinsieme della categoria di contenuti di flusso e
@@ -180,7 +202,8 @@
                     </dl>
                 </article>
                 <article class="section__wrapper" aria-labelledby="form-related-content">
-                    <h3 id="form-related-content" class="text-2xl mb-3"><a href="/interactive.html">Contenuti relativi
+                    <h3 id="form-related-content" class="text-2xl mb-3"><a
+                            href="<%= htmlWebpackPlugin.files.publicPath %>interactive.html">Contenuti relativi
                         ai
                         moduli <span class="fa-solid fa-link h-5 w-5 inline-block"></span></a></h3>
                     <p class="mb-2">
@@ -208,13 +231,17 @@
             <section aria-labelledby="introduction-title" class="section__wrapper">
                 <h2 id="keyboard-navigation-title" class="section__title">Interazione avanzata</h2>
                 <p>
-                    La seconda parte del laboratorio si concentra sulle euristiche di navigazione da tastiera e sulle best-practices per implementare widget e
+                    La seconda parte del laboratorio si concentra sulle euristiche di navigazione da tastiera e sulle
+                    best-practices per implementare widget e
                     controlli di pagina utilizzando gli attributi aria.
                 </p>
                 <article class="section__wrapper" aria-labelledby="keyboard-navigation">
-                    <h3 id="keyboard-navigation" class="text-2xl mb-3"><a href="/keyboard_navigation.html">Navigazione da Tastiera <span class="fa-solid fa-link h-5 w-5 inline-block"></span></a></h3>
+                    <h3 id="keyboard-navigation" class="text-2xl mb-3"><a
+                            href="<%= htmlWebpackPlugin.files.publicPath %>keyboard_navigation.html">Navigazione da
+                        Tastiera <span class="fa-solid fa-link h-5 w-5 inline-block"></span></a></h3>
                     <p class="mb-2">
-                        La navigazione da tastiera non richiede solo la possibilità di interagire con i controlli di pagina, ma anche di definire meccanismi per navigare al meglio il contenuto.</p>
+                        La navigazione da tastiera non richiede solo la possibilità di interagire con i controlli di
+                        pagina, ma anche di definire meccanismi per navigare al meglio il contenuto.</p>
                     <dl class="list__wrapper list__wrapper--horizontal">
                         <dt class="list__title">Parole chiave:</dt>
                         <dd class="list__item">
@@ -232,9 +259,12 @@
                     </dl>
                 </article>
                 <article class="section__wrapper" aria-labelledby="aria-attributes">
-                    <h3 id="aria-attributes" class="text-2xl mb-3"><a href="/aria.html">Attributi ARIA <span class="fa-solid fa-link h-5 w-5 inline-block"></span></a></h3>
+                    <h3 id="aria-attributes" class="text-2xl mb-3"><a
+                            href="<%= htmlWebpackPlugin.files.publicPath %>aria.html">Attributi ARIA <span
+                            class="fa-solid fa-link h-5 w-5 inline-block"></span></a></h3>
                     <p class="mb-2">
-                        Gli attributi ARIA servono alle tecnologie assistive per interpretare i controlli personalizzati sui documenti html.</p>
+                        Gli attributi ARIA servono alle tecnologie assistive per interpretare i controlli personalizzati
+                        sui documenti html.</p>
                     <dl class="list__wrapper list__wrapper--horizontal">
                         <dt class="list__title">Parole chiave:</dt>
                         <dd class="list__item">
@@ -269,13 +299,16 @@
         <div>
             <dl class="list__wrapper list__wrapper--vertical text-white text-left">
                 <dt class="list__title text-xl">Esempi pratici</dt>
-                <dd><a href="/flow.html">Contenuti di flusso</a></dd>
-                <dd><a href="/sectioning.html">Contenuti di sezionamento</a></dd>
-                <dd><a href="/phrasing.html">Contenuti di fraseggio</a></dd>
-                <dd><a href="/embedded.html">Contenuti integrati</a></dd>
-                <dd><a href="/interactive.html">Contenuti relativi ai moduli</a></dd>
-                <dd><a href="/keyboard_navigation.html">Navigazione da tastiera</a></dd>
-                <dd><a href="/aria.html">Attributi ARIA</a></dd>
+                <dd><a href="<%= htmlWebpackPlugin.files.publicPath %>flow.html">Contenuti di flusso</a></dd>
+                <dd><a href="<%= htmlWebpackPlugin.files.publicPath %>sectioning.html">Contenuti di sezionamento</a>
+                </dd>
+                <dd><a href="<%= htmlWebpackPlugin.files.publicPath %>phrasing.html">Contenuti di fraseggio</a></dd>
+                <dd><a href="<%= htmlWebpackPlugin.files.publicPath %>embedded.html">Contenuti integrati</a></dd>
+                <dd><a href="<%= htmlWebpackPlugin.files.publicPath %>interactive.html">Contenuti relativi ai moduli</a>
+                </dd>
+                <dd><a href="<%= htmlWebpackPlugin.files.publicPath %>keyboard_navigation.html">Navigazione da
+                    tastiera</a></dd>
+                <dd><a href="<%= htmlWebpackPlugin.files.publicPath %>aria.html">Attributi ARIA</a></dd>
             </dl>
         </div>
     </div>

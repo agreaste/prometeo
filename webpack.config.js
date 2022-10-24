@@ -1,4 +1,5 @@
 const path = require('path');
+const {DefinePlugin} = require('webpack');
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 module.exports = {
@@ -18,7 +19,7 @@ module.exports = {
     },
     output: {
         filename: '[name].js',
-        path: path.resolve(__dirname, 'dist'),
+        path: path.resolve(__dirname, 'dist')
     },
     module: {
         rules: [
@@ -138,7 +139,10 @@ module.exports = {
             inject: "head",
             inlineSource: '.(js|css)$'
         }),
-        new MiniCssExtractPlugin()
+        new MiniCssExtractPlugin(),
+        new DefinePlugin({
+            PUBLIC_PATH: ""
+        })
     ],
     optimization: {
         chunkIds: 'named',

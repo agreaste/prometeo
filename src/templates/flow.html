@@ -48,13 +48,13 @@
         <ul>
             <li>il tag ul che contiene questo tag li</li>
             <li>il tag di collegamento a</li>
-            <li>tutti gli elementi di <a href="/sectioning.html">sezionamento</a></li>
+            <li>tutti gli elementi di <a href="<%= htmlWebpackPlugin.files.publicPath %>sectioning.html">sezionamento</a></li>
             <li>tutti gli elementi di titolazione</li>
-            <li>alcuni elementi di <a href="/phrasing.html">fraseggio</a></li>
-            <li>tutti gli elementi <a href="/embedded.html">integrati</a></li>
-            <li>tutti gli elementi <a href="/interactive.html">interattivi</a></li>
+            <li>alcuni elementi di <a href="<%= htmlWebpackPlugin.files.publicPath %>phrasing.html">fraseggio</a></li>
+            <li>tutti gli elementi <a href="<%= htmlWebpackPlugin.files.publicPath %>embedded.html">integrati</a></li>
+            <li>tutti gli elementi <a href="<%= htmlWebpackPlugin.files.publicPath %>interactive.html">interattivi</a></li>
         </ul>
-        <p>Prossima lezione <a href="/sectioning.html">Contenuti di sezionamento</a>.</p>
+        <p>Prossima lezione <a href="<%= htmlWebpackPlugin.files.publicPath %>sectioning.html">Contenuti di sezionamento</a>.</p>
     </section>
 </main>
 <footer>
@@ -69,13 +69,13 @@
         <div>
             <dl class="list__wrapper list__wrapper--vertical text-left">
                 <dt class="list__title text-xl">Esempi pratici</dt>
-                <dd><a href="/flow.html">Contenuti di flusso</a></dd>
-                <dd><a href="/sectioning.html">Contenuti di sezionamento</a></dd>
-                <dd><a href="/phrasing.html">Contenuti di fraseggio</a></dd>
-                <dd><a href="/embedded.html">Contenuti integrati</a></dd>
-                <dd><a href="/interactive.html">Contenuti relativi ai moduli</a></dd>
-                <dd><a href="/keyboard_navigation.html">Navigazione da tastiera</a></dd>
-                <dd><a href="/aria.html">Attributi ARIA</a></dd>
+                <dd><a href="<%= htmlWebpackPlugin.files.publicPath %>flow.html">Contenuti di flusso</a></dd>
+                <dd><a href="<%= htmlWebpackPlugin.files.publicPath %>sectioning.html">Contenuti di sezionamento</a></dd>
+                <dd><a href="<%= htmlWebpackPlugin.files.publicPath %>phrasing.html">Contenuti di fraseggio</a></dd>
+                <dd><a href="<%= htmlWebpackPlugin.files.publicPath %>embedded.html">Contenuti integrati</a></dd>
+                <dd><a href="<%= htmlWebpackPlugin.files.publicPath %>interactive.html">Contenuti relativi ai moduli</a></dd>
+                <dd><a href="<%= htmlWebpackPlugin.files.publicPath %>keyboard_navigation.html">Navigazione da tastiera</a></dd>
+                <dd><a href="<%= htmlWebpackPlugin.files.publicPath %>aria.html">Attributi ARIA</a></dd>
             </dl>
         </div>
     </div>

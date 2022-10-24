@@ -8,11 +8,11 @@
 <header class="flex flex-col">
     <nav>
         <ul class="flex flex-row justify-between w-full">
-            <li><a href="/flow.html">Contenuti di flusso</a></li>
-            <li><a href="/sectioning.html">Contenuti di sezionamento</a></li>
-            <li><a href="/phrasing.html">Contenuti di Fraseggio</a></li>
-            <li><a href="/embedded.html">Contenuti integrati</a></li>
-            <li><a href="/interactive.html">Contenuti interattivi</a></li>
+            <li><a href="<%= htmlWebpackPlugin.files.publicPath %>flow.html">Contenuti di flusso</a></li>
+            <li><a href="<%= htmlWebpackPlugin.files.publicPath %>sectioning.html">Contenuti di sezionamento</a></li>
+            <li><a href="<%= htmlWebpackPlugin.files.publicPath %>phrasing.html">Contenuti di Fraseggio</a></li>
+            <li><a href="<%= htmlWebpackPlugin.files.publicPath %>embedded.html">Contenuti integrati</a></li>
+            <li><a href="<%= htmlWebpackPlugin.files.publicPath %>interactive.html">Contenuti interattivi</a></li>
         </ul>
     </nav>
     <section class="self-end max-w-screen-md">
@@ -69,7 +69,7 @@
                 </div>
             </article>
         </section>
-        <p>Prossima lezione <a href="/phrasing.html">Contenuti di fraseggio</a>.</p>
+        <p>Prossima lezione <a href="<%= htmlWebpackPlugin.files.publicPath %>phrasing.html">Contenuti di fraseggio</a>.</p>
     </div>
 </main>
 <footer>
@@ -83,13 +83,13 @@
         <div>
             <dl class="list__wrapper list__wrapper--vertical text-left">
                 <dt class="list__title text-xl">Esempi pratici</dt>
-                <dd><a href="/flow.html">Contenuti di flusso</a></dd>
-                <dd><a href="/sectioning.html">Contenuti di sezionamento</a></dd>
-                <dd><a href="/phrasing.html">Contenuti di fraseggio</a></dd>
-                <dd><a href="/embedded.html">Contenuti integrati</a></dd>
-                <dd><a href="/interactive.html">Contenuti relativi ai moduli</a></dd>
-                <dd><a href="/keyboard_navigation.html">Navigazione da tastiera</a></dd>
-                <dd><a href="/aria.html">Attributi ARIA</a></dd>
+                <dd><a href="<%= htmlWebpackPlugin.files.publicPath %>flow.html">Contenuti di flusso</a></dd>
+                <dd><a href="<%= htmlWebpackPlugin.files.publicPath %>sectioning.html">Contenuti di sezionamento</a></dd>
+                <dd><a href="<%= htmlWebpackPlugin.files.publicPath %>phrasing.html">Contenuti di fraseggio</a></dd>
+                <dd><a href="<%= htmlWebpackPlugin.files.publicPath %>embedded.html">Contenuti integrati</a></dd>
+                <dd><a href="<%= htmlWebpackPlugin.files.publicPath %>interactive.html">Contenuti relativi ai moduli</a></dd>
+                <dd><a href="<%= htmlWebpackPlugin.files.publicPath %>keyboard_navigation.html">Navigazione da tastiera</a></dd>
+                <dd><a href="<%= htmlWebpackPlugin.files.publicPath %>aria.html">Attributi ARIA</a></dd>
             </dl>
         </div>
     </div>

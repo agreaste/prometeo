@@ -8,31 +8,23 @@
 <body class="flex flex-col min-h-screen relative">
 <header class="flex flex-col relative overflow-clip h-screen">
     <picture class="absolute inset-0">
-        <source srcset="../media/Bitmama-Reply-Wallpaper_2100p_b.jpg" media="(min-width: 2100px)">
-        <source srcset="../media/Bitmama-Reply-Wallpaper_1200p_b.jpg" media="(min-width: 1200px)">
-        <img src="../media/Bitmama-Reply-Wallpaper_1080p_b.jpg" alt="" class="h-full w-full object-cover object-bottom">
+        <source srcset="<%= htmlWebpackPlugin.files.publicPath %>/media/Bitmama-Reply-Wallpaper_2100p_b.jpg" media="(min-width: 2100px)">
+        <source srcset="<%= htmlWebpackPlugin.files.publicPath %>/media/Bitmama-Reply-Wallpaper_1200p_b.jpg" media="(min-width: 1200px)">
+        <img src="<%= htmlWebpackPlugin.files.publicPath %>/media/Bitmama-Reply-Wallpaper_1080p_b.jpg" alt="" class="h-full w-full object-cover object-bottom">
     </picture>
     <div class="absolute inset-0 flex flex-col px-16 text-white">
         <nav class="menubar__wrapper justify-self-start">
             <ul class="menubar__container" aria-label="Navigazione del sito" role="menubar" is="menu-bar">
-                <li>
-                    <a class="skip_link" href="#head-content" id="skip-to-head">Skip to head content</a>
-                </li>
-                <li>
-                    <a class="skip_link skip_link--purple" href="#main-content" id="skip-to-main">Skip to main
-                        content</a>
-                </li>
-                <li class="menubar__item"><a href="/flow.html" role="menuitem">Contenuti di flusso</a></li>
-                <li class="menubar__item"><a href="/sectioning.html" role="menuitem">Contenuti di sezionamento</a></li>
-                <li class="menubar__item"><a href="/phrasing.html" role="menuitem">Contenuti di Fraseggio</a></li>
-                <li class="menubar__item"><a href="/embedded.html" role="menuitem">Contenuti integrati</a></li>
+                <li class="menubar__item"><a href="<%= htmlWebpackPlugin.files.publicPath %>flow.html" role="menuitem">Contenuti di flusso</a></li>
+                <li class="menubar__item"><a href="<%= htmlWebpackPlugin.files.publicPath %>sectioning.html" role="menuitem">Contenuti di sezionamento</a></li>
+                <li class="menubar__item"><a href="<%= htmlWebpackPlugin.files.publicPath %>phrasing.html" role="menuitem">Contenuti di Fraseggio</a></li>
+                <li class="menubar__item"><a href="<%= htmlWebpackPlugin.files.publicPath %>embedded.html" role="menuitem">Contenuti integrati</a></li>
                 <li class="menu__wrapper menubar__item">
-                    <button role="menuitem" aria-haspopup="menu" aria-expanded="false" is="menu-button">Interazione
-                    </button>
+                    <button role="menuitem" aria-haspopup="menu" aria-expanded="false" is="menu-button">Interazione</button>
                     <div role="menu" aria-label="Interazione" class="menu__container">
-                        <a href="/interactive.html" class="menu__item" role="menuitem">Elementi interattivi</a>
-                        <a href="/keyboard_navigation.html" class="menu__item" role="menuitem">navigazione tastiera</a>
-                        <a href="/aria.html" class="menu__item" role="menuitem">Pattern Aria</a>
+                        <a href="<%= htmlWebpackPlugin.files.publicPath %>interactive.html" class="menu__item" role="menuitem">Elementi interattivi</a>
+                        <a href="<%= htmlWebpackPlugin.files.publicPath %>keyboard_navigation.html" class="menu__item" role="menuitem">navigazione tastiera</a>
+                        <a href="<%= htmlWebpackPlugin.files.publicPath %>aria.html" class="menu__item" role="menuitem">Pattern Aria</a>
                     </div>
                 </li>
             </ul>
@@ -90,22 +82,7 @@
             </ul>
         </div>
         <h3 class="text-3xl font-semibold">Widget completo</h3>
-        <div class="list-box__wrapper mt-4 bg-emerald-200 p-4 rounded-md" id="custom-aria" is="list-box">
-            <label id="aria-type">Which aria is better?</label>
-            <div aria-labelledby="aria-type" role="combobox" class="list-box__button" aria-haspopup="listbox"
-                 tabindex="0" aria-expanded="false"></div>
-            <ul class="list-box__container" role="listbox" tabindex="-1">
-                <li class="list-box__option" role="option">
-                    Select option
-                </li>
-                <li class="list-box__option" role="option">
-                    No aria
-                </li>
-                <li class="list-box__option" role="option">
-                    Bad aria
-                </li>
-            </ul>
-        </div>
+        <%=require('./components/aria-combobox_component.html')%>
     </section>
     <section class="flex flex-col w-full px-2">
         <h2 class="text-5xl font-semibold text-slate-700 mb-4">Other widgets</h2>
@@ -142,13 +119,13 @@
         <div>
             <dl class="list__wrapper list__wrapper--vertical text-white text-left">
                 <dt class="list__title text-xl">Esempi pratici</dt>
-                <dd><a href="/flow.html">Contenuti di flusso</a></dd>
-                <dd><a href="/sectioning.html">Contenuti di sezionamento</a></dd>
-                <dd><a href="/phrasing.html">Contenuti di fraseggio</a></dd>
-                <dd><a href="/embedded.html">Contenuti integrati</a></dd>
-                <dd><a href="/interactive.html">Contenuti relativi ai moduli</a></dd>
-                <dd><a href="/keyboard_navigation.html">Navigazione da tastiera</a></dd>
-                <dd><a href="/aria.html">Attributi ARIA</a></dd>
+                <dd><a href="<%= htmlWebpackPlugin.files.publicPath %>flow.html">Contenuti di flusso</a></dd>
+                <dd><a href="<%= htmlWebpackPlugin.files.publicPath %>sectioning.html">Contenuti di sezionamento</a></dd>
+                <dd><a href="<%= htmlWebpackPlugin.files.publicPath %>phrasing.html">Contenuti di fraseggio</a></dd>
+                <dd><a href="<%= htmlWebpackPlugin.files.publicPath %>embedded.html">Contenuti integrati</a></dd>
+                <dd><a href="<%= htmlWebpackPlugin.files.publicPath %>interactive.html">Contenuti relativi ai moduli</a></dd>
+                <dd><a href="<%= htmlWebpackPlugin.files.publicPath %>keyboard_navigation.html">Navigazione da tastiera</a></dd>
+                <dd><a href="<%= htmlWebpackPlugin.files.publicPath %>aria.html">Attributi ARIA</a></dd>
             </dl>
         </div>
     </div>

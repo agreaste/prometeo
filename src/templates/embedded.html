@@ -7,18 +7,18 @@
 <body class="flex flex-col min-h-screen">
 <header class="flex flex-col relative p-0 overflow-clip h-screen">
     <picture class="absolute inset-0">
-        <source srcset="../media/Bitmama-Reply-Wallpaper_2100p_b.jpg" media="(min-width: 2100px)">
-        <source srcset="../media/Bitmama-Reply-Wallpaper_1200p_b.jpg" media="(min-width: 1200px)">
-        <img src="../media/Bitmama-Reply-Wallpaper_1080p_b.jpg" alt="" class="h-full w-full object-cover object-bottom">
+        <source srcset="<%= htmlWebpackPlugin.files.publicPath %>/media/Bitmama-Reply-Wallpaper_2100p_b.jpg" media="(min-width: 2100px)">
+        <source srcset="<%= htmlWebpackPlugin.files.publicPath %>/media/Bitmama-Reply-Wallpaper_1200p_b.jpg" media="(min-width: 1200px)">
+        <img src="<%= htmlWebpackPlugin.files.publicPath %>/media/Bitmama-Reply-Wallpaper_1080p_b.jpg" alt="" class="h-full w-full object-cover object-bottom">
     </picture>
     <div class="no-desc absolute inset-0 flex flex-col">
         <nav class="bg-transparent mx-2 mt-2 rounded-2xl justify-self-start">
             <ul class="flex flex-row justify-between w-full">
-                <li><a href="/flow.html">Contenuti di flusso</a></li>
-                <li><a href="/sectioning.html">Contenuti di sezionamento</a></li>
-                <li><a href="/phrasing.html">Contenuti di Fraseggio</a></li>
-                <li><a href="/embedded.html">Contenuti integrati</a></li>
-                <li><a href="/interactive.html">Contenuti interattivi</a></li>
+                <li><a href="<%= htmlWebpackPlugin.files.publicPath %>flow.html">Contenuti di flusso</a></li>
+                <li><a href="<%= htmlWebpackPlugin.files.publicPath %>sectioning.html">Contenuti di sezionamento</a></li>
+                <li><a href="<%= htmlWebpackPlugin.files.publicPath %>phrasing.html">Contenuti di Fraseggio</a></li>
+                <li><a href="<%= htmlWebpackPlugin.files.publicPath %>embedded.html">Contenuti integrati</a></li>
+                <li><a href="<%= htmlWebpackPlugin.files.publicPath %>interactive.html">Contenuti interattivi</a></li>
             </ul>
         </nav>
         <section
@@ -41,7 +41,7 @@
             <p class="bg-neutral-200 border border-neutral-300 rounded-xl col-span-4">Let's take this p tag for
                 instance, it can contain <span class="font-semibold text-neutral-500">phrasing content</span> like we've
                 seen before, but also an image:
-                <img class="w-1/2 mx-auto mb-2 mt-2" src="../media/GhibliLogo.png"
+                <img class="w-1/2 mx-auto mb-2 mt-2" src="<%= htmlWebpackPlugin.files.publicPath %>/media/GhibliLogo.png"
                      alt="Logo of Ghibli animation studios, presenting the famous bunny-like character Totoro.">
                 Keep in mind that, unlike phrasing content, images are block element, so they will take the entire space
                 and render on newline unless styled differently.
@@ -62,7 +62,7 @@
                                 l'immagine esprime del contenuto di valore.</p>
                         </div>
 
-                        <img src="../media/studio-ghibli-film-netflix-3.jpeg"
+                        <img src="<%= htmlWebpackPlugin.files.publicPath %>/media/studio-ghibli-film-netflix-3.jpeg"
                              class="col-span-2 object-cover self-center rounded-2xl h-full"
                              alt="All the main characters of My Neighbour Totoro, praising a plant under the moonlight">
                     </div>
@@ -71,7 +71,7 @@
                     <h3 class="text-2xl font-semibold">Immagini decorative</h3>
                     <div class="grid grid-cols-4 gap-4 mb-4">
                         <p class="col-span-3 invisible h-0">questo elemento serve solo a non rompere il layout a colonne</p>
-                        <img src="../media/kisspng-susuwatari-studio-ghibli-ghibli-museum-clip-art-neighbour-5b33be013b4819.5791045515301176332428.png"
+                        <img src="<%= htmlWebpackPlugin.files.publicPath %>media/kisspng-susuwatari-studio-ghibli-ghibli-museum-clip-art-neighbour-5b33be013b4819.5791045515301176332428.png"
                              class="col-span-2 object-cover self-center rounded-2xl h-full"
                              alt="">
                         <div class="col-span-2 p-2">
@@ -99,26 +99,26 @@
             </ul>
         </article>
     </div>
-    <p class="mx-auto w-fit mt-4">Prossima lezione <a href="/interactive.html">Contenuti interattivi</a>.</p>
+    <p class="mx-auto w-fit mt-4">Prossima lezione <a href="<%= htmlWebpackPlugin.files.publicPath %>interactive.html">Contenuti interattivi</a>.</p>
 </main>
 <footer>
     <div class="grid grid-cols-3 w-full">
         <div class="opacity-0 h-0" aria-hidden="true"></div>
         <div class="opacity-0 h-0" aria-hidden="true"></div>
         <div>
-            <a class="text-2xl font-bold" href="/" title="Torna alla home di WCAG Aria Workshop">WCAG Aria Workshop</a>
+            <a class="text-2xl font-bold" href="<%= htmlWebpackPlugin.files.publicPath %>" title="Torna alla home di WCAG Aria Workshop">WCAG Aria Workshop</a>
         </div>
         <div></div>
         <div>
             <dl class="list__wrapper list__wrapper--vertical text-left">
                 <dt class="list__title text-xl">Esempi pratici</dt>
-                <dd><a href="/flow.html">Contenuti di flusso</a></dd>
-                <dd><a href="/sectioning.html">Contenuti di sezionamento</a></dd>
-                <dd><a href="/phrasing.html">Contenuti di fraseggio</a></dd>
-                <dd><a href="/embedded.html">Contenuti integrati</a></dd>
-                <dd><a href="/interactive.html">Contenuti relativi ai moduli</a></dd>
-                <dd><a href="/keyboard_navigation.html">Navigazione da tastiera</a></dd>
-                <dd><a href="/aria.html">Attributi ARIA</a></dd>
+                <dd><a href="<%= htmlWebpackPlugin.files.publicPath %>flow.html">Contenuti di flusso</a></dd>
+                <dd><a href="<%= htmlWebpackPlugin.files.publicPath %>sectioning.html">Contenuti di sezionamento</a></dd>
+                <dd><a href="<%= htmlWebpackPlugin.files.publicPath %>phrasing.html">Contenuti di fraseggio</a></dd>
+                <dd><a href="<%= htmlWebpackPlugin.files.publicPath %>embedded.html">Contenuti integrati</a></dd>
+                <dd><a href="<%= htmlWebpackPlugin.files.publicPath %>interactive.html">Contenuti relativi ai moduli</a></dd>
+                <dd><a href="<%= htmlWebpackPlugin.files.publicPath %>keyboard_navigation.html">Navigazione da tastiera</a></dd>
+                <dd><a href="<%= htmlWebpackPlugin.files.publicPath %>aria.html">Attributi ARIA</a></dd>
             </dl>
         </div>
     </div>
