@@ -1,5 +1,5 @@
 .skip_link {
-    @apply absolute -top-[200%] focus-within:top-6 transition-all bg-pink-300 border border-pink-500 text-pink-500 rounded-md;
+    @apply absolute -top-[200%] focus-within:top-6 transition-all bg-pink-300 border border-pink-500 text-pink-500 rounded-md p-2;
 }
 
 .skip_link--purple {

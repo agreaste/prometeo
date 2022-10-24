@@ -15,6 +15,13 @@
     <div class="absolute inset-0 flex flex-col px-16 text-white">
         <nav class="menubar__wrapper justify-self-start">
             <ul class="menubar__container" aria-label="Navigazione del sito" role="menubar" is="menu-bar">
+                <li>
+                    <a class="skip_link" href="#head-content" id="skip-to-head">Skip to head content</a>
+                </li>
+                <li>
+                    <a class="skip_link skip_link--purple" href="#main-content" id="skip-to-main">Skip to main
+                        content</a>
+                </li>
                 <li class="menubar__item"><a href="<%= htmlWebpackPlugin.files.publicPath %>flow.html" role="menuitem">Contenuti di flusso</a></li>
                 <li class="menubar__item"><a href="<%= htmlWebpackPlugin.files.publicPath %>sectioning.html" role="menuitem">Contenuti di sezionamento</a></li>
                 <li class="menubar__item"><a href="<%= htmlWebpackPlugin.files.publicPath %>phrasing.html" role="menuitem">Contenuti di Fraseggio</a></li>
@@ -29,6 +36,13 @@
                 </li>
             </ul>
         </nav>
+        <aside class="border border-white w-fit p-2 rounded-md self-end">
+            <dl class="list__wrapper list__wrapper--vertical text-xs">
+                <dt class="list__title mt-2 ">Risorse</dt>
+                <dd class="mr-4 underline"><a href="https://github.com/agreaste/prometeo/blob/master/src/templates/components/aria-menubar_component.html">Codice html del widget menubar</a></dd>
+                <dd class="underline"><a href="https://github.com/agreaste/prometeo/blob/master/src/js/shadow/menu_bar.js">Codice javascript del widget menubar</a></dd>
+            </dl>
+        </aside>
         <div class="max-w-screen-lg mx-auto grow flex flex-col justify-center">
             <section
                     id="head-content"
@@ -83,6 +97,11 @@
         </div>
         <h3 class="text-3xl font-semibold">Widget completo</h3>
         <%=require('./components/aria-combobox_component.html')%>
+        <dl class="list__wrapper list__wrapper--horizontal">
+            <dt class="list__title mt-2 ">Risorse</dt>
+            <dd class="mr-4 underline text-blue-600"><a href="https://github.com/agreaste/prometeo/blob/master/src/templates/components/aria-combobox_component.html">Codice html del widget combobox</a></dd>
+            <dd class="underline text-blue-600"><a href="https://github.com/agreaste/prometeo/blob/master/src/js/shadow/listBox.js">Codice javascript del widget combobox</a></dd>
+        </dl>
     </section>
     <section class="flex flex-col w-full px-2">
         <h2 class="text-5xl font-semibold text-slate-700 mb-4">Other widgets</h2>
@@ -90,18 +109,40 @@
             <h3 class="text-3xl font-semibold mb-4">Radio and checkboxes</h3>
             <%=require('./components/aria-radiogroup_component.html')%>
             <%=require('./components/aria-checkbox_component.html')%>
+            <dl class="list__wrapper list__wrapper--horizontal">
+                <dt class="list__title mt-2 ">Risorse</dt>
+                <dd class="mr-4 underline text-blue-600"><a href="https://github.com/agreaste/prometeo/blob/master/src/templates/components/aria-radiogroup_component.html">Codice html del widget radiogroup</a></dd>
+                <dd class="mr-4 underline text-blue-600"><a href="https://github.com/agreaste/prometeo/blob/master/src/js/shadow/radiogroup.js">Codice javascript del widget radiogroup</a></dd>
+                <dd class="mr-4 underline text-blue-600"><a href="https://github.com/agreaste/prometeo/blob/master/src/templates/components/aria-checkbox_component.html">Codice html del widget checkbox</a></dd>
+                <dd class="underline text-blue-600"><a href="https://github.com/agreaste/prometeo/blob/master/src/js/shadow/checkbox.js">Codice javascript del widget checkbox</a></dd>
+            </dl>
         </section>
         <section class="mb-8">
             <h3 class="text-3xl font-semibold mb-4">Carousel</h3>
             <%=require('./components/aria-carousel_component.html')%>
+            <dl class="list__wrapper list__wrapper--horizontal">
+                <dt class="list__title mt-2 ">Risorse</dt>
+                <dd class="mr-4 underline text-blue-600"><a href="https://github.com/agreaste/prometeo/blob/master/src/templates/components/aria-carousel_component.html">Codice html del widget carousel</a></dd>
+                <dd class="underline text-blue-600"><a href="https://github.com/agreaste/prometeo/blob/master/src/js/shadow/carousel.js">Codice javascript del widget carousel</a></dd>
+            </dl>
         </section>
         <section class="mb-8">
             <h3 class="text-3xl font-semibold mb-4">Tabber</h3>
             <%=require('./components/aria-tabber_component.html')%>
+            <dl class="list__wrapper list__wrapper--horizontal">
+                <dt class="list__title mt-2 ">Risorse</dt>
+                <dd class="mr-4 underline text-blue-600"><a href="https://github.com/agreaste/prometeo/blob/master/src/templates/components/aria-tabber_component.html">Codice html del widget tabber</a></dd>
+                <dd class="underline text-blue-600"><a href="https://github.com/agreaste/prometeo/blob/master/src/js/shadow/tablist.js">Codice javascript del widget tabber</a></dd>
+            </dl>
         </section>
         <section class="mb-8">
             <h3 class="text-3xl font-semibold    mb-4">Live regions</h3>
             <%=require('./components/aria-liveRegion_component.html')%>
+            <dl class="list__wrapper list__wrapper--horizontal">
+                <dt class="list__title mt-2 ">Risorse</dt>
+                <dd class="mr-4 underline text-blue-600"><a href="https://github.com/agreaste/prometeo/blob/master/src/templates/components/aria-liveRegion_component.html">Codice html dell'esempio di live region</a></dd>
+                <dd class="underline text-blue-600"><a href="https://github.com/agreaste/prometeo/blob/master/src/js/pages/aria.js#L93">Codice javascript dell'esempio di live region</a></dd>
+            </dl>
         </section>
     </section>
 </main>
@@ -131,8 +172,5 @@
     </div>
     <p class="text-xs pt-8">Bitmama, WCAG Aria Workshop 2022</p>
 </footer>
-<div id="alert-region" class="alert__container">
-
-</div>
 </body>
 </html>
