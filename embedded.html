@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Contenuti integrati</title>
+<script defer src="embedded.js"></script><script defer src="commons.js"></script><link href="embedded.css" rel="stylesheet"><link href="commons.css" rel="stylesheet"></head>
+<body class="flex flex-col min-h-screen">
+<header class="flex flex-col relative p-0 overflow-clip h-screen">
+    <picture class="absolute inset-0">
+        <source srcset="../media/Bitmama-Reply-Wallpaper_2100p_b.jpg" media="(min-width: 2100px)">
+        <source srcset="../media/Bitmama-Reply-Wallpaper_1200p_b.jpg" media="(min-width: 1200px)">
+        <img src="../media/Bitmama-Reply-Wallpaper_1080p_b.jpg" alt="" class="h-full w-full object-cover object-bottom">
+    </picture>
+    <div class="no-desc absolute inset-0 flex flex-col">
+        <nav class="bg-transparent mx-2 mt-2 rounded-2xl justify-self-start">
+            <ul class="flex flex-row justify-between w-full">
+                <li><a href="/flow.html">Contenuti di flusso</a></li>
+                <li><a href="/sectioning.html">Contenuti di sezionamento</a></li>
+                <li><a href="/phrasing.html">Contenuti di Fraseggio</a></li>
+                <li><a href="/embedded.html">Contenuti integrati</a></li>
+                <li><a href="/interactive.html">Contenuti interattivi</a></li>
+            </ul>
+        </nav>
+        <section
+                class="self-end max-w-screen-md bg-transparent grow flex flex-col justify-center rounded-r-2xl mx-2 mb-2">
+            <h1 class="text-3xl font-bold">Contenuti integrati</h1>
+            <p>I contenuti integrati sono un sottoinsieme dei contenuti di flusso che permette d'importare altre risorse
+                o includere contenuti da altri linguaggi di markup: immagini, video tag svg o interi documenti html. Ad
+                esempio l'immagine di sfondo di questo header è importata tramite un tag picture con 3 differenti
+                risoluzioni.</p>
+        </section>
+    </div>
+</header>
+<main class="w-full mx-auto p-16 flex-grow">
+    <div class="max-w-screen-lg mx-auto">
+        <article>
+            <h2 class="text-4xl font-semibold mb-6">Tag img come contenuto di flusso</h2>
+            <p class="mb-8 col-span-4">Now, img tag is embedded content but, as most of embedded content, is also flow
+                content, so it can be placed inside flow content like this div, or a p for example:</p>
+
+            <p class="bg-neutral-200 border border-neutral-300 rounded-xl col-span-4">Let's take this p tag for
+                instance, it can contain <span class="font-semibold text-neutral-500">phrasing content</span> like we've
+                seen before, but also an image:
+                <img class="w-1/2 mx-auto mb-2 mt-2" src="../media/GhibliLogo.png"
+                     alt="Logo of Ghibli animation studios, presenting the famous bunny-like character Totoro.">
+                Keep in mind that, unlike phrasing content, images are block element, so they will take the entire space
+                and render on newline unless styled differently.
+            </p>
+            <section class="mb-2">
+                <h3 class="text-3xl font-semibold mb-4">Immagini significative e decorative</h3>
+                <section>
+                    <h4 class="text-2xl font-semibold mb-4">Immagini significative</h4>
+                    <div class="grid grid-cols-4 gap-4 mb-4">
+                        <p class="col-span-3 invisible h-0">questo elemento serve solo a non rompere il layout a colonne</p>
+                        <div class="col-span-2 p-2">
+
+                            <p class="mb-4">Immaginiamo un articolo a proposito del film Ghibli "Il mio vicono Totoro",
+                                potremmo aggiungere qualche immagine dal film per presentare i personaggi o mostrare le
+                                scene salienti.</p>
+                            <p class="mb-4">Si potrebbe usare un'immagine come quella a destra per aggiungere contenuto al
+                                nostro documento; in questo caso è bene includere un'alternativa testuale dal momento che
+                                l'immagine esprime del contenuto di valore.</p>
+                        </div>
+
+                        <img src="../media/studio-ghibli-film-netflix-3.jpeg"
+                             class="col-span-2 object-cover self-center rounded-2xl h-full"
+                             alt="All the main characters of My Neighbour Totoro, praising a plant under the moonlight">
+                    </div>
+                </section>
+                <section>
+                    <h3 class="text-2xl font-semibold">Immagini decorative</h3>
+                    <div class="grid grid-cols-4 gap-4 mb-4">
+                        <p class="col-span-3 invisible h-0">questo elemento serve solo a non rompere il layout a colonne</p>
+                        <img src="../media/kisspng-susuwatari-studio-ghibli-ghibli-museum-clip-art-neighbour-5b33be013b4819.5791045515301176332428.png"
+                             class="col-span-2 object-cover self-center rounded-2xl h-full"
+                             alt="">
+                        <div class="col-span-2 p-2">
+
+                            <p class="mb-4">Al contrario un'immagine posizionata per motivi di layout, o completamente scollegata dal contesto può essere considerata decorativa</p>
+                            <p class="mb-4">Come ad esempio l'immagine a sinistra, che è molto carina ma se anche non ci fosse la nostra pagina non perderebbe contenuto.</p>
+                        </div>
+
+
+                    </div>
+                </section>
+            </section>
+        </article>
+        <article>
+            <h2 class="text-4xl font-semibold mb-4">Elemento iframe</h2>
+            <p class="mb-6">Un altro tipo di contenuto integrato sono gli iframe:</p>
+            <iframe role="application" class="mx-auto mb-8 aspect-video w-full overflow-clip rounded-3xl" src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <p>Utilizzando un iframe puoi integrare altri documenti html (o altri tipi di markup) nella tua pagina. Gli iframe possono avere più scopi:</p>
+            <ul>
+                <li>application</li>
+                <li>document</li>
+                <li>img</li>
+                <li>none</li>
+                <li>presentation</li>
+            </ul>
+        </article>
+    </div>
+    <p class="mx-auto w-fit mt-4">Prossima lezione <a href="/interactive.html">Contenuti interattivi</a>.</p>
+</main>
+<footer>
+    <div class="grid grid-cols-3 w-full">
+        <div class="opacity-0 h-0" aria-hidden="true"></div>
+        <div class="opacity-0 h-0" aria-hidden="true"></div>
+        <div>
+            <a class="text-2xl font-bold" href="/" title="Torna alla home di WCAG Aria Workshop">WCAG Aria Workshop</a>
+        </div>
+        <div></div>
+        <div>
+            <dl class="list__wrapper list__wrapper--vertical text-left">
+                <dt class="list__title text-xl">Esempi pratici</dt>
+                <dd><a href="/flow.html">Contenuti di flusso</a></dd>
+                <dd><a href="/sectioning.html">Contenuti di sezionamento</a></dd>
+                <dd><a href="/phrasing.html">Contenuti di fraseggio</a></dd>
+                <dd><a href="/embedded.html">Contenuti integrati</a></dd>
+                <dd><a href="/interactive.html">Contenuti relativi ai moduli</a></dd>
+                <dd><a href="/keyboard_navigation.html">Navigazione da tastiera</a></dd>
+                <dd><a href="/aria.html">Attributi ARIA</a></dd>
+            </dl>
+        </div>
+    </div>
+    <p class="text-center">Bitmama, WCAG Aria Workshop 2022</p>
+</footer>
+</body>
+</html>
