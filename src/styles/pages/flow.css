@@ -1,0 +1,84 @@
+body {
+    @apply bg-neutral-50 border-2 border-neutral-100 py-2 px-8;
+}
+
+body::before {
+    content: 'body';
+    @apply text-neutral-800 bg-neutral-200 border-2 border-neutral-400 rounded-2xl py-1 px-2 w-fit mb-4;
+}
+
+header {
+    @apply bg-pink-50 border-2 border-pink-200 py-4 px-3 rounded-3xl mb-4 relative;
+}
+
+header::after {
+    content: 'header';
+    @apply text-pink-800 bg-pink-300 border-2 border-pink-400 rounded-2xl py-1 px-2 w-fit block absolute bottom-2 left-2;
+}
+
+main {
+    @apply bg-teal-50 border-2 border-teal-200 py-4 px-3 rounded-3xl mb-4 relative;
+}
+
+main::before {
+    content: 'main';
+    @apply text-teal-800 bg-teal-300 border-2 border-teal-400 rounded-2xl py-1 px-2 w-fit block absolute top-2 left-2;
+}
+
+footer {
+    @apply bg-orange-50 border-2 border-orange-200 pt-12 pb-4 px-3 rounded-3xl mb-4 relative;
+}
+
+footer::before {
+    content: 'footer';
+    @apply text-orange-800 bg-orange-300 border-2 border-orange-400 rounded-2xl pt-1 px-2 w-fit absolute top-2 left-2;
+}
+
+div:not(.no-desc) {
+    @apply bg-lime-50 border-2 border-lime-200 py-4 px-3 rounded-3xl;
+}
+
+div:not(.no-desc)::before {
+    content: 'div';
+    @apply text-lime-800 bg-lime-300 border-2 border-lime-400 rounded-2xl py-1 px-2 w-fit block mb-2 h-fit;
+}
+
+p {
+    @apply bg-yellow-50 border-2 border-yellow-200 py-4 px-3 rounded-3xl !mb-4 block;
+}
+
+p::before {
+    content: 'p';
+    @apply text-yellow-800 bg-yellow-300 border-2 border-yellow-400 rounded-2xl pb-1 px-2.5 w-fit inline-flex flex-col items-center mr-2;
+}
+
+p.auto-closing::before {
+    content: 'auto-closing p';
+}
+
+a {
+    @apply bg-sky-50 border-2 border-sky-200 py-2 px-1.5 rounded-3xl pr-3 block w-fit inline-block;
+}
+
+a::before {
+    content: 'a';
+    @apply text-sky-800 bg-sky-300 border-2 border-sky-400 rounded-2xl pb-1 px-2.5 w-fit inline-flex flex-col items-center mr-2 grow-0;
+}
+
+ul {
+    @apply bg-purple-50 border-2 border-purple-200 !pt-12 !pb-4 !px-3 rounded-3xl !mb-4 relative !block w-fit;
+}
+
+ul::before {
+    content: 'ul';
+    @apply text-purple-800 bg-purple-300 border-2 border-purple-400 rounded-2xl pb-1 px-2.5 w-fit inline-flex flex-col items-center absolute top-2 left-2;
+}
+
+li {
+    @apply bg-lime-50 border-2 border-lime-200 py-2 px-1.5 rounded-3xl pr-3 block w-fit mb-2;
+}
+
+li::before {
+    content: 'li';
+    @apply text-lime-800 bg-lime-300 border-2 border-lime-400 rounded-2xl pb-1 px-2.5 w-fit inline-flex flex-col items-center mr-2 grow-0;
+}

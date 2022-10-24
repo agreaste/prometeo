@@ -1,0 +1,66 @@
+.field-wrapper {
+    @apply relative w-full;
+}
+
+.field-wrapper--textarea {
+    @apply flex flex-col p-4;
+}
+
+.field-wrapper--checkbox {
+    @apply p-4;
+}
+
+.field-wrapper--progress {
+    @apply flex;
+}
+
+.field-wrapper:not(:last-child) {
+    @apply border-b border-orange-100
+}
+
+.field-wrapper input, .field-wrapper select {
+    @apply pt-7 px-4 pb-2 w-full;
+}
+
+.field-wrapper--checkbox input {
+    @apply w-fit
+}
+
+.field-wrapper label {
+    @apply absolute top-1/2 -translate-y-1/2 transition-all left-4 font-semibold text-orange-400;
+}
+
+.field-wrapper--textarea label {
+    @apply static translate-y-0
+}
+
+.field-wrapper--checkbox label {
+    @apply static text-black font-normal;
+}
+
+.field-wrapper--progress progress {
+    @apply w-full h-[20px] transition-all ease-in
+}
+
+progress::-webkit-progress-bar {
+    @apply bg-transparent h-full;
+}
+progress::-webkit-progress-value {
+    @apply bg-orange-300 h-full transition-all;
+}
+progress::-moz-progress-bar {
+    /* style rules */
+}
+
+.field-wrapper input:valid + label, .field-wrapper input:focus + label,
+.field-wrapper select:valid + label, .field-wrapper select:focus + label {
+    transform: translateY(-100%);
+}
+
+.field-wrapper *:focus {
+    @apply ring-inset
+}
+
+#form-elements-list ul {
+    @apply pl-4 py-2 border-l-2 border-orange-400 ml-2
+}

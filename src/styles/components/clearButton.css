@@ -1,0 +1,3 @@
+button[is="clear-button"] {
+    @apply bg-blue-100 border  px-2 py-0.5 rounded-md text-blue-500 absolute top-0 right-0 -translate-y-1/2 translate-x-1/2 font-bold;
+}

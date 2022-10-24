@@ -1,0 +1,27 @@
+.list-box__wrapper {
+    @apply w-full relative;
+}
+
+.list-box__button {
+    @apply p-4 bg-white border-neutral-400 w-full rounded-md text-black;
+}
+
+.list-box__container {
+    @apply hidden overflow-clip bg-white border-neutral-400 w-full rounded-md absolute top-1/2 -translate-y-1/2 border;
+}
+
+.list-box__container.active {
+    @apply block outline-none;
+}
+
+.list-box__option {
+    @apply text-black p-4;
+}
+
+.list-box__option:not(:focus-visible) {
+    @apply  hover:bg-blue-100;
+}
+
+.list-box__container.active:focus-visible .list-box__option--active {
+    @apply ring ring-pink-400 ring-inset;
+}

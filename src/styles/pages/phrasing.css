@@ -1,0 +1,52 @@
+nav, section, article, aside {
+    @apply !bg-neutral-50 !border-neutral-200;
+}
+
+nav::before, section::before, article::before, aside::before {
+    @apply !text-neutral-800 !bg-neutral-100 !border-neutral-400;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    @apply bg-neutral-50 border-2 border-neutral-200 py-2 px-1.5 rounded-3xl pr-3 block w-fit inline-block !mb-4;
+}
+
+h1::before, h2::before, h3::before, h4::before, h5::before, h6::before {
+    @apply bg-neutral-100 border-2 border-neutral-200 py-1 rounded-3xl px-2 mr-1 pt-1 block w-fit inline-block text-base;
+}
+
+
+span {
+    @apply bg-orange-50 border-2 border-orange-200 py-1 px-1 rounded-3xl pr-3 block w-fit inline-block;
+}
+
+span::before {
+    content: 'span';
+    @apply text-orange-800 bg-orange-300 border-2 border-orange-400 rounded-2xl pb-0.5 px-2.5 w-fit inline-flex flex-col items-center mr-2 grow-0 font-normal;
+}
+
+strong {
+    @apply bg-indigo-50 border-2 border-indigo-200 py-1 px-1 rounded-3xl pr-3 inline-block w-fit;
+}
+
+strong::before {
+    content: 'strong';
+    @apply text-indigo-800 bg-indigo-300 border-2 border-indigo-400 rounded-2xl pb-0.5 px-2.5 w-fit inline-flex flex-col items-center mr-2 grow-0 font-normal;
+}
+
+b {
+    @apply bg-red-50 border-2 border-red-200 py-1 px-1 rounded-3xl pr-3 inline-block w-fit;
+}
+
+b::before {
+    content: 'b';
+    @apply text-red-800 bg-red-300 border-2 border-red-400 rounded-2xl pb-0.5 px-2.5 w-fit inline-flex flex-col items-center mr-2 grow-0 font-normal;
+}
+
+em {
+    @apply bg-amber-50 border-2 border-amber-200 py-1 px-1 rounded-3xl pr-3 inline-block w-fit;
+}
+
+em::before {
+    content: 'em';
+    @apply text-amber-800 bg-amber-300 border-2 border-amber-400 rounded-2xl pb-0.5 px-2.5 w-fit inline-flex flex-col items-center mr-2 grow-0 font-normal;
+}

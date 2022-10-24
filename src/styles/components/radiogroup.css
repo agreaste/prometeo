@@ -1,0 +1,19 @@
+[role="radiogroup"] {
+    @apply flex flex-row outline-none;
+}
+
+[role="radio"] {
+    @apply flex flex-col h-24 w-24 rounded-3xl border border-emerald-300 justify-center items-center cursor-pointer;
+}
+
+[role="radio"][aria-checked="true"] {
+    @apply border-2 border-b-4 border-orange-600 text-orange-600;
+}
+
+[role="radiogroup"]:focus-visible [role="radio"].radio--active {
+    @apply ring ring-violet-500 ring-2;
+}
+
+[role="radio"] + [role="radio"] {
+    @apply ml-4
+}

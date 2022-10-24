@@ -1,0 +1,74 @@
+nav {
+    @apply bg-violet-50 border-2 border-violet-200 pt-12 pb-3 px-3 rounded-3xl mb-4 relative;
+}
+
+nav::before {
+    content: 'nav';
+    @apply text-violet-800 bg-violet-300 border-2 border-violet-400 rounded-2xl py-0.5 px-2 w-fit block h-fit absolute top-2 left-2;
+}
+
+section {
+    @apply bg-rose-50 border-2 border-rose-200 pt-12 pb-1 px-3 rounded-3xl mb-4 relative;
+}
+
+section::before {
+    content: 'section';
+    @apply text-rose-800 bg-rose-300 border-2 border-rose-400 rounded-2xl py-0.5 px-2 w-fit block mb-2 h-fit absolute top-2 left-2;
+}
+article {
+    @apply bg-fuchsia-50 border-2 border-fuchsia-200 py-3 px-3 rounded-3xl mb-4;
+}
+
+article::before {
+    content: 'article';
+    @apply text-fuchsia-800 bg-fuchsia-300 border-2 border-fuchsia-400 rounded-2xl py-0.5 px-2 w-fit block mb-2 h-fit;
+}
+
+aside {
+    @apply bg-sky-50 border-2 border-sky-200 py-3 px-3 rounded-3xl mb-4;
+}
+
+aside::before {
+    content: 'aside';
+    @apply text-sky-800 bg-sky-300 border-2 border-sky-400 rounded-2xl py-0.5 px-2 w-fit block mb-2 h-fit;
+}
+
+header, main, footer, div:not(.no-desc), p, a, ul, li {
+    @apply !bg-neutral-50 !border-neutral-200;
+}
+
+header::after, main::before, footer::before, div:not(.no-desc)::before, p::before, a::before, ul::before, li::before {
+    @apply !text-neutral-800 !bg-neutral-100 !border-neutral-400;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    @apply bg-amber-50 border-2 border-amber-200 py-2 px-1.5 rounded-3xl pr-3 block w-fit inline-block !mb-4;
+}
+
+h1::before, h2::before, h3::before, h4::before, h5::before, h6::before {
+    @apply bg-amber-100 border-2 border-amber-200 py-1 rounded-3xl px-2 mr-1 pt-1 block w-fit inline-block text-base;
+}
+
+h1::before {
+    content: 'h1';
+}
+
+h2::before {
+    content: 'h2';
+}
+
+h3::before {
+    content: 'h3';
+}
+
+h4::before {
+    content: 'h4';
+}
+
+h5::before {
+    content: 'h5';
+}
+
+h6::before {
+    content: 'h6';
+}

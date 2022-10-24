@@ -1,0 +1,14 @@
+.accordion__wrapper {
+    @apply flex flex-col rounded-lg overflow-clip;
+}
+
+.accordion__header {
+}
+
+.accordion__panel {
+    @apply hidden;
+}
+
+.accordion__panel--active {
+    @apply block;
+}

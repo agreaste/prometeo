@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Aria Summary</title>
+</head>
+<body>
+<header class="header__wrapper">
+    <h1 class="header__title">WCAG Aria Workshop</h1>
+    <p>
+        Questo materiale è relativo al workshop sull’accessibilità tenuto da Reply Digital Experience srl.
+        È consigliato seguire l’ordine dei capitoli così come proposti.
+    </p>
+</header>
+<main class="main__wrapper">
+    <div class="grid grid-cols-6 gap-4">
+        <div class="col-span-2 order-2">
+            <nav aria-labelledby="content-list-title"
+                 class="p-4 border border-blue-200 h-fit rounded-xl shadow-lg sticky top-4">
+                <h2 id="content-list-title" class="text-2xl mb-4 font-semibold text-blue-800">List of contents</h2>
+                <ul id="table-of-contents">
+
+                </ul>
+            </nav>
+        </div>
+        <div class="col-span-4">
+            <section aria-labelledby="introduction-title" class="section__wrapper">
+                <h2 id="introduction-title" class="section__title">Introduzione</h2>
+                <p>
+                    La prima parte del laboratorio si concentra sulla stesura di documenti in html semantico,
+                    comprendere il
+                    valore degli elementi che mettiamo in pagina è determinante per utilizzare, successivamente, i
+                    modificatori
+                    di ruolo e gli attributi aria.
+                </p>
+            </section>
+            <section aria-labelledby="semantic-categories" class="section__wrapper">
+                <h2 id="semantic-categories" class="text-3xl mb-5">Categorie Semantiche</h2>
+                <p>
+                    Gli elementi html possono essere associati ad una o più categoria di contenuto. Tali categorie
+                    raggruppano
+                    gli elementi che hanno caratteristiche comuni ma non definiscono relazioni tra gli elementi: aiutano
+                    a
+                    definire e descrivere i comportamenti condivisi e ruoli associati.
+                </p>
+                <dl>
+                    <dt>Esistono tre tipi di categorie di contenuto</dt>
+                    <dd>categorie di contenuto principale</dd>
+                    <dd>Categorie relative a moduli</dd>
+                    <dd>Categorie specifiche</dd>
+                </dl>
+                <article class="section__wrapper" aria-labelledby="flow-content">
+                    <h3 id="flow-content" class="text-2xl mb-3"><a href="/flow.html">Contenuti di flusso <span
+                            class="fa-solid fa-link h-5 w-5 inline-block"></span></a></h3>
+                    <p class="mb-2">
+                        La categoria di contenuti flusso è una categoria molto ampia che include molti degli elementi
+                        che possono essere inseriti all'interno del body, comprese le categorie che vedremo di seguito.
+                    </p>
+                    <dl class="list__wrapper list__wrapper--horizontal">
+                        <dt class="list__title">Esempi di contenuto di flusso:</dt>
+                        <dd class="list__item">
+                            header
+                        </dd>
+                        <dd class="list__item">
+                            main
+                        </dd>
+                        <dd class="list__item">
+                            footer
+                        </dd>
+                        <dd class="list__item">
+                            div
+                        </dd>
+                        <dd class="list__item">
+                            p
+                        </dd>
+                        <dd class="list__item">
+                            a
+                        </dd>
+                    </dl>
+                </article>
+                <article class="section__wrapper" aria-labelledby="sectioning-content">
+                    <h3 id="sectioning-content" class="text-2xl mb-3"><a href="/sectioning.html">Contenuti di
+                        sezionamento <span class="fa-solid fa-link h-5 w-5 inline-block"></span></a></h3>
+                    <p class="mb-2">
+                        La categoria di contenuti di sezionamento è un sottoinsieme della categoria di contenuti di
+                        flusso e possono essere utilizzate ovunque questa categoria sia prevista. Gli elementi di
+                        sezionamento definiscono sezioni nello schema del documento.</p>
+                    <dl class="list__wrapper list__wrapper--horizontal">
+                        <dt class="list__title">Esempi di contenuti di sezionamento:</dt>
+                        <dd class="list__item">
+                            nav
+                        </dd>
+                        <dd class="list__item">
+                            section
+                        </dd>
+                        <dd class="list__item">
+                            article
+                        </dd>
+                        <dd class="list__item">
+                            aside
+                        </dd>
+                    </dl>
+                </article>
+                <article class="section__wrapper" aria-labelledby="heading-content">
+                    <h3 id="heading-content" class="text-2xl mb-3"><a href="/sectioning.html">Contenuti di titolazione
+                        <span class="fa-solid fa-link h-5 w-5 inline-block"></span></a></h3>
+                    <p class="mb-2">
+                        La categoria di contenuti di titolazione è un sottoinsieme della categoria di contenuti di
+                        flusso e definisce i nomi delle sezioni evidenziate dagli elementi di sezionamento.</p>
+                    <dl class="list__wrapper list__wrapper--horizontal">
+                        <dt class="list__title">Esempi di contenuti di titolazione:</dt>
+                        <dd class="list__item">
+                            h1
+                        </dd>
+                        <dd class="list__item">
+                            h2
+                        </dd>
+                        <dd class="list__item">
+                            h3
+                        </dd>
+                        <dd class="list__item">
+                            h3
+                        </dd>
+                        <dd class="list__item">
+                            h5
+                        </dd>
+                        <dd class="list__item">
+                            h6
+                        </dd>
+                        <dd class="list__item">
+                            hgroup
+                        </dd>
+                    </dl>
+                </article>
+                <article class="section__wrapper" aria-labelledby="phrasing-content">
+                    <h3 id="phrasing-content" class="text-2xl mb-3"><a href="/phrasing.html">Contenuti di fraseggio
+                        <span
+                                class="fa-solid fa-link h-5 w-5 inline-block"></span></a></h3>
+                    <p class="mb-2">
+                        La categoria di contenuti di fraseggio è un sottoinsieme della categoria di contenuti di flusso
+                        e definisce gli elementi dei nodi di testo. Può essere usato ovunque è previsto del contenuto di
+                        flusso.</p>
+                    <dl class="list__wrapper list__wrapper--horizontal">
+                        <dt class="list__title">Esempi di contenuti di fraseggio:</dt>
+                        <dd class="list__item">
+                            span
+                        </dd>
+                        <dd class="list__item">
+                            strong
+                        </dd>
+                        <dd class="list__item">
+                            b
+                        </dd>
+                        <dd class="list__item">
+                            em
+                        </dd>
+                    </dl>
+                </article>
+                <article class="section__wrapper" aria-labelledby="embedded-content">
+                    <h3 id="embedded-content" class="text-2xl mb-3"><a href="/embedded.html">Contenuti integrati <span
+                            class="fa-solid fa-link h-5 w-5 inline-block"></span></a></h3>
+                    <p class="mb-2">
+                        La categoria di contenuti integrati è un sottoinsieme della categoria di contenuti di flusso e
+                        permette l'inserimento di risorse esterne al documento, come immagini o altri tipi di documenti
+                        di markup.</p>
+                    <dl class="list__wrapper list__wrapper--horizontal">
+                        <dt class="list__title">Esempi di contenuti integrati:</dt>
+                        <dd class="list__item">
+                            img
+                        </dd>
+                        <dd class="list__item">
+                            iframe
+                        </dd>
+                        <dd class="list__item">
+                            svg
+                        </dd>
+                        <dd class="list__item">
+                            video
+                        </dd>
+                    </dl>
+                </article>
+                <article class="section__wrapper" aria-labelledby="form-related-content">
+                    <h3 id="form-related-content" class="text-2xl mb-3"><a href="/interactive.html">Contenuti relativi
+                        ai
+                        moduli <span class="fa-solid fa-link h-5 w-5 inline-block"></span></a></h3>
+                    <p class="mb-2">
+                        La categoria di contenuti integrati è un sottoinsieme della categoria di contenuti di flusso e
+                        racchiude tutti quei elementi progettati per l'interazione con l'utente, essendo una
+                        sotto-categoria dei contenuti di flusso, e possono essere inseriti ovunque questa categoria è
+                        prevista.</p>
+                    <dl class="list__wrapper list__wrapper--horizontal">
+                        <dt class="list__title">Esempi di contenuti relativi ai moduli:</dt>
+                        <dd class="list__item">
+                            input
+                        </dd>
+                        <dd class="list__item">
+                            textarea
+                        </dd>
+                        <dd class="list__item">
+                            button
+                        </dd>
+                        <dd class="list__item">
+                            checkbox
+                        </dd>
+                    </dl>
+                </article>
+            </section>
+            <section aria-labelledby="introduction-title" class="section__wrapper">
+                <h2 id="keyboard-navigation-title" class="section__title">Interazione avanzata</h2>
+                <p>
+                    La seconda parte del laboratorio si concentra sulle euristiche di navigazione da tastiera e sulle best-practices per implementare widget e
+                    controlli di pagina utilizzando gli attributi aria.
+                </p>
+                <article class="section__wrapper" aria-labelledby="keyboard-navigation">
+                    <h3 id="keyboard-navigation" class="text-2xl mb-3"><a href="/keyboard_navigation.html">Navigazione da Tastiera <span class="fa-solid fa-link h-5 w-5 inline-block"></span></a></h3>
+                    <p class="mb-2">
+                        La navigazione da tastiera non richiede solo la possibilità di interagire con i controlli di pagina, ma anche di definire meccanismi per navigare al meglio il contenuto.</p>
+                    <dl class="list__wrapper list__wrapper--horizontal">
+                        <dt class="list__title">Parole chiave:</dt>
+                        <dd class="list__item">
+                            focus order
+                        </dd>
+                        <dd class="list__item">
+                            skip content
+                        </dd>
+                        <dd class="list__item">
+                            style focus
+                        </dd>
+                        <dd class="list__item">
+                            tab trap
+                        </dd>
+                    </dl>
+                </article>
+                <article class="section__wrapper" aria-labelledby="aria-attributes">
+                    <h3 id="aria-attributes" class="text-2xl mb-3"><a href="/aria.html">Attributi ARIA <span class="fa-solid fa-link h-5 w-5 inline-block"></span></a></h3>
+                    <p class="mb-2">
+                        Gli attributi ARIA servono alle tecnologie assistive per interpretare i controlli personalizzati sui documenti html.</p>
+                    <dl class="list__wrapper list__wrapper--horizontal">
+                        <dt class="list__title">Parole chiave:</dt>
+                        <dd class="list__item">
+                            Combobox
+                        </dd>
+                        <dd class="list__item">
+                            Radio groups and checkboxes
+                        </dd>
+                        <dd class="list__item">
+                            Carousels
+                        </dd>
+                        <dd class="list__item">
+                            Tablist
+                        </dd>
+                    </dl>
+                </article>
+            </section>
+        </div>
+    </div>
+</main>
+<footer class="pt-12 p-4 bg-slate-800 text-white text-center mt-8">
+    <div class="grid grid-cols-3 w-full">
+        <div>
+            <p class="text-2xl font-bold">WCAG Aria Workshop</p>
+            <dl class="list__wrapper list__wrapper--horizontal text-white">
+                <dt></dt>
+                <dd></dd>
+                <dd></dd>
+            </dl>
+        </div>
+        <div></div>
+        <div>
+            <dl class="list__wrapper list__wrapper--vertical text-white text-left">
+                <dt class="list__title text-xl">Esempi pratici</dt>
+                <dd><a href="/flow.html">Contenuti di flusso</a></dd>
+                <dd><a href="/sectioning.html">Contenuti di sezionamento</a></dd>
+                <dd><a href="/phrasing.html">Contenuti di fraseggio</a></dd>
+                <dd><a href="/embedded.html">Contenuti integrati</a></dd>
+                <dd><a href="/interactive.html">Contenuti relativi ai moduli</a></dd>
+                <dd><a href="/keyboard_navigation.html">Navigazione da tastiera</a></dd>
+                <dd><a href="/aria.html">Attributi ARIA</a></dd>
+            </dl>
+        </div>
+    </div>
+    <p class="text-xs pt-8">Bitmama, WCAG Aria Workshop 2022</p>
+</footer>
+</body>
+</html>

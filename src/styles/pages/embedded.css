@@ -1,0 +1,7 @@
+span, strong, b, em {
+    @apply !bg-neutral-50 !border-neutral-200;
+}
+
+span::before, strong::before, b::before, em::before {
+    @apply !text-neutral-800 !bg-neutral-100 !border-neutral-400;
+}
