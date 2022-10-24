@@ -1,9 +1,9 @@
 .menubar__wrapper {
-    @apply py-8 mx-2 mt-2 rounded-2xl;
+    @apply py-8 rounded-2xl;
 }
 
 .menubar__container {
-    @apply flex flex-row justify-between text-white;
+    @apply flex flex-row justify-between;
 }
 
 .menubar__item {

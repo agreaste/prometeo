@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack",
+    "build": "webpack --config webpack.prod.js",
     "serve": "webpack serve",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist"
@@ -27,7 +27,8 @@
     "html-loader": "^4.2.0",
     "html-webpack-inline-source-plugin": "0.0.10",
     "rxjs": "^7.5.7",
-    "webpack": "^5.74.0"
+    "webpack": "^5.74.0",
+    "webpack-merge": "^5.8.0"
   },
   "devDependencies": {
     "@babel/core": "^7.19.1",
@@ -48,7 +49,7 @@
     "webpack-cli": "^4.10.0",
     "webpack-dev-server": "^4.11.0"
   },
-  "homepage": "http://agreaste.github.io/prometeo",
+  "homepage": "https://agreaste.github.io/prometeo",
   "repository": {
     "url": "git+https://github.com/agreaste/prometeo.git"
   }
