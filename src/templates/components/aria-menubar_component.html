@@ -1,0 +1,16 @@
+<nav class="menubar__wrapper justify-self-start">
+  <ul class="menubar__container" aria-label="Navigazione del sito" role="menubar" is="menu-bar">
+    <li class="menubar__item"><a href="<%= htmlWebpackPlugin.files.publicPath %>flow.html" role="menuitem">Contenuti di flusso</a></li>
+    <li class="menubar__item"><a href="<%= htmlWebpackPlugin.files.publicPath %>sectioning.html" role="menuitem">Contenuti di sezionamento</a></li>
+    <li class="menubar__item"><a href="<%= htmlWebpackPlugin.files.publicPath %>phrasing.html" role="menuitem">Contenuti di Fraseggio</a></li>
+    <li class="menubar__item"><a href="<%= htmlWebpackPlugin.files.publicPath %>embedded.html" role="menuitem">Contenuti integrati</a></li>
+    <li class="menu__wrapper menubar__item">
+      <button role="menuitem" aria-haspopup="menu" aria-expanded="false" is="menu-button">Interazione</button>
+      <div role="menu" aria-label="Interazione" class="menu__container">
+        <a href="<%= htmlWebpackPlugin.files.publicPath %>interactive.html" class="menu__item" role="menuitem">Elementi interattivi</a>
+        <a href="<%= htmlWebpackPlugin.files.publicPath %>keyboard_navigation.html" class="menu__item" role="menuitem">navigazione tastiera</a>
+        <a href="<%= htmlWebpackPlugin.files.publicPath %>aria.html" class="menu__item" role="menuitem">Pattern Aria</a>
+      </div>
+    </li>
+  </ul>
+</nav>
