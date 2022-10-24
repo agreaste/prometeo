@@ -1,10 +1,4 @@
-/*!*****************************************************************************************************************!*\
-  !*** css ../node_modules/css-loader/dist/cjs.js!../node_modules/postcss-loader/dist/cjs.js!./styles/global.css ***!
-  \*****************************************************************************************************************/
 @import url(https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap);
-/*!*********************************************************************************************************************!*\
-  !*** css ../node_modules/css-loader/dist/cjs.js!../node_modules/postcss-loader/dist/cjs.js!./styles/global.css (1) ***!
-  \*********************************************************************************************************************/
 /*
 ! tailwindcss v3.1.8 | MIT License | https://tailwindcss.com
 */
@@ -1210,9 +1204,6 @@ html {
     -webkit-line-clamp: unset !important;
   }
 }
-/*!****************************************************************************************************************!*\
-  !*** css ../node_modules/css-loader/dist/cjs.js!../node_modules/postcss-loader/dist/cjs.js!./styles/index.css ***!
-  \****************************************************************************************************************/
 .header__wrapper {
 
     display: flex;
