@@ -1,6 +1,6 @@
 {
   "name": "prometeo",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Aria interactive examples",
   "main": "index.js",
   "scripts": {
@@ -24,6 +24,8 @@
     "@fortawesome/free-solid-svg-icons": "^6.2.0",
     "@tailwindcss/line-clamp": "^0.4.2",
     "color": "^4.2.3",
+    "handlebars": "^4.7.7",
+    "handlebars-loader": "^1.7.2",
     "html-loader": "^4.2.0",
     "html-webpack-inline-source-plugin": "0.0.10",
     "rxjs": "^7.5.7",

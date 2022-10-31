@@ -1,5 +1,11 @@
 import colors from "tailwindcss/colors";
 import Color from "color";
+import shadowElementUtils from "../shadow/shadowElementUtils";
+import MenuBar from "../shadow/menu_bar";
+import Menu from "../shadow/menu";
+
+shadowElementUtils.defineExtend('menu-bar', MenuBar, 'ul');
+shadowElementUtils.defineExtend('menu-button', Menu, 'button');
 
 const minContrast = (background) => {
     let ratio = 0.1;
@@ -14,12 +20,14 @@ const minContrast = (background) => {
         foreground = foreground.negate();
 
     return [foreground, Number(ratio).toPrecision(2), Number(background.contrast(foreground)).toPrecision(3)];
-}
+};
 
 const paletteHolder = document.getElementById('palette-luminance');
+const palette = ['red', 'orange', 'amber', 'yellow', 'lime', 'emerald', 'green', 'teal', 'cyan', 'blue', 'indigo', 'violet', 'purple'];
 
 Object.keys(colors).forEach(hue => {
-    if (typeof colors[hue] === 'object')
+    console.log(hue)
+    if (typeof colors[hue] === 'object' && palette.includes(hue))
         Object.keys(colors[hue]).forEach(luminosity => {
             const palette = document.createElement('div');
             const tint = Color(colors[hue][luminosity]);
@@ -31,15 +39,6 @@ Object.keys(colors).forEach(hue => {
             palette.style.textAlign = 'center';
             palette.style.color = tint.isDark() ? 'white' : 'black';
             palette.innerHTML = `<p>${Number(tint.luminosity()).toPrecision(2)}</p>`;
-
-            palette.addEventListener('mouseover', (event) => {
-                palette.style.backgroundColor = tint.hex();
-            });
-
-            palette.addEventListener('mouseleave', (event) => {
-                palette.style.backgroundColor = tint.grayscale().hex();
-            });
-
 
             // if(tint.contrast(foreground) >= 4.55)
             paletteHolder.append(palette);

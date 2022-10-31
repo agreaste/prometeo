@@ -3,7 +3,7 @@
 }
 
 .menubar__container {
-    @apply flex flex-row justify-between;
+    @apply flex flex-col lg:flex-row justify-between;
 }
 
 .menubar__item {
