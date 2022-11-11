@@ -44,7 +44,6 @@ class ShadowElementUtils {
     }
 
     static defineExtend(name, component, extendTag = 'div') {
-        console.log('mounting div extension')
         customElements.define(name, component, {extends: extendTag});
     }
 }

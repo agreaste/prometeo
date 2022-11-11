@@ -22,3 +22,14 @@ titles.forEach(title => {
         tableOfContents.appendChild(item);
     }
 });
+
+window.skipLinks = [
+    {
+        label: 'Skip to main content',
+        anchor: '#main-content'
+    },
+    {
+        label: 'Skip to head content',
+        anchor: '#head-content'
+    }
+];

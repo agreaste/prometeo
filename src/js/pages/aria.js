@@ -1,18 +1,18 @@
-import shadowElementUtils from "../shadow/shadowElementUtils";
-import ListBox from "../shadow/listBox";
-import BadBox from "../shadow/badBox";
-import Tablist from "../shadow/tablist";
-
-import "../../styles/pages/aria.css";
-import Accordion from "../shadow/accordion";
-import RadioGroup from "../shadow/radiogroup";
+import shadowElementUtils from "shadow/shadowElementUtils";
+import ListBox from "shadow/listBox";
+import BadBox from "shadow/badBox";
+import Tablist from "shadow/tablist";
+import Accordion from "shadow/accordion";
+import RadioGroup from "shadow/radiogroup";
 import data from "../mock.json";
+import Checkbox from "shadow/checkbox";
+import SelectAll from "shadow/selectAll";
+import MenuBar from "shadow/menu_bar";
+import Menu from "shadow/menu";
+import BasicCarousel, {CarouselControl, CarouselNext, CarouselPrevious} from "shadow/basicCarousel";
 import Card from "../card";
-import Checkbox from "../shadow/checkbox";
-import SelectAll from "../shadow/selectAll";
-import MenuBar from "../shadow/menu_bar";
-import Menu from "../shadow/menu";
-import BasicCarousel, {CarouselControl, CarouselNext, CarouselPrevious} from "../shadow/basicCarousel";
+
+import "styles/pages/aria.css";
 
 // customized aria widget as I'm the laziest around, sorry mom
 shadowElementUtils.defineExtend('menu-bar', MenuBar, 'ul');
