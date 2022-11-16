@@ -1,0 +1,23 @@
+{
+    "compilerOptions": {
+        "target": "es2015",
+        "lib": ["es5", "es6", "dom"],
+        "strict": true,
+        "skipLibCheck": true,
+        "moduleResolution": "node",
+        "module": "esnext",
+        "sourceMap": true,
+        "declaration": true,
+        "declarationDir": "dist/types",
+        "declarationMap": true,
+        "emitDeclarationOnly": true,
+        "outDir": "dist",
+        "esModuleInterop": false
+    },
+    "include": [
+        "src"
+    ],
+    "exclude": [
+        "node_modules"
+    ]
+}
