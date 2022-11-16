@@ -20,8 +20,8 @@ class Tablist extends HTMLDivElement {
 
         this.panels = Array.from<HTMLElement>(this.querySelectorAll('[role="tabpanel"]'));
 
-        this.shadowBuilder(this);
         this.activeTab = new BehaviorSubject(null);
+        this.shadowBuilder(this);
     }
 
     shadowBuilder(root: HTMLElement) {
@@ -30,7 +30,6 @@ class Tablist extends HTMLDivElement {
             ...acc
         }), {});
 
-        // @ts-ignore
         this.activeTab.asObservable().subscribe((target: HTMLElement | null) => {
             if(!target)
                 return;

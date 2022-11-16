@@ -5,9 +5,10 @@
     "packages/*"
   ],
   "scripts": {
-    "dev": "lerna run dev --parallel",
     "build": "lerna run build",
-    "build:nyx": "lerna run build --scope nyx"
+    "build:nyx": "lerna run build --scope nyx",
+    "dev:prometeo": "lerna run dev --scope prometeo",
+    "deploy:prometeo": "lerna run deploy --scope prometeo-web"
   },
   "devDependencies": {
     "lerna": "^6.0.3",

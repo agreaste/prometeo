@@ -1,8 +1,7 @@
 import colors from "tailwindcss/colors";
 import Color from "color";
 import shadowElementUtils from "../shadow/shadowElementUtils";
-import MenuBar from "../shadow/menu_bar";
-import Menu from "../shadow/menu";
+import {MenuBar, Menu} from "nyx";
 
 shadowElementUtils.defineExtend('menu-bar', MenuBar, 'ul');
 shadowElementUtils.defineExtend('menu-button', Menu, 'button');

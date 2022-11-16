@@ -2,12 +2,12 @@
     <ul class="menubar__container" aria-label="Navigazione del sito" role="menubar" is="menu-bar">
         {{#if headContent}}
             <li>
-                <a class="skip_link" href="{{headContent}}" id="skip-to-head">Skip to head content</a>
+                <a class="skip_link" href="#{{headContent}}" id="skip-to-head">Skip to head content</a>
             </li>
         {{/if}}
         {{#if mainContent}}
             <li>
-                <a class="skip_link skip_link--purple" href="{{mainContent}}" id="skip-to-main">Skip to main
+                <a class="skip_link skip_link--purple" href="#{{mainContent}}" id="skip-to-main">Skip to main
                     content</a>
             </li>
         {{/if}}
