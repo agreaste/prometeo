@@ -1,0 +1,16 @@
+{
+  "name": "root",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "lerna run dev --parallel",
+    "build": "lerna run build",
+    "build:nyx": "lerna run build --scope nyx"
+  },
+  "devDependencies": {
+    "lerna": "^6.0.3",
+    "rollup-plugin-visualizer": "^5.8.3"
+  }
+}
