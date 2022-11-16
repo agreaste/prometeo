@@ -1,9 +1,9 @@
 import '../styles/global.css';
 import '../styles/index.css';
 import shadowElementUtils from "./shadow/shadowElementUtils";
-import {MenuBar, Menu} from "nyx";
+import {Menubar, Menu} from "nyx";
 
-shadowElementUtils.defineExtend('menu-bar', MenuBar, 'ul');
+shadowElementUtils.defineExtend('menu-bar', Menubar, 'ul');
 shadowElementUtils.defineExtend('menu-button', Menu, 'button');
 
 const titles = document.querySelectorAll('h2, h3, h4, h5, h6');

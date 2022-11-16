@@ -1,9 +1,9 @@
 import colors from "tailwindcss/colors";
 import Color from "color";
 import shadowElementUtils from "../shadow/shadowElementUtils";
-import {MenuBar, Menu} from "nyx";
+import {Menubar, Menu} from "nyx";
 
-shadowElementUtils.defineExtend('menu-bar', MenuBar, 'ul');
+shadowElementUtils.defineExtend('menu-bar', Menubar, 'ul');
 shadowElementUtils.defineExtend('menu-button', Menu, 'button');
 
 const minContrast = (background) => {

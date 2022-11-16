@@ -1,6 +1,6 @@
 import {BehaviorSubject} from "rxjs";
 
-class MenuBar extends HTMLUListElement {
+class Menubar extends HTMLUListElement {
     activeItem: BehaviorSubject<HTMLElement>;
     items: Array<HTMLElement>;
     root: HTMLElement;
@@ -57,4 +57,4 @@ class MenuBar extends HTMLUListElement {
     }
 }
 
-export default MenuBar;
+export default Menubar;
