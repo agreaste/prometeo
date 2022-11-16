@@ -1,0 +1,23 @@
+.light {
+    @apply flex flex-col relative px-6 pt-7 pb-2 rounded-lg mt-2 mb-4 transition-all shadow-sm shadow-blue-300 border border-2 border-blue-500;
+}
+
+.light:focus-within {
+    @apply ring ring-2 ring-blue-400;
+}
+
+.light input {
+    @apply text-slate-700 focus:outline-0 text-sm
+}
+
+.light input:valid + label, .light input:focus + label {
+    @apply text-blue-600 top-4;
+}
+
+.light label {
+    @apply absolute text-blue-800 font-semibold transition-all top-1/2 -translate-y-1/2;
+}
+
+.combine-wrapper {
+    @apply grid grid-cols-4;
+}

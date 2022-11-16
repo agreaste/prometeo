@@ -1,0 +1,60 @@
+#password-error {
+    @apply hidden;
+}
+
+#password-error.invalid {
+    @apply block;
+}
+
+.alert__container {
+    @apply absolute bottom-0 right-0 flex flex-col justify-end w-96 z-[10];
+}
+
+.alert__popup {
+    @apply bg-slate-50 border border-slate-100 rounded-2xl shadow-md px-6 py-4 mb-2;
+}
+
+.loading__alert {
+    @apply flex-col mx-auto w-96 justify-center items-center bg-white p-2 rounded-lg border-b-2 border-b-amber-400 absolute top-16 left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-20 hidden;
+}
+
+.loading__alert.loading__alert--active {
+    @apply flex;
+}
+
+.loading__alert.loading__alert--active + div {
+    @apply absolute inset-0 opacity-50 bg-amber-500
+}
+
+.card__container {
+    @apply bg-white grid grid-cols-4 rounded-md overflow-clip h-20;
+}
+
+.card__image {
+    @apply col-span-1 h-full object-cover
+}
+
+.card__content {
+    @apply p-4 col-span-3;
+}
+
+.card__title {
+    @apply font-semibold text-amber-600;
+}
+
+.card__abstract {
+    @apply text-slate-500 text-xs;
+}
+
+body {
+
+}
+
+/* zoom fixes */
+.header__wrapper {
+    @apply flex flex-col px-8 lg:px-32 mb-16 relative;
+}
+
+.header__image {
+    @apply absolute w-full object-right lg:object-bottom top-0 right-0 z-[0] pointer-events-none;
+}

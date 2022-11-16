@@ -1,0 +1,33 @@
+.menu__wrapper {
+    @apply relative;
+}
+
+.menu__button {
+    @apply p-4 bg-white border-neutral-400 w-full rounded-md text-black;
+}
+
+.menu__container {
+    @apply absolute hidden bg-white rounded-md absolute w-full mt-6;
+}
+
+.menu__container::before {
+    content: '';
+    border: 1rem solid;
+    border-color: transparent transparent white;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -100%);
+}
+
+[aria-haspopup="menu"][aria-expanded="true"] + .menu__container {
+    @apply flex flex-col outline-none;
+}
+
+.menu__item {
+    @apply text-black hover:bg-blue-100 p-4 first:rounded-t-md last:rounded-b-md;
+}
+
+.menu__container:focus-visible .menu__item.menu__item--active {
+    @apply ring ring-blue-700;
+}
+
