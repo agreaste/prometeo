@@ -13,7 +13,6 @@ body {
 body::before {
     content: 'body';
     margin-bottom: 1rem;
-    width: -webkit-fit-content;
     width: -moz-fit-content;
     width: fit-content;
     border-radius: 1rem;
@@ -51,7 +50,6 @@ header::after {
     bottom: 0.5rem;
     left: 0.5rem;
     display: block;
-    width: -webkit-fit-content;
     width: -moz-fit-content;
     width: fit-content;
     border-radius: 1rem;
@@ -89,7 +87,6 @@ main::before {
     top: 0.5rem;
     left: 0.5rem;
     display: block;
-    width: -webkit-fit-content;
     width: -moz-fit-content;
     width: fit-content;
     border-radius: 1rem;
@@ -126,7 +123,6 @@ footer::before {
     position: absolute;
     top: 0.5rem;
     left: 0.5rem;
-    width: -webkit-fit-content;
     width: -moz-fit-content;
     width: fit-content;
     border-radius: 1rem;
@@ -159,10 +155,8 @@ div:not(.no-desc)::before {
     content: 'div';
     margin-bottom: 0.5rem;
     display: block;
-    height: -webkit-fit-content;
     height: -moz-fit-content;
     height: fit-content;
-    width: -webkit-fit-content;
     width: -moz-fit-content;
     width: fit-content;
     border-radius: 1rem;
@@ -201,7 +195,6 @@ p::before {
     content: 'p';
     margin-right: 0.5rem;
     display: inline-flex;
-    width: -webkit-fit-content;
     width: -moz-fit-content;
     width: fit-content;
     flex-direction: column;
@@ -226,7 +219,6 @@ p.auto-closing::before {
 a {
     display: block;
     display: inline-block;
-    width: -webkit-fit-content;
     width: -moz-fit-content;
     width: fit-content;
     border-radius: 1.5rem;
@@ -245,7 +237,6 @@ a::before {
     content: 'a';
     margin-right: 0.5rem;
     display: inline-flex;
-    width: -webkit-fit-content;
     width: -moz-fit-content;
     width: fit-content;
     flex-grow: 0;
@@ -275,7 +266,6 @@ ul {
 
 ul {
     position: relative;
-    width: -webkit-fit-content;
     width: -moz-fit-content;
     width: fit-content;
     border-radius: 1.5rem;
@@ -292,7 +282,6 @@ ul::before {
     top: 0.5rem;
     left: 0.5rem;
     display: inline-flex;
-    width: -webkit-fit-content;
     width: -moz-fit-content;
     width: fit-content;
     flex-direction: column;
@@ -313,7 +302,6 @@ ul::before {
 li {
     margin-bottom: 0.5rem;
     display: block;
-    width: -webkit-fit-content;
     width: -moz-fit-content;
     width: fit-content;
     border-radius: 1.5rem;
@@ -332,7 +320,6 @@ li::before {
     content: 'li';
     margin-right: 0.5rem;
     display: inline-flex;
-    width: -webkit-fit-content;
     width: -moz-fit-content;
     width: fit-content;
     flex-grow: 0;

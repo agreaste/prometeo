@@ -13,7 +13,6 @@ body {
 body::before {
     content: 'body';
     margin-bottom: 1rem;
-    width: -webkit-fit-content;
     width: -moz-fit-content;
     width: fit-content;
     border-radius: 1rem;
@@ -51,7 +50,6 @@ header::after {
     bottom: 0.5rem;
     left: 0.5rem;
     display: block;
-    width: -webkit-fit-content;
     width: -moz-fit-content;
     width: fit-content;
     border-radius: 1rem;
@@ -89,7 +87,6 @@ main::before {
     top: 0.5rem;
     left: 0.5rem;
     display: block;
-    width: -webkit-fit-content;
     width: -moz-fit-content;
     width: fit-content;
     border-radius: 1rem;
@@ -126,7 +123,6 @@ footer::before {
     position: absolute;
     top: 0.5rem;
     left: 0.5rem;
-    width: -webkit-fit-content;
     width: -moz-fit-content;
     width: fit-content;
     border-radius: 1rem;
@@ -159,10 +155,8 @@ div:not(.no-desc)::before {
     content: 'div';
     margin-bottom: 0.5rem;
     display: block;
-    height: -webkit-fit-content;
     height: -moz-fit-content;
     height: fit-content;
-    width: -webkit-fit-content;
     width: -moz-fit-content;
     width: fit-content;
     border-radius: 1rem;
@@ -201,7 +195,6 @@ p::before {
     content: 'p';
     margin-right: 0.5rem;
     display: inline-flex;
-    width: -webkit-fit-content;
     width: -moz-fit-content;
     width: fit-content;
     flex-direction: column;
@@ -226,7 +219,6 @@ p.auto-closing::before {
 a {
     display: block;
     display: inline-block;
-    width: -webkit-fit-content;
     width: -moz-fit-content;
     width: fit-content;
     border-radius: 1.5rem;
@@ -245,7 +237,6 @@ a::before {
     content: 'a';
     margin-right: 0.5rem;
     display: inline-flex;
-    width: -webkit-fit-content;
     width: -moz-fit-content;
     width: fit-content;
     flex-grow: 0;
@@ -275,7 +266,6 @@ ul {
 
 ul {
     position: relative;
-    width: -webkit-fit-content;
     width: -moz-fit-content;
     width: fit-content;
     border-radius: 1.5rem;
@@ -292,7 +282,6 @@ ul::before {
     top: 0.5rem;
     left: 0.5rem;
     display: inline-flex;
-    width: -webkit-fit-content;
     width: -moz-fit-content;
     width: fit-content;
     flex-direction: column;
@@ -313,7 +302,6 @@ ul::before {
 li {
     margin-bottom: 0.5rem;
     display: block;
-    width: -webkit-fit-content;
     width: -moz-fit-content;
     width: fit-content;
     border-radius: 1.5rem;
@@ -332,7 +320,6 @@ li::before {
     content: 'li';
     margin-right: 0.5rem;
     display: inline-flex;
-    width: -webkit-fit-content;
     width: -moz-fit-content;
     width: fit-content;
     flex-grow: 0;
@@ -371,10 +358,8 @@ nav::before {
     top: 0.5rem;
     left: 0.5rem;
     display: block;
-    height: -webkit-fit-content;
     height: -moz-fit-content;
     height: fit-content;
-    width: -webkit-fit-content;
     width: -moz-fit-content;
     width: fit-content;
     border-radius: 1rem;
@@ -413,10 +398,8 @@ section::before {
     left: 0.5rem;
     margin-bottom: 0.5rem;
     display: block;
-    height: -webkit-fit-content;
     height: -moz-fit-content;
     height: fit-content;
-    width: -webkit-fit-content;
     width: -moz-fit-content;
     width: fit-content;
     border-radius: 1rem;
@@ -450,10 +433,8 @@ article::before {
     content: 'article';
     margin-bottom: 0.5rem;
     display: block;
-    height: -webkit-fit-content;
     height: -moz-fit-content;
     height: fit-content;
-    width: -webkit-fit-content;
     width: -moz-fit-content;
     width: fit-content;
     border-radius: 1rem;
@@ -488,10 +469,8 @@ aside::before {
     content: 'aside';
     margin-bottom: 0.5rem;
     display: block;
-    height: -webkit-fit-content;
     height: -moz-fit-content;
     height: fit-content;
-    width: -webkit-fit-content;
     width: -moz-fit-content;
     width: fit-content;
     border-radius: 1rem;
@@ -508,14 +487,14 @@ aside::before {
     color: rgba(7, 89, 133, var(--tw-text-opacity));
 }
 
-header,  main,  footer,  div:not(.no-desc),  p,  a,  ul,  li {
+header, main, footer, div:not(.no-desc), p, a, ul, li {
     --tw-border-opacity: 1 !important;
     border-color: rgba(229, 229, 229, var(--tw-border-opacity)) !important;
     --tw-bg-opacity: 1 !important;
     background-color: rgba(250, 250, 250, var(--tw-bg-opacity)) !important;
 }
 
-header::after,  main::before,  footer::before,  div:not(.no-desc)::before,  p::before,  a::before,  ul::before,  li::before {
+header::after, main::before, footer::before, div:not(.no-desc)::before, p::before, a::before, ul::before, li::before {
     --tw-border-opacity: 1 !important;
     border-color: rgba(163, 163, 163, var(--tw-border-opacity)) !important;
     --tw-bg-opacity: 1 !important;
@@ -524,14 +503,13 @@ header::after,  main::before,  footer::before,  div:not(.no-desc)::before,  p::b
     color: rgba(38, 38, 38, var(--tw-text-opacity)) !important;
 }
 
-h1,  h2,  h3,  h4,  h5,  h6 {
+h1, h2, h3, h4, h5, h6 {
     margin-bottom: 1rem !important;
 }
 
-h1,  h2,  h3,  h4,  h5,  h6 {
+h1, h2, h3, h4, h5, h6 {
     display: block;
     display: inline-block;
-    width: -webkit-fit-content;
     width: -moz-fit-content;
     width: fit-content;
     border-radius: 1.5rem;
@@ -546,11 +524,10 @@ h1,  h2,  h3,  h4,  h5,  h6 {
     padding-right: 0.75rem;
 }
 
-h1::before,  h2::before,  h3::before,  h4::before,  h5::before,  h6::before {
+h1::before, h2::before, h3::before, h4::before, h5::before, h6::before {
     margin-right: 0.25rem;
     display: block;
     display: inline-block;
-    width: -webkit-fit-content;
     width: -moz-fit-content;
     width: fit-content;
     border-radius: 1.5rem;
@@ -591,14 +568,14 @@ h6::before {
     content: 'h6';
 }
 
-nav,  section,  article,  aside {
+nav, section, article, aside {
     --tw-border-opacity: 1 !important;
     border-color: rgba(229, 229, 229, var(--tw-border-opacity)) !important;
     --tw-bg-opacity: 1 !important;
     background-color: rgba(250, 250, 250, var(--tw-bg-opacity)) !important;
 }
 
-nav::before,  section::before,  article::before,  aside::before {
+nav::before, section::before, article::before, aside::before {
     --tw-border-opacity: 1 !important;
     border-color: rgba(163, 163, 163, var(--tw-border-opacity)) !important;
     --tw-bg-opacity: 1 !important;
@@ -607,14 +584,13 @@ nav::before,  section::before,  article::before,  aside::before {
     color: rgba(38, 38, 38, var(--tw-text-opacity)) !important;
 }
 
-h1,  h2,  h3,  h4,  h5,  h6 {
+h1, h2, h3, h4, h5, h6 {
     margin-bottom: 1rem !important;
 }
 
-h1,  h2,  h3,  h4,  h5,  h6 {
+h1, h2, h3, h4, h5, h6 {
     display: block;
     display: inline-block;
-    width: -webkit-fit-content;
     width: -moz-fit-content;
     width: fit-content;
     border-radius: 1.5rem;
@@ -629,11 +605,10 @@ h1,  h2,  h3,  h4,  h5,  h6 {
     padding-right: 0.75rem;
 }
 
-h1::before,  h2::before,  h3::before,  h4::before,  h5::before,  h6::before {
+h1::before, h2::before, h3::before, h4::before, h5::before, h6::before {
     margin-right: 0.25rem;
     display: block;
     display: inline-block;
-    width: -webkit-fit-content;
     width: -moz-fit-content;
     width: fit-content;
     border-radius: 1.5rem;
@@ -654,7 +629,6 @@ h1::before,  h2::before,  h3::before,  h4::before,  h5::before,  h6::before {
 span {
     display: block;
     display: inline-block;
-    width: -webkit-fit-content;
     width: -moz-fit-content;
     width: fit-content;
     border-radius: 1.5rem;
@@ -673,7 +647,6 @@ span::before {
     content: 'span';
     margin-right: 0.5rem;
     display: inline-flex;
-    width: -webkit-fit-content;
     width: -moz-fit-content;
     width: fit-content;
     flex-grow: 0;
@@ -695,7 +668,6 @@ span::before {
 
 strong {
     display: inline-block;
-    width: -webkit-fit-content;
     width: -moz-fit-content;
     width: fit-content;
     border-radius: 1.5rem;
@@ -714,7 +686,6 @@ strong::before {
     content: 'strong';
     margin-right: 0.5rem;
     display: inline-flex;
-    width: -webkit-fit-content;
     width: -moz-fit-content;
     width: fit-content;
     flex-grow: 0;
@@ -736,7 +707,6 @@ strong::before {
 
 b {
     display: inline-block;
-    width: -webkit-fit-content;
     width: -moz-fit-content;
     width: fit-content;
     border-radius: 1.5rem;
@@ -755,7 +725,6 @@ b::before {
     content: 'b';
     margin-right: 0.5rem;
     display: inline-flex;
-    width: -webkit-fit-content;
     width: -moz-fit-content;
     width: fit-content;
     flex-grow: 0;
@@ -777,7 +746,6 @@ b::before {
 
 em {
     display: inline-block;
-    width: -webkit-fit-content;
     width: -moz-fit-content;
     width: fit-content;
     border-radius: 1.5rem;
@@ -796,7 +764,6 @@ em::before {
     content: 'em';
     margin-right: 0.5rem;
     display: inline-flex;
-    width: -webkit-fit-content;
     width: -moz-fit-content;
     width: fit-content;
     flex-grow: 0;
@@ -815,7 +782,7 @@ em::before {
     --tw-text-opacity: 1;
     color: rgba(146, 64, 14, var(--tw-text-opacity));
 }
-span,  strong,  b,  em {
+span, strong, b, em {
 
     --tw-border-opacity: 1 !important;
 
@@ -826,7 +793,7 @@ span,  strong,  b,  em {
     background-color: rgba(250, 250, 250, var(--tw-bg-opacity)) !important
 }
 
-span::before,  strong::before,  b::before,  em::before {
+span::before, strong::before, b::before, em::before {
 
     --tw-border-opacity: 1 !important;
 
