@@ -39,3 +39,5 @@ library.add(faChevronLeft);
 library.add(faChevronRight);
 
 dom.watch();
+
+export const version = VERSION;

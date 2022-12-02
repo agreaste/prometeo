@@ -1,6 +1,6 @@
 <table>
-    <caption>
-        WCAG 2.0 AA Checklist
+    <caption class="text-xl font-semibold">
+        WCAG 2.1 Mobile Checklist
     </caption>
     <thead>
     <tr>
@@ -50,7 +50,7 @@
             <ol>
                 <li>Check that information presented in audio-only format has a text transcript.</li>
                 <li>Check that information presented in video-only format has a either an audio equivalent or a text
-                    transcript. &nbsp;
+                    transcript.
                 </li>
             </ol>
         </td>
@@ -276,7 +276,23 @@
         <td>1.4.10</td>
         <td>AA</td>
         <td>Distinguishable</td>
-        <td><p>TODO</p></td>
+        <td>
+            <ol>
+                <li>
+                    Enable Large Text sizes under accessibility settings and test native app to check that text can
+                    enlarge.
+                </li>
+                <li>
+                    Check that app don't alter scroll interaction (scroll both ways).
+                </li>
+                <li>
+                    Check that content do not disappear or is unavailable on reflow.
+                </li>
+            </ol>
+            <small class="text-xs">
+                Content which requires two-dimensional layout for usage or meaning cannot reflow without losing meaning, and is therefore out of scope of this Success Criterion.
+            </small>
+        </td>
     </tr>
     <tr>
 
@@ -301,7 +317,6 @@
         </td>
     </tr>
     <tr>
-
         <th scope="row">Text Spacing<small class="block text-xs text-green-600">New in 2.1</small></th>
         <td>1.4.12</td>
         <td>AA</td>
@@ -336,7 +351,14 @@ p {
         <td>1.4.13</td>
         <td>AA</td>
         <td>Distinguishable</td>
-        <td><p>TODO</p></td>
+        <td>
+            <p>Navigate through the app using a keyboard.If additional content appears due to a hover or focus state check that:</p>
+            <ol>
+                <li>content is dismissible without moving the cursor</li>
+                <li>content is operable moving focus the component that triggered change to the additional content</li>
+                <li>content is operable until user remove focus from additional content or from trigger component</li>
+            </ol>
+        </td>
     </tr>
     <tr>
 
@@ -355,7 +377,6 @@ p {
         </td>
     </tr>
     <tr>
-
         <th scope="row">No Keyboard Trap</th>
         <td>2.1.2</td>
         <td>A</td>
@@ -367,15 +388,6 @@ p {
         </td>
     </tr>
     <tr>
-
-        <th scope="row">Character Key Shortcuts <small class="block text-xs text-green-600">New in 2.1</small></th>
-        <td>2.1.4</td>
-        <td>A</td>
-        <td>Keyboard Accessible</td>
-        <td><p>TODO</p></td>
-    </tr>
-    <tr>
-
         <th scope="row">Timing Adjustable</th>
         <td>2.2.1</td>
         <td>A</td>
@@ -544,7 +556,9 @@ p {
                 <li>For each functionality check that at least one of the following propositions is true:
                     <ol>
                         <li>The down-event of the pointer is not used to execute any part of the function</li>
-                        <li>The completion of the function is on the up-event and a mechanism is available to abort the function before completion</li>
+                        <li>The completion of the function is on the up-event and a mechanism is available to abort the
+                            function before completion
+                        </li>
                         <li>The up-event reverse any outcome of the preceding down event</li>
                         <li>Completing the function on the down-event is essential</li>
                     </ol>
@@ -553,18 +567,30 @@ p {
         </td>
     </tr>
     <tr>
-        <th scope="row">Label in Name</th>
+        <th scope="row">Label in Name<small class="block text-xs text-green-600">New in 2.1</small></th>
         <td>2.5.3</td>
         <td>A</td>
         <td>Input Modalities</td>
-        <td><p>TODO</p></td>
+        <td><p>Using Talkback or VoiceOver navigate the app's inputs and check announced name matches visual text</p></td>
     </tr>
     <tr>
-        <th scope="row">Motion Actuation</th>
+        <th scope="row">Motion Actuation<small class="block text-xs text-green-600">New in 2.1</small></th>
         <td>2.5.4</td>
         <td>A</td>
         <td>Input Modalities</td>
-        <td><p>TODO</p></td>
+        <td>
+            <ol>
+                <li>Check if the app has device motion or user motion functionalities</li>
+                <li>For each functionality check that functionality can be operated from a user interface and motion
+                    detection can be disabled to prevent accidental actuation unless when:
+                    <ol>
+                        <li>The motion is used to operate functionality through an accessibility supported interface
+                        </li>
+                        <li>The motion is essential for the function and doing so would invalidate the activity</li>
+                    </ol>
+                </li>
+            </ol>
+        </td>
     </tr>
     <tr>
 
@@ -733,7 +759,7 @@ p {
         <td>
             <ol>
                 <li>This success criterion only applies to web view apps and would have to be tested using HTML
-                    validation.&nbsp;
+                    validation.
                 </li>
                 <li>Recommend using FireEyes for this testing which would apply to HTML content only.</li>
             </ol>
@@ -760,11 +786,18 @@ p {
         </td>
     </tr>
     <tr>
-        <th scope="row">Status Messages</th>
+        <th scope="row">Status Messages<small class="block text-xs text-green-600">New in 2.1</small></th>
         <td>4.1.3</td>
         <td>AA</td>
         <td>Compatible</td>
-        <td><p>TODO</p></td>
+        <td>
+            <p>
+                Using Talkback or VoiceOver navigate the app and operate a flow that triggers messages or notifications
+                on screen.
+                Check that Screen reader reads correctly the message on screen (including level of severity if visually
+                conveyed).
+            </p>
+        </td>
     </tr>
     </tbody>
 </table>

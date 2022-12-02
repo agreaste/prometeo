@@ -1,6 +1,71 @@
 const path = require('path');
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const packageJson = require('./package.json');
+
+const globalTemplateVars = {
+  version: packageJson.version
+};
+
+const templateConfig = (title, template, templateVars = {}) => (new HtmlWebpackPlugin({
+    title,
+    filename: `${template}.html`,
+    template: `templates/${template}.hbs`,
+    chunks: [template, 'commons'],
+    inject: "head",
+    inlineSource: '.(js|css)$',
+    templateParameters: {
+        ...globalTemplateVars,
+        ...templateVars
+    }
+}));
+
+const pages = [
+    {
+        title: 'WCAG Workshop',
+        template: 'index'
+    },
+    {
+        title: 'Flow Sample',
+        template: 'flow'
+    },
+    {
+        title: 'Sectioning Sample',
+        template: 'sectioning',
+    },
+    {
+        title: 'Phrasing Sample',
+        template: 'phrasing'
+    },
+    {
+        title: 'Embedded Sample',
+        template: 'embedded'
+    },
+    {
+        title: 'Interactive Sample',
+        template: 'interactive'
+    },
+    {
+        title: 'Keyboard navigation Sample',
+        template: 'keyboard_navigation'
+    },
+    {
+        title: 'Aria Sample',
+        template: 'aria'
+    },
+    {
+        title: 'Visive Cognition',
+        template: 'vision'
+    },
+    {
+        title: 'Zoom',
+        template: 'zoom'
+    },
+    {
+        title: 'Metodologie di analisi',
+        template: 'methodologies'
+    }
+];
 
 module.exports = {
     mode: 'development',
@@ -12,7 +77,7 @@ module.exports = {
         }
     },
     entry: {
-        home: './js/index.js',
+        index: './js/index.js',
         flow: './js/pages/flow.js',
         sectioning: './js/pages/sectioning.js',
         phrasing: './js/pages/phrasing.js',
@@ -75,102 +140,7 @@ module.exports = {
         ]
     },
     plugins: [
-        new HtmlWebpackPlugin({
-            title: 'WCAG Workshop',
-            filename: 'index.html',
-            template: 'templates/index.hbs',
-            chunks: ['home', 'commons'],
-            inject: "head",
-            inlineSource: '.(js|css)$'
-        }),
-        new HtmlWebpackPlugin({
-            title: 'Flow Sample',
-            filename: 'flow.html',
-            template: 'templates/flow.hbs',
-            chunks: ['flow', 'commons'],
-            inject: "head",
-            inlineSource: '.(js|css)$'
-        }),
-        new HtmlWebpackPlugin({
-            title: 'Sectioning Sample',
-            filename: 'sectioning.html',
-            template: 'templates/sectioning.hbs',
-            chunks: ['commons', 'sectioning'],
-            inject: "head",
-            inlineSource: '.(js|css)$'
-        }),
-        new HtmlWebpackPlugin({
-            title: 'Phrasing Sample',
-            filename: 'phrasing.html',
-            template: 'templates/phrasing.hbs',
-            chunks: ['commons', 'phrasing'],
-            inject: "head",
-            inlineSource: '.(js|css)$'
-        }),
-        new HtmlWebpackPlugin({
-            title: 'Embedded Sample',
-            filename: 'embedded.html',
-            template: 'templates/embedded.hbs',
-            chunks: ['commons', 'embedded'],
-            inject: "head",
-            inlineSource: '.(js|css)$'
-        }),
-        new HtmlWebpackPlugin({
-            title: 'Iframe Sample',
-            filename: 'card.html',
-            template: 'templates/card.html',
-            chunks: ['commons'],
-            inject: "head",
-            inlineSource: '.(js|css)$'
-        }),
-        new HtmlWebpackPlugin({
-            title: 'Interactive Sample',
-            filename: 'interactive.html',
-            template: 'templates/interactive.hbs',
-            chunks: ['commons', 'interactive'],
-            inject: "head",
-            inlineSource: '.(js|css)$'
-        }),
-        new HtmlWebpackPlugin({
-            title: 'Keyboard navigation Sample',
-            filename: 'keyboard_navigation.html',
-            template: 'templates/keyboard_navigation.hbs',
-            chunks: ['commons', 'keyboard_navigation'],
-            inject: "head",
-            inlineSource: '.(js|css)$'
-        }),
-        new HtmlWebpackPlugin({
-            title: 'Aria Sample',
-            filename: 'aria.html',
-            template: 'templates/aria.hbs',
-            chunks: ['commons', 'aria'],
-            inject: "head",
-            inlineSource: '.(js|css)$'
-        }),
-        new HtmlWebpackPlugin({
-            title: 'Visive Cognition',
-            filename: 'vision.html',
-            template: 'templates/vision.html',
-            chunks: ['commons', 'vision'],
-            inject: "head",
-            inlineSource: '.(js|css)$'
-        }),
-        new HtmlWebpackPlugin({
-            title: 'Zoom',
-            filename: 'zoom.html',
-            template: 'templates/zoom.html',
-            chunks: ['commons', 'zoom'],
-            inject: "head",
-            inlineSource: '.(js|css)$'
-        }),
-        new HtmlWebpackPlugin({
-            title: 'Metodologie di analisi',
-            filename: 'methodologies.html',
-            template: 'templates/methodologies.hbs',
-            chunks: ['commons', 'methodologies'],
-            inject: "head",
-            inlineSource: '.(js|css)$'
-        }),
+        ...pages.map(({title, template, templateVars = {}}) => templateConfig(title, template, templateVars)),
         new MiniCssExtractPlugin(),
     ],
     optimization: {

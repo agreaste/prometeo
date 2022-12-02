@@ -39,7 +39,7 @@
 }
 
 .list__title {
-    @apply font-semibold grow shrink w-full;
+    @apply text-lg font-semibold grow shrink w-full;
 }
 
 .list__item {

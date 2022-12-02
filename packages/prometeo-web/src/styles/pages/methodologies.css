@@ -1,3 +1,15 @@
+.header__wrapper {
+    @apply p-32 mt-[90px] bg-blue-200
+}
+
+.header__title {
+    @apply text-3xl text-blue-500 font-bold text-center;
+}
+
+.main__wrapper {
+    @apply pt-8 pb-16;
+}
+
 caption {
     @apply mb-4 text-left
 }
@@ -14,15 +26,15 @@ th, td {
     @apply px-6 py-4 border-slate-200 border;
 }
 
-a {
+table a {
     @apply !underline !text-blue-500;
 }
 
-ol {
+table ol {
     @apply !list-decimal !pl-4
 }
 
-ul {
+table ul {
     @apply !list-disc !pl-4;
 }
 

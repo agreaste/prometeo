@@ -1,4 +1,3 @@
-import '../styles/global.css';
 import '../styles/index.css';
 import shadowElementUtils from "./shadow/shadowElementUtils";
 import {Menubar, Menu} from "nyx";
@@ -12,7 +11,10 @@ const tableOfContents = document.getElementById('table-of-contents');
 titles.forEach(title => {
 
     if(!title.id) {
-        title.setAttribute('id', title.textContent.trim().toLocaleLowerCase().replaceAll(' ', '-'));
+        title.setAttribute('id', title.textContent
+            .trim()
+            .toLocaleLowerCase()
+            .replaceAll(' ', '-'));
     }
 
     if(title.id !== 'content-list-title') {
