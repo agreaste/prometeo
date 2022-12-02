@@ -1,3 +1,36 @@
+.header__wrapper {
+
+    margin-top: 90px;
+
+    --tw-bg-opacity: 1;
+
+    background-color: rgba(191, 219, 254, var(--tw-bg-opacity));
+
+    padding: 8rem
+}
+
+.header__title {
+
+    text-align: center;
+
+    font-size: 1.875rem;
+
+    line-height: 2.25rem;
+
+    font-weight: 700;
+
+    --tw-text-opacity: 1;
+
+    color: rgba(59, 130, 246, var(--tw-text-opacity))
+}
+
+.main__wrapper {
+
+    padding-top: 2rem;
+
+    padding-bottom: 4rem
+}
+
 caption {
 
     margin-bottom: 1rem;
@@ -46,7 +79,7 @@ th, td {
     padding-bottom: 1rem
 }
 
-a {
+table a {
 
     --tw-text-opacity: 1 !important;
 
@@ -55,14 +88,14 @@ a {
     text-decoration-line: underline !important
 }
 
-ol {
+table ol {
 
     list-style-type: decimal !important;
 
     padding-left: 1rem !important
 }
 
-ul {
+table ul {
 
     list-style-type: disc !important;
 
