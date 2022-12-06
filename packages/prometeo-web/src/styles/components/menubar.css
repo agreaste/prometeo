@@ -1,0 +1,11 @@
+.menubar__wrapper {
+    @apply py-8 rounded-2xl;
+}
+
+.menubar__container {
+    @apply flex flex-col lg:flex-row justify-between;
+}
+
+.menubar__item {
+    @apply grow text-center;
+}

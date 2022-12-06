@@ -1,0 +1,35 @@
+<footer class="pt-12 p-4 {{#unless background}}bg-slate-800{{/unless}} {{#unless
+        color}}text-white{{/unless}} mt-8 {{background}} {{color}}">
+    <div class="grid grid-cols-3 w-full no-desc">
+        <div class="text-center">
+            <a href="{{htmlWebpackPlugin.files.publicPath}}" class="text-2xl font-bold">WCAG Aria Workshop</a>
+            <dl class="list__wrapper list__wrapper--horizontal">
+                <dt></dt>
+                <dd></dd>
+                <dd></dd>
+            </dl>
+        </div>
+        <div>
+            <h2 id="res" class="list__title text-xl">Risorse</h2>
+            <ul class="list__wrapper list__wrapper--vertical text-left" aria-labelledby="res">
+                <li><a href="{{htmlWebpackPlugin.files.publicPath}}methodologies.html">Step list per analisi mobile</a>
+                </li>
+            </ul>
+        </div>
+        <div>
+            <h2 id="ep" class="list__title text-xl">Esempi pratici</h2>
+            <ul class="list__wrapper list__wrapper--vertical text-left" aria-labelledby="ep">
+                <li><a href="{{htmlWebpackPlugin.files.publicPath}}flow.html">Contenuti di flusso</a></li>
+                <li><a href="{{htmlWebpackPlugin.files.publicPath}}sectioning.html">Contenuti di sezionamento</a></li>
+                <li><a href="{{htmlWebpackPlugin.files.publicPath}}phrasing.html">Contenuti di fraseggio</a></li>
+                <li><a href="{{htmlWebpackPlugin.files.publicPath}}embedded.html">Contenuti integrati</a></li>
+                <li><a href="{{htmlWebpackPlugin.files.publicPath}}interactive.html">Contenuti relativi ai moduli</a>
+                </li>
+                <li><a href="{{htmlWebpackPlugin.files.publicPath}}keyboard_navigation.html">Navigazione da tastiera</a>
+                </li>
+                <li><a href="{{htmlWebpackPlugin.files.publicPath}}aria.html">Attributi ARIA</a></li>
+            </ul>
+        </div>
+    </div>
+    <p class="text-xs w-fit mx-auto mt-8">WCAG Aria Workshop v{{version}}</p>
+</footer>

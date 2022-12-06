@@ -1,0 +1,59 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    html {
+        font-family: 'Inter', sans-serif;
+    }
+}
+
+.app {
+    @apply mx-auto max-w-screen-md pt-10;
+}
+
+.app code {
+    @apply text-slate-600 bg-slate-100 rounded-md;
+    font-size: .75rem !important;
+}
+
+.app p, .app a {
+    @apply text-sm;
+}
+
+.app a {
+    @apply underline text-blue-400 mt-3;
+}
+
+.list__wrapper {
+    @apply flex;
+}
+
+.list__wrapper--horizontal {
+    @apply flex-row flex-wrap;
+}
+
+.list__wrapper--vertical {
+    @apply flex-col;
+}
+
+.list__title {
+    @apply text-lg font-semibold grow shrink w-full;
+}
+
+.list__item {
+    @apply px-4 py-1 rounded-xl bg-neutral-100 border border-neutral-300 mr-2
+}
+
+.list__item:last-child {
+    @apply mr-0;
+}
+
+.skip_link {
+    @apply absolute top-0 opacity-0 focus:top-6 focus:opacity-100 transition-all bg-pink-300 border border-pink-500 text-pink-500 rounded-md p-2;
+}
+
+.skip_link--purple {
+    @apply bg-purple-300 border-purple-500 text-purple-500
+}
