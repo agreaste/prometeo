@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --config webpack.prod.js",
-    "dev": "webpack serve",
+    "dev": "webpack serve --hot",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist"
   },
@@ -28,15 +28,19 @@
     "handlebars-loader": "^1.7.2",
     "html-loader": "^4.2.0",
     "html-webpack-inline-source-plugin": "0.0.10",
+    "nyx": "*",
+    "nyx-react": "*",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "rxjs": "^7.5.7",
     "webpack": "^5.74.0",
-    "webpack-merge": "^5.8.0",
-    "nyx": "*"
+    "webpack-merge": "^5.8.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.19.1",
-    "@babel/preset-env": "^7.19.1",
-    "babel-loader": "^8.2.5",
+    "@babel/core": "^7.20.5",
+    "@babel/preset-env": "^7.20.2",
+    "@babel/preset-react": "^7.18.6",
+    "babel-loader": "^8.3.0",
     "clean-webpack-plugin": "^4.0.0",
     "css-loader": "^6.7.1",
     "file-loader": "^6.2.0",

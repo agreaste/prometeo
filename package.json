@@ -7,10 +7,12 @@
   "scripts": {
     "build": "lerna run build",
     "build:nyx": "lerna run build --scope nyx",
+    "build:nyx-react": "lerna run build --scope nyx-react",
     "dev:prometeo": "lerna run dev --scope prometeo",
     "deploy:prometeo": "lerna run deploy --scope prometeo"
   },
   "devDependencies": {
+    "@types/react": "^18.0.26",
     "lerna": "^6.0.3",
     "rollup-plugin-visualizer": "^5.8.3"
   }

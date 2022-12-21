@@ -2,23 +2,23 @@ const path = require('path');
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const packageJson = require('./package.json');
+const {DefinePlugin} = require('webpack');
 
 const globalTemplateVars = {
   version: packageJson.version
 };
 
-const templateConfig = (title, template, templateVars = {}) => (new HtmlWebpackPlugin({
+const templateConfig = (title, template, templateVars = {}) => new HtmlWebpackPlugin({
     title,
     filename: `${template}.html`,
     template: `templates/${template}.hbs`,
     chunks: [template, 'commons'],
     inject: "head",
-    inlineSource: '.(js|css)$',
     templateParameters: {
         ...globalTemplateVars,
         ...templateVars
     }
-}));
+});
 
 const pages = [
     {
@@ -64,6 +64,10 @@ const pages = [
     {
         title: 'Metodologie di analisi',
         template: 'methodologies'
+    },
+    {
+        title: 'Pagina React',
+        template: 'react'
     }
 ];
 
@@ -72,9 +76,13 @@ module.exports = {
     context: path.resolve(__dirname, 'src'),
     resolve: {
         alias: {
+            media: path.resolve(__dirname, 'src/media'),
             styles: path.resolve(__dirname, 'src/styles'),
             shadow: path.resolve(__dirname, 'src/js/shadow'),
-        }
+            "@react": path.resolve(__dirname, "src/js/react"),
+            "@react-styles": path.resolve(__dirname, 'src/styles/react')
+        },
+        extensions: ['', '.js', '.jsx'],
     },
     entry: {
         index: './js/index.js',
@@ -88,6 +96,7 @@ module.exports = {
         vision: './js/pages/vision',
         zoom: './js/pages/zoom',
         methodologies: './js/pages/methodologies',
+        react: './js/pages/react',
         commons: './js/commons.js',
     },
     output: {
@@ -97,27 +106,35 @@ module.exports = {
     module: {
         rules: [
             {
-                test: /\.m?js$/,
+                test: /\.m?jsx?$/,
                 exclude: /(node_modules)/,
                 use: {
-                    loader: 'babel-loader',
-                    options: {
-                        presets: ['@babel/preset-env']
-                    }
+                    loader: 'babel-loader'
                 }
             },
-            {
-                test: /\.css$/i,
+            {// css modules
+                test: /\.module\.css$/i,
+                include: path.resolve(__dirname, 'src'),
+                use: [MiniCssExtractPlugin.loader, {
+                    loader: "css-loader",
+                    options: {
+                        importLoaders: 1,
+                        modules: true
+                    }
+                }, 'postcss-loader']
+            },
+            {// vanilla css
+                test: /(?<!\.module)\.css$/i,
                 include: path.resolve(__dirname, 'src'),
                 use: [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader']
             },
             {
                 test: /\.(png|jpe?g|gif|svg|webp)$/i,
-                loader: 'file-loader',
-                options: {
-                    name: '[name].[ext]',
-                    publicPath: 'media',
-                    outputPath: 'media'
+                type: "asset/resource",
+                generator: {
+                    filename: '[name][ext]',
+                    publicPath: 'media/',
+                    outputPath: 'media/'
                 },
             },
             {
@@ -142,6 +159,9 @@ module.exports = {
     plugins: [
         ...pages.map(({title, template, templateVars = {}}) => templateConfig(title, template, templateVars)),
         new MiniCssExtractPlugin(),
+        new DefinePlugin({
+            _VERSION: JSON.stringify(packageJson.version)
+        })
     ],
     optimization: {
         chunkIds: 'named',
