@@ -1,36 +1,36 @@
-import '../styles/index.css';
+import "../styles/index.css";
 import shadowElementUtils from "./shadow/shadowElementUtils";
 import {Menubar, Menu} from "nyx";
 
-shadowElementUtils.defineExtend('menu-bar', Menubar, 'ul');
-shadowElementUtils.defineExtend('menu-button', Menu, 'button');
+shadowElementUtils.defineExtend("menu-bar", Menubar, "ul");
+shadowElementUtils.defineExtend("menu-button", Menu, "button");
 
-const titles = document.querySelectorAll('h2, h3, h4, h5, h6');
-const tableOfContents = document.getElementById('table-of-contents');
+const titles = document.querySelectorAll("h2, h3, h4, h5, h6");
+const tableOfContents = document.getElementById("table-of-contents");
 
 titles.forEach(title => {
 
     if(!title.id) {
-        title.setAttribute('id', title.textContent
+        title.setAttribute("id", title.textContent
             .trim()
             .toLocaleLowerCase()
-            .replaceAll(' ', '-'));
+            .replaceAll(" ", "-"));
     }
 
-    if(title.id !== 'content-list-title') {
-        const item = document.createElement('li');
-        item.innerHTML = `<a href="#${title.id}">${title.textContent}</a>`
+    if(title.id !== "content-list-title") {
+        const item = document.createElement("li");
+        item.innerHTML = `<a href="#${title.id}">${title.textContent}</a>`;
         tableOfContents.appendChild(item);
     }
 });
 
 window.skipLinks = [
     {
-        label: 'Skip to main content',
-        anchor: '#main-content'
+        label: "Skip to main content",
+        anchor: "#main-content"
     },
     {
-        label: 'Skip to head content',
-        anchor: '#head-content'
+        label: "Skip to head content",
+        anchor: "#head-content"
     }
 ];

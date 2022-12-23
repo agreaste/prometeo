@@ -57,29 +57,6 @@
         <p>Prossima lezione <a href="{{htmlWebpackPlugin.files.publicPath}}sectioning.html">Contenuti di sezionamento</a>.</p>
     </section>
 </main>
-<footer>
-    <p class="w-fit mx-auto">L'elemento footer è un landmark che contiene solitamente informazioni riguardanti l'autore della sezione, link correlati al documento che si sta visualizzando o informazioni circa il copyright.</p>
-    <div class="grid grid-cols-3 w-full">
-        <div class="opacity-0 h-0" aria-hidden="true"></div>
-        <div class="opacity-0 h-0" aria-hidden="true"></div>
-        <div>
-            <a class="text-2xl font-bold" href="/" title="Torna alla home di WCAG Aria Workshop">WCAG Aria Workshop</a>
-        </div>
-        <div></div>
-        <div>
-            <dl class="list__wrapper list__wrapper--vertical text-left">
-                <dt class="list__title text-xl">Esempi pratici</dt>
-                <dd><a href="{{htmlWebpackPlugin.files.publicPath}}flow.html">Contenuti di flusso</a></dd>
-                <dd><a href="{{htmlWebpackPlugin.files.publicPath}}sectioning.html">Contenuti di sezionamento</a></dd>
-                <dd><a href="{{htmlWebpackPlugin.files.publicPath}}phrasing.html">Contenuti di fraseggio</a></dd>
-                <dd><a href="{{htmlWebpackPlugin.files.publicPath}}embedded.html">Contenuti integrati</a></dd>
-                <dd><a href="{{htmlWebpackPlugin.files.publicPath}}interactive.html">Contenuti relativi ai moduli</a></dd>
-                <dd><a href="{{htmlWebpackPlugin.files.publicPath}}keyboard_navigation.html">Navigazione da tastiera</a></dd>
-                <dd><a href="{{htmlWebpackPlugin.files.publicPath}}aria.html">Attributi ARIA</a></dd>
-            </dl>
-        </div>
-    </div>
-    <p class="text-center">Bitmama, WCAG Aria Workshop 2022</p>
-</footer>
+{{> footer }}
 </body>
 </html>

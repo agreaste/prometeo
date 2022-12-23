@@ -1,0 +1,15 @@
+{
+  "name": "eslint-config-prometeo",
+  "version": "1.0.0",
+  "description": "Prometeo eslint base configuration",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "eslint",
+    "configuration"
+  ],
+  "author": "Andrea Storace",
+  "license": "ISC"
+}

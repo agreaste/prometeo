@@ -1,52 +1,54 @@
 import React from "react";
-import styles from "@react-styles/app.module.css";
-import menuStyles from "@react-styles/components/menu.module.css";
-import menubarStyles from "@react-styles/components/menubar.module.css";
-import {Menubar, Menu} from "nyx-react";
+import {
+    heroBannerContainer,
+    heroBannerContent,
+    heroBannerSection,
+    heroBannerTitle,
+    heroBannerWrapper,
+    navbarWrapper
+} from "react-styles/app.module.css";
+import {menuWrapper, menuContainer, menuItem} from "react-styles/components/menu.module.css";
+import {menubarWrapper, menubarContainer, menubarItem} from "react-styles/components/menubar.module.css";
+import {Menubar, Menu, ListBox} from "nyx-react";
 
 function App() {
-    const {
-        navbar__wrapper,
-        heroBanner__wrapper,
-        heroBanner__container,
-        heroBanner__content,
-        heroBanner__section,
-        heroBanner__title} = styles;
-    const {menu__wrapper: wrapper, menu__trigger: trigger, menu__container: container, menu__item: item, 'menu__item--active': activeItem} = menuStyles;
-    const {menubar__wrapper, menubar__container, menubar__item} = menubarStyles;
-
     const menuStyle = {
-        wrapper,
-        trigger,
-        container,
-        item,
-        activeItem
+        wrapper: [menuWrapper, menubarItem].join(" "),
+        trigger: menubarItem,
+        container: menuContainer,
+        item: menuItem
     };
 
     const menubarStyle = {
-        wrapper: menubar__wrapper,
-        container: menubar__container,
-        item: menubar__item,
-    }
+        wrapper: menubarWrapper,
+        container: menubarContainer,
+        item: menubarItem,
+    };
 
     return (
         <>
-            <nav className={navbar__wrapper}>
+            <nav className={navbarWrapper}>
                 <Menubar styles={menubarStyle}>
-                    <Menu cta={"test"} styles={menuStyle}>
-                        <a href="/">Home</a>
-                        <a href="#pluto">pluto</a>
+                    <a href="/">WAW</a>
+                    <a href="/flow.html">Contenuti di flusso</a>
+                    <a href="/sectioning.html">Contenuti di sezionamento</a>
+                    <a href="/phrasing.html">Contenuti di fraseggio</a>
+                    <a href="/embedded.html">Contenuti integrati</a>
+                    <Menu cta={"Interazione"} styles={menuStyle}>
+                        <a href="/interactive.html">Elementi interattivi</a>
+                        <a href="/keyboard_navigation.html">Navigazione da tastiera</a>
+                        <a href="/aria.html">Pattern Aria in vanilla JS</a>
+                        <a href="/react.html">Pattern Aria in React.js</a>
                     </Menu>
-                    <a href="/">home</a>
                 </Menubar>
             </nav>
-            <header className={heroBanner__wrapper}>
-                <div className={heroBanner__container}>
-                    <div className={heroBanner__content}>
+            <header className={heroBannerWrapper}>
+                <div className={heroBannerContainer}>
+                    <div className={heroBannerContent}>
                         <section
                             id="head-content"
-                            className={heroBanner__section}>
-                            <h1 className={heroBanner__title}>Aria in React</h1>
+                            className={heroBannerSection}>
+                            <h1 className={heroBannerTitle}>Aria in React</h1>
                             <p className="mb-2">Con <em>Accessible Rich Internet Applications</em> si intendono un
                                 insieme di ruoli e
                                 attributi che definiscono meccanismi per rendere contenuti web e applicazioni web più
@@ -60,10 +62,11 @@ function App() {
                 </div>
             </header>
             <main>
-                <p id={"pluto"}></p>
-                <p id={"pippo"}></p>
+                <div className="mx-auto w-full p-8">
+                    <ListBox styles={({...menuStyle, label: ""})} name={"test"} options={[{label: "pippo", value: 1}, {label: "pluto", value: 2},]}/>
+                </div>
             </main>
-        </>)
+        </>);
 }
 
 export default App;

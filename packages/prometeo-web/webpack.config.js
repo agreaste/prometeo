@@ -1,8 +1,10 @@
-const path = require('path');
+const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const packageJson = require('./package.json');
-const {DefinePlugin} = require('webpack');
+const ESLintPlugin = require("eslint-webpack-plugin");
+
+const packageJson = require("./package.json");
+const {DefinePlugin} = require("webpack");
 
 const globalTemplateVars = {
   version: packageJson.version
@@ -12,7 +14,7 @@ const templateConfig = (title, template, templateVars = {}) => new HtmlWebpackPl
     title,
     filename: `${template}.html`,
     template: `templates/${template}.hbs`,
-    chunks: [template, 'commons'],
+    chunks: [template, "commons"],
     inject: "head",
     templateParameters: {
         ...globalTemplateVars,
@@ -22,86 +24,86 @@ const templateConfig = (title, template, templateVars = {}) => new HtmlWebpackPl
 
 const pages = [
     {
-        title: 'WCAG Workshop',
-        template: 'index'
+        title: "WCAG Workshop",
+        template: "index"
     },
     {
-        title: 'Flow Sample',
-        template: 'flow'
+        title: "Flow Sample",
+        template: "flow"
     },
     {
-        title: 'Sectioning Sample',
-        template: 'sectioning',
+        title: "Sectioning Sample",
+        template: "sectioning",
     },
     {
-        title: 'Phrasing Sample',
-        template: 'phrasing'
+        title: "Phrasing Sample",
+        template: "phrasing"
     },
     {
-        title: 'Embedded Sample',
-        template: 'embedded'
+        title: "Embedded Sample",
+        template: "embedded"
     },
     {
-        title: 'Interactive Sample',
-        template: 'interactive'
+        title: "Interactive Sample",
+        template: "interactive"
     },
     {
-        title: 'Keyboard navigation Sample',
-        template: 'keyboard_navigation'
+        title: "Keyboard navigation Sample",
+        template: "keyboard_navigation"
     },
     {
-        title: 'Aria Sample',
-        template: 'aria'
+        title: "Aria Sample",
+        template: "aria"
     },
     {
-        title: 'Visive Cognition',
-        template: 'vision'
+        title: "Visive Cognition",
+        template: "vision"
     },
     {
-        title: 'Zoom',
-        template: 'zoom'
+        title: "Zoom",
+        template: "zoom"
     },
     {
-        title: 'Metodologie di analisi',
-        template: 'methodologies'
+        title: "Metodologie di analisi",
+        template: "methodologies"
     },
     {
-        title: 'Pagina React',
-        template: 'react'
+        title: "Pagina React",
+        template: "react"
     }
 ];
 
 module.exports = {
-    mode: 'development',
-    context: path.resolve(__dirname, 'src'),
+    mode: "development",
+    context: path.resolve(__dirname, "src"),
     resolve: {
         alias: {
-            media: path.resolve(__dirname, 'src/media'),
-            styles: path.resolve(__dirname, 'src/styles'),
-            shadow: path.resolve(__dirname, 'src/js/shadow'),
-            "@react": path.resolve(__dirname, "src/js/react"),
-            "@react-styles": path.resolve(__dirname, 'src/styles/react')
+            media: path.resolve(__dirname, "src/media"),
+            styles: path.resolve(__dirname, "src/styles"),
+            shadow: path.resolve(__dirname, "src/js/shadow"),
+            "react-components": path.resolve(__dirname, "src/js/react"),
+            "react-styles": path.resolve(__dirname, "src/styles/react")
         },
-        extensions: ['', '.js', '.jsx'],
+        extensions: ["", ".js", ".jsx"],
     },
     entry: {
-        index: './js/index.js',
-        flow: './js/pages/flow.js',
-        sectioning: './js/pages/sectioning.js',
-        phrasing: './js/pages/phrasing.js',
-        embedded: './js/pages/embedded.js',
-        interactive: './js/pages/interactive.js',
-        keyboard_navigation: './js/pages/keyboard_navigation.js',
-        aria: './js/pages/aria',
-        vision: './js/pages/vision',
-        zoom: './js/pages/zoom',
-        methodologies: './js/pages/methodologies',
-        react: './js/pages/react',
-        commons: './js/commons.js',
+        index: "./js/index.js",
+        flow: "./js/pages/flow.js",
+        sectioning: "./js/pages/sectioning.js",
+        phrasing: "./js/pages/phrasing.js",
+        embedded: "./js/pages/embedded.js",
+        interactive: "./js/pages/interactive.js",
+        keyboard_navigation: "./js/pages/keyboard_navigation.js",
+        aria: "./js/pages/aria",
+        vision: "./js/pages/vision",
+        zoom: "./js/pages/zoom",
+        methodologies: "./js/pages/methodologies",
+        react: "./js/pages/react",
+        commons: "./js/commons.js",
     },
     output: {
-        filename: '[name].js',
-        path: path.resolve(__dirname, 'dist'),
+        filename: "[name].js",
+        path: path.resolve(__dirname, "dist"),
     },
     module: {
         rules: [
@@ -109,46 +111,56 @@ module.exports = {
                 test: /\.m?jsx?$/,
                 exclude: /(node_modules)/,
                 use: {
-                    loader: 'babel-loader'
+                    loader: "babel-loader"
                 }
             },
             {// css modules
                 test: /\.module\.css$/i,
-                include: path.resolve(__dirname, 'src'),
+                include: path.resolve(__dirname, "src"),
                 use: [MiniCssExtractPlugin.loader, {
                     loader: "css-loader",
                     options: {
                         importLoaders: 1,
-                        modules: true
+                        modules: {
+                            mode: "local",
+                            auto: true,
+                            exportGlobals: true,
+                            localIdentName: "[name]__[local]--[hash:base64:5]",
+                            localIdentContext: path.resolve(__dirname, "src"),
+                            namedExport: true,
+                            exportLocalsConvention: "camelCaseOnly",
+                            exportOnlyLocals: false
+                        }
                     }
-                }, 'postcss-loader']
+                }, "postcss-loader"]
             },
             {// vanilla css
-                test: /(?<!\.module)\.css$/i,
-                include: path.resolve(__dirname, 'src'),
-                use: [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader']
+                test: /\.css$/i,
+                include: path.resolve(__dirname, "src"),
+                use: [MiniCssExtractPlugin.loader, "css-loader", "postcss-loader"],
+                exclude: /\.module\.css/
             },
             {
                 test: /\.(png|jpe?g|gif|svg|webp)$/i,
                 type: "asset/resource",
                 generator: {
-                    filename: '[name][ext]',
-                    publicPath: 'media/',
-                    outputPath: 'media/'
+                    filename: "[name][ext]",
+                    publicPath: "media/",
+                    outputPath: "media/"
                 },
             },
             {
                 test: /\.(handlebars|hbs)$/,
                 loader: "handlebars-loader",
                 options: {
-                    helperDirs: __dirname + '/src/js/helpers',
-                    partialDirs: __dirname + '/src/templates/components'
+                    helperDirs: __dirname + "/src/js/helpers",
+                    partialDirs: __dirname + "/src/templates/components"
                 }
             },
             {
                 test: /_component\.(html)$/,
                 use: {
-                    loader: 'html-loader',
+                    loader: "html-loader",
                     options: {
                         esModule: false
                     }
@@ -161,9 +173,10 @@ module.exports = {
         new MiniCssExtractPlugin(),
         new DefinePlugin({
             _VERSION: JSON.stringify(packageJson.version)
-        })
+        }),
+        new ESLintPlugin()
     ],
     optimization: {
-        chunkIds: 'named',
+        chunkIds: "named",
     },
 };

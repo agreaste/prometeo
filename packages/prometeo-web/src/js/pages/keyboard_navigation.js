@@ -2,60 +2,60 @@ import "../../styles/pages/keyboard_navigation.css";
 import shadowElementUtils from "../shadow/shadowElementUtils";
 import {Menubar, Menu} from "nyx";
 
-shadowElementUtils.defineExtend('menu-bar', Menubar, 'ul');
-shadowElementUtils.defineExtend('menu-button', Menu, 'button');
+shadowElementUtils.defineExtend("menu-bar", Menubar, "ul");
+shadowElementUtils.defineExtend("menu-button", Menu, "button");
 
-const form = document.getElementById('sample-form');
-const formProgress = form.querySelector('#form-progress');
+const form = document.getElementById("sample-form");
+const formProgress = form.querySelector("#form-progress");
 
 const total = form.elements.length - 1; // do not count submit button
 formProgress.max = total;
 
-form.addEventListener('change', (e) => {
-    const completed = form.querySelectorAll(':valid:not(button)').length;
+form.addEventListener("change", () => {
+    const completed = form.querySelectorAll(":valid:not(button)").length;
     formProgress.value = completed;
     formProgress.innerHTML = `${completed} of ${total}`;
 });
 
-const disableFocus = document.getElementById('disable-focus');
+const disableFocus = document.getElementById("disable-focus");
 
-disableFocus.addEventListener('change', (event) => {
+disableFocus.addEventListener("change", (event) => {
     if (event.target.checked)
-        form.classList.add('disable-focus');
+        form.classList.add("disable-focus");
     else
-        form.classList.remove('disable-focus');
+        form.classList.remove("disable-focus");
 
     form.focus();
 });
 
-const namePosition = document.getElementById('name-position');
+const namePosition = document.getElementById("name-position");
 
 namePosition.max = total;
 namePosition.value = 0;
 
-const nameField = form.elements.namedItem('name');
-const orderClasses = new Array(total).fill('').map((el, i) => `order-${i}`);
+const nameField = form.elements.namedItem("name");
+const orderClasses = new Array(total).fill("").map((el, i) => `order-${i}`);
 
-namePosition.addEventListener('change', (event) => {
+namePosition.addEventListener("change", (event) => {
     const value = event.target.value;
 
     nameField.parentNode.classList.remove(...orderClasses);
     nameField.parentNode.classList.add(`order-${Math.abs(value) - 1}`);
 });
 
-const trapButton = document.getElementById('trap-button');
+const trapButton = document.getElementById("trap-button");
 
 const trapHandler = (event) => {
     switch (event.key) {
         case "Tab":
             if (event.shiftKey) {
-                if (document.activeElement === form.elements.namedItem('name')) {
+                if (document.activeElement === form.elements.namedItem("name")) {
                     event.preventDefault();
-                    form.elements[form.elements.length-1].focus();
+                    form.elements[form.elements.length - 1].focus();
 
                 }
             } else {
-                if (document.activeElement === form.elements.namedItem('submit')) {
+                if (document.activeElement === form.elements.namedItem("submit")) {
                     event.preventDefault();
                     form.elements[0].focus();
                 }
@@ -69,32 +69,32 @@ const trapHandler = (event) => {
 const escHandler = (event) => {
     switch (event.key) {
         case "Escape":
-            form.removeEventListener('keydown', trapHandler);
-            form.removeEventListener('keydown', escHandler);
+            form.removeEventListener("keydown", trapHandler);
+            form.removeEventListener("keydown", escHandler);
             trapButton.focus();
             break;
         default:
         // do nothing;
     }
-}
+};
 
-form.addEventListener('keydown', escHandler);
+form.addEventListener("keydown", escHandler);
 
-trapButton.addEventListener('click', (event) => {
+trapButton.addEventListener("click", () => {
     form.focus();
-    form.addEventListener('keydown', trapHandler);
-    form.addEventListener('keydown', escHandler);
+    form.addEventListener("keydown", trapHandler);
+    form.addEventListener("keydown", escHandler);
 });
 
-const listboxButton = document.getElementById('listbox-label');
-const listboxOptions = document.getElementById('job-listbox');
+const listboxButton = document.getElementById("listbox-label");
+const listboxOptions = document.getElementById("job-listbox");
 
-listboxButton.addEventListener('click', (event) => {
-   listboxButton.setAttribute('aria-expanded', 'true');
-   listboxOptions.focus();
+listboxButton.addEventListener("click", () => {
+    listboxButton.setAttribute("aria-expanded", "true");
+    listboxOptions.focus();
 });
 
-listboxButton.parentNode.addEventListener('focusout', (event) => {
-    listboxButton.setAttribute('aria-expanded', 'false');
+listboxButton.parentNode.addEventListener("focusout", () => {
+    listboxButton.setAttribute("aria-expanded", "false");
 });
 

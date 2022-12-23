@@ -36,7 +36,7 @@ const Menu = forwardRef<HTMLElement, PropsWithChildren<IMenu>>(({cta, children, 
     useEffect(() => {
         if ([wrapper, trigger, container, item].some(style => !style))
             console.warn("Menu component doesn't come with default styles.")
-    }, [])
+    }, []);
 
     useEffect(() => {
         if (expanded && active >= 0 && refs[active])
@@ -56,7 +56,7 @@ const Menu = forwardRef<HTMLElement, PropsWithChildren<IMenu>>(({cta, children, 
                     break;
                 }
             case "Escape":
-                setExpanded(false)
+                setExpanded(false);
                 triggerRef.current.focus();
                 break;
             default:
@@ -66,7 +66,14 @@ const Menu = forwardRef<HTMLElement, PropsWithChildren<IMenu>>(({cta, children, 
         handler(event);
     };
 
-    return (<div className={wrapper}>
+    return (<div className={wrapper} onKeyDown={(event) => {
+        switch (event.key) {
+            case "ArrowUp":
+            case "ArrowDown":
+                event.preventDefault();
+                break;
+        }
+    }}>
         <button
             {...props}
             className={trigger}
@@ -78,27 +85,30 @@ const Menu = forwardRef<HTMLElement, PropsWithChildren<IMenu>>(({cta, children, 
                 if (key === "ArrowDown")
                     setExpanded(true);
             }}>{cta}</button>
-        {expanded && <div ref={menuRef} role="menu"
-                          onBlur={({relatedTarget, currentTarget}) => {
-                              if (!currentTarget.contains(relatedTarget))
-                                  setExpanded(false);
-                          }}
-                          tabIndex={-1}
-                          className={container}
-                          onKeyUp={keyHandler}>
-            {items && items.map((el, i) => <MenuItem
-                tabIndex={-1}
-                key={i}
-                ref={refs[i]}
-                id={id(i)}
-                onClick={() => {
-                    setExpanded(false);
-                }}
-                className={[item].join(" ")}>
-                {el}
-            </MenuItem>)}
-        </div>}
+        {expanded &&
+            <div ref={menuRef} role="menu"
+                 onBlur={({relatedTarget, currentTarget}) => {
+                     if (!currentTarget.contains(relatedTarget))
+                         setExpanded(false);
+                 }}
+                 tabIndex={-1}
+                 className={container}
+                 onKeyUp={keyHandler}>
+                {items && items.map((el, i) => <MenuItem
+                    tabIndex={-1}
+                    key={i}
+                    ref={refs[i]}
+                    id={id(i)}
+                    onClick={() => {
+                        setExpanded(false);
+                    }}
+                    className={[item].join(" ")}>
+                    {el}
+                </MenuItem>)}
+            </div>}
     </div>);
 });
+
+Menu.displayName = "Menu";
 
 export default Menu;

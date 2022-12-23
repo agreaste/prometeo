@@ -1,6 +1,5 @@
-import {Children, forwardRef, useEffect, useRef, useCallback, FC, PropsWithChildren, ForwardedRef} from "react";
+import {Children, useEffect, useRef, useCallback, PropsWithChildren} from "react";
 import useArrowNav from "../hooks/useArrowNav.js";
-import mergeProps from "../utils/mergeProps.js";
 import MenuItem from "./MenuItem";
 
 export interface IMenubar {
@@ -13,7 +12,7 @@ export interface IMenubar {
 
 const Menubar = ({children, styles = {}}: PropsWithChildren<IMenubar>) => {
     const {wrapper = "", container = "", item = ""} = styles;
-    const menuRef = useRef(null);
+    const menuRef = useRef<HTMLDivElement>(null);
     const idPrefix = useRef(Math.random());
     const items = Children.toArray(children);
 
@@ -27,11 +26,18 @@ const Menubar = ({children, styles = {}}: PropsWithChildren<IMenubar>) => {
     }, []);
 
     useEffect(() => {
-        if (active >= 0 && refs[active])
+        if (menuRef.current && menuRef.current.contains(document.activeElement) && active >= 0 && refs[active])
             refs[active].current.focus();
     }, [active, refs]);
 
-    return (<div className={wrapper}>
+    return (<div className={wrapper} onKeyDown={(event) => {
+        switch (event.key) {
+            case "ArrowUp":
+            case "ArrowDown":
+                event.preventDefault();
+                break;
+        }
+    }}>
         <div ref={menuRef} role="menubar" className={container} onKeyUp={handler}>
             {items && items.map((el, i) => <MenuItem
                 key={i}

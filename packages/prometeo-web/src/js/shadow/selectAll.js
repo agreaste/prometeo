@@ -1,4 +1,3 @@
-import {BehaviorSubject} from "rxjs";
 import "../../styles/components/checkbox.css";
 
 class SelectAll extends HTMLButtonElement {
@@ -9,32 +8,32 @@ class SelectAll extends HTMLButtonElement {
     constructor() {
         const self = super();
         this.group = self.parentNode;
-        const options = this.group.querySelectorAll('[role="checkbox"]:not([is="select-all"])')
+        const options = this.group.querySelectorAll("[role=\"checkbox\"]:not([is=\"select-all\"])");
 
-        self.addEventListener('click', (event) => {
+        self.addEventListener("click", () => {
             self.checked = this.indeterminate || !self.checked;
             self.indeterminate = false;
 
-            self.setAttribute('aria-checked', self.checked.toString());
+            self.setAttribute("aria-checked", self.checked.toString());
 
             options.forEach(option => {
                 option.toggle(self.checked);
-            })
+            });
         });
 
-        this.group.addEventListener('change', (event) => {
-            const checked = Array.from(options).filter(option => option.getAttribute('aria-checked') === 'true').length;
+        this.group.addEventListener("change", () => {
+            const checked = Array.from(options).filter(option => Boolean(option.getAttribute("aria-checked"))).length;
 
             // update select all state depending on selected options
             this.checked = checked === options.length;
             this.indeterminate = checked > 0 && checked < options.length;
 
-            self.setAttribute('aria-checked', this.indeterminate ? 'mixed' : this.checked.toString());
+            self.setAttribute("aria-checked", this.indeterminate ? "mixed" : this.checked.toString());
         });
     }
 
     onChange(callback) {
-        this.group.addEventListener('change', callback);
+        this.group.addEventListener("change", callback);
     }
 }
 

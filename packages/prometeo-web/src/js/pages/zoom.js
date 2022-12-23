@@ -1,22 +1,22 @@
 import shadowElementUtils from "../shadow/shadowElementUtils";
 import {Menubar, Menu} from "nyx";
 
-shadowElementUtils.defineExtend('menu-bar', Menubar, 'ul');
-shadowElementUtils.defineExtend('menu-button', Menu, 'button');
+shadowElementUtils.defineExtend("menu-bar", Menubar, "ul");
+shadowElementUtils.defineExtend("menu-button", Menu, "button");
 
-const title = document.getElementById('title');
-const layoutViewport = document.getElementById('layout-viewport');
-const visualViewport = document.getElementById('visual-viewport');
+const title = document.getElementById("title");
+const layoutViewport = document.getElementById("layout-viewport");
+const visualViewport = document.getElementById("visual-viewport");
 
 title.innerText = `${window.innerWidth} CSS Viewport`;
 layoutViewport.innerText = `${window.innerWidth} X ${window.innerHeight}`;
 visualViewport.innerText = `${window.visualViewport.width} X ${window.visualViewport.height}`;
 
-window.addEventListener('resize', (event) => {
+window.addEventListener("resize", () => {
     title.innerText = `${window.innerWidth} CSS Viewport`;
     layoutViewport.innerText = `${window.innerWidth} X ${window.innerHeight}`;
 });
 
-window.visualViewport.addEventListener('resize', (event) => {
+window.visualViewport.addEventListener("resize", () => {
     visualViewport.innerText = `${Math.round(window.visualViewport.width)} X ${Math.round(window.visualViewport.height)}`;
 });

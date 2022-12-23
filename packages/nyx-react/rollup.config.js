@@ -6,27 +6,27 @@ import dts from "rollup-plugin-dts";
 import babel from "@rollup/plugin-babel";
 
 export default [{
-    input: 'src/index.ts',
+    input: "src/index.ts",
     output: [
         {
-            file: 'dist/index.cjs.js',
-            format: 'cjs',
+            file: "dist/index.cjs.js",
+            format: "cjs",
             sourcemap: true,
             preserveModules: false
         },
         {
-            file: 'dist/index.esm.js',
-            format: 'esm',
+            file: "dist/index.esm.js",
+            format: "esm",
             sourcemap: true,
         },
         {
-            file: 'dist/index.umd.js',
-            name: 'nyx-react',
-            format: 'umd',
+            file: "dist/index.umd.js",
+            name: "nyx-react",
+            format: "umd",
             sourcemap: true,
             preserveModules: false,
             globals: {
-                react: 'react'
+                react: "react"
             }
         }
     ],
@@ -34,19 +34,19 @@ export default [{
         babel({
             babelHelpers: "bundled"
         }),
-        commonjs({extensions: ['.js', '.ts', '.tsx', '.jsx']}),
+        commonjs({extensions: [".js", ".ts", ".tsx", ".jsx"]}),
         resolve(),
         typescript({
             tsconfig: "tsconfig.json"
         }),
         terser()
     ],
-    external: ['react'],
+    external: ["react"],
 }, {
-    input: 'dist/index.d.ts',
+    input: "dist/index.d.ts",
     output: {
-        file: 'dist/types/index.d.ts',
-        format: 'esm',
+        file: "dist/types/index.d.ts",
+        format: "esm",
         sourcemap: true
     },
     plugins: [dts()]

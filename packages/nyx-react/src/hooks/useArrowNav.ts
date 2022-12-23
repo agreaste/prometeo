@@ -19,14 +19,16 @@ export default function useArrowNav(itemsLength: number, orientation = "horizont
         return Math.max(0, currentPosition - 1);
     };
 
-    const arrowHandler: KeyboardEventHandler = ({key}) => {
+    const arrowHandler: KeyboardEventHandler = (event) => {
         switch (orientation) {
             case "vertical":
-                switch (key) {
+                switch (event.key) {
                     case "ArrowUp":
+                        event.preventDefault();
                         setCurrentPosition(previousPosition());
                         break;
                     case "ArrowDown":
+                        event.preventDefault();
                         setCurrentPosition(nextPosition());
                         break;
                     default:
@@ -34,11 +36,13 @@ export default function useArrowNav(itemsLength: number, orientation = "horizont
                 }
                 break;
             default:
-                switch (key) {
+                switch (event.key) {
                     case "ArrowLeft":
+                        event.preventDefault();
                         setCurrentPosition(previousPosition());
                         break;
                     case "ArrowRight":
+                        event.preventDefault();
                         setCurrentPosition(nextPosition());
                         break;
                     default:

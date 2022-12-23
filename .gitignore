@@ -1,3 +1,2 @@
 node_modules/
-/packages/prometeo-web/dist/
-/packages/nyx/dist
+/packages/*/dist/

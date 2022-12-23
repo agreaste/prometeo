@@ -11,4 +11,6 @@ const MenuItem = forwardRef<any, PropsWithChildren<any>>(({children, ...props}, 
     </>;
 });
 
+MenuItem.displayName = "MenuItem";
+
 export default MenuItem;

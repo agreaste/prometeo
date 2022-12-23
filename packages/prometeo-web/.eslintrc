@@ -1,0 +1,23 @@
+{
+    "extends": [
+        "prometeo",
+        "plugin:react/recommended"
+    ],
+    "plugins": [
+        "react"
+    ],
+    "settings": {
+        "import/resolver": {
+            "alias": {
+                "map": [
+                    ["media", "./src/media"],
+                    ["styles", "./src/styles"],
+                    ["shadow", "./src/js/shadow"],
+                    ["@react", "./src/js/react"],
+                    ["@react-styles", "./src/styles/react"]
+                ],
+                "extensions": [".js", ".jsx"]
+            }
+        }
+    }
+}

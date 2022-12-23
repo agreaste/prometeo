@@ -1,22 +1,22 @@
-import '../styles/global.css';
-import '../media/studio-ghibli-film-netflix-3.jpeg'
-import '../media/GhibliLogo.png'
-import '../media/al.jpeg'
-import '../media/castle-sky.jpeg'
-import '../media/howl-castle.jpg'
-import '../media/only-yesterday.webp'
-import '../media/nausicaa.png'
+import "styles/global.css";
+import "media/studio-ghibli-film-netflix-3.jpeg";
+import "media/GhibliLogo.png";
+import "media/al.jpeg";
+import "media/castle-sky.jpeg";
+import "media/howl-castle.jpg";
+import "media/only-yesterday.webp";
+import "media/nausicaa.png";
 
-import { library, dom } from '@fortawesome/fontawesome-svg-core';
-import { faApple, faWindows, faUbuntu, faReact, faVuejs, faSquareJs } from '@fortawesome/free-brands-svg-icons';
-import { faCircleNotch, faEye, faExclamationTriangle, faPlus, faEquals, faMoon, faLink, faPause, faPlay, faChevronLeft, faChevronRight} from '@fortawesome/free-solid-svg-icons';
+import { library, dom } from "@fortawesome/fontawesome-svg-core";
+import { faApple, faWindows, faUbuntu, faReact, faVuejs, faSquareJs } from "@fortawesome/free-brands-svg-icons";
+import { faCircleNotch, faEye, faExclamationTriangle, faPlus, faEquals, faMoon, faLink, faPause, faPlay, faChevronLeft, faChevronRight} from "@fortawesome/free-solid-svg-icons";
 
-import '../styles/components/radiogroup.css';
-import '../styles/components/tabber.css';
-import '../styles/components/menu.css';
-import '../styles/components/menubar.css';
-import '../styles/components/listbox.css';
-import '../styles/components/carousel.css';
+import "styles/components/radiogroup.css";
+import "styles/components/tabber.css";
+import "styles/components/menu.css";
+import "styles/components/menubar.css";
+import "styles/components/listbox.css";
+import "styles/components/carousel.css";
 
 library.add(faApple);
 library.add(faWindows);
