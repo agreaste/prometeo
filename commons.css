@@ -723,14 +723,14 @@ html {
 .grid-cols-2{
   grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
 }
-.grid-cols-3{
-  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
-}
 .grid-cols-6{
   grid-template-columns: repeat(6, minmax(0, 1fr)) !important;
 }
 .grid-cols-1{
   grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
+}
+.grid-cols-3{
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
 }
 .flex-row{
   flex-direction: row !important;
@@ -1018,13 +1018,13 @@ html {
   font-size: 1.5rem !important;
   line-height: 2rem !important;
 }
-.text-xl{
-  font-size: 1.25rem !important;
-  line-height: 1.75rem !important;
-}
 .text-sm{
   font-size: 0.875rem !important;
   line-height: 1.25rem !important;
+}
+.text-xl{
+  font-size: 1.25rem !important;
+  line-height: 1.75rem !important;
 }
 .text-lg{
   font-size: 1.125rem !important;
