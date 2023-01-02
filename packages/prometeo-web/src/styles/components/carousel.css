@@ -28,6 +28,12 @@
     animation: load-like infinite 4s linear;
 }
 
+.carousel_slide-wrapper[aria-live="polite"]::after {
+    content: '';
+    @apply bg-red-500 absolute bottom-0 left-0 h-1;
+    animation: none;
+}
+
 @keyframes load-like {
     from {
         width: 0;

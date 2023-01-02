@@ -8,6 +8,7 @@
     "build": "lerna run build",
     "build:nyx": "lerna run build --scope nyx",
     "build:nyx-react": "lerna run build --scope nyx-react",
+    "build:prometeo": "lerna run build --scope prometeo",
     "dev:prometeo": "lerna run dev --scope prometeo",
     "deploy:prometeo": "lerna run deploy --scope prometeo",
     "graph": "nx graph",

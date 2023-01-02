@@ -4,7 +4,7 @@
 
 .heroBanner__wrapper {
     @apply flex flex-col relative overflow-clip h-screen bg-cover lg:bg-contain bg-no-repeat bg-center lg:bg-left;
-    background-image: url("media/Banner.png");
+    background-image: url("../../media/Banner.png");
 }
 
 .heroBanner__container {
