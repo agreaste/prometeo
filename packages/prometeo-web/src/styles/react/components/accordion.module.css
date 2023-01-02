@@ -1,0 +1,11 @@
+.accordion__wrapper {
+    @apply overflow-clip rounded-lg border border-b-2 border-neutral-300 bg-neutral-100 w-full max-w-screen-md;
+}
+
+.accordion__heading {
+    @apply text-xl font-semibold border-b border-b-neutral-400 last:border-b-0 p-4 bg-white;
+}
+
+.accordion__panel {
+    @apply m-4 rounded-md overflow-clip p-4 bg-white;
+}

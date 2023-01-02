@@ -42,7 +42,7 @@ const ListBox = <T extends never>({name, placeholder, options, styles = {}}: Pro
     const fullOptions = useMemo(() => [null, ...options], [options]);
     const cta = useMemo(() => selected ? selected.label : placeholder ?? "Seleziona un'opzione", [selected]);
 
-    const [refs, handler, active, resetActive] = useArrowNav(fullOptions.length, "vertical");
+    const [refs, handler, active, resetActive] = useArrowNav<HTMLLIElement>(fullOptions.length, "vertical");
 
     const id = useCallback((index: number) => idPrefix.current + "__option__" + index, [idPrefix]);
 
@@ -53,11 +53,11 @@ const ListBox = <T extends never>({name, placeholder, options, styles = {}}: Pro
 
     useEffect(() => {
         if (expanded && active >= 0 && refs[active])
-            refs[active].current.focus();
+            refs[active].current?.focus();
     }, [expanded, active, refs]);
 
     const openCallback = () => {
-        resetActive();
+        resetActive(0);
         setExpanded(true);
     };
 

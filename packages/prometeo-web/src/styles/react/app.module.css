@@ -1,5 +1,5 @@
 .navbar__wrapper {
-    @apply fixed w-full top-0 z-40 text-cyan-600 font-semibold backdrop-blur;
+    @apply fixed w-full top-0 z-40 font-semibold backdrop-blur;
 }
 
 .heroBanner__wrapper {

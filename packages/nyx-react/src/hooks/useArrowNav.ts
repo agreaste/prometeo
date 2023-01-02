@@ -1,7 +1,7 @@
-import {createRef, KeyboardEventHandler, RefObject, useCallback, useEffect, useState} from "react";
+import {createRef, KeyboardEventHandler, RefObject, useEffect, useState} from "react";
 
-export default function useArrowNav(itemsLength: number, orientation = "horizontal"): [RefObject<any>[], KeyboardEventHandler, number, () => void] {
-    const [refs, setRefs] = useState<RefObject<any>[]>([]);
+export default function useArrowNav<HT>(itemsLength: number, orientation = "horizontal"): [RefObject<HT>[], KeyboardEventHandler, number, (pos:number) => void] {
+    const [refs, setRefs] = useState<RefObject<HT>[]>([]);
     const [currentPosition, setCurrentPosition] = useState(0);
 
     useEffect(() => {
@@ -50,9 +50,5 @@ export default function useArrowNav(itemsLength: number, orientation = "horizont
         }
     };
 
-    const resetPosition = useCallback(() => {
-        setCurrentPosition(0);
-    }, [setCurrentPosition, currentPosition])
-
-    return [refs, arrowHandler, currentPosition, resetPosition];
+    return [refs, arrowHandler, currentPosition, setCurrentPosition];
 }

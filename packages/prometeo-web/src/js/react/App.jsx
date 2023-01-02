@@ -8,8 +8,9 @@ import {
     navbarWrapper
 } from "react-styles/app.module.css";
 import {menuWrapper, menuContainer, menuItem} from "react-styles/components/menu.module.css";
+import {accordionWrapper, accordionHeading, accordionPanel} from "react-styles/components/accordion.module.css";
 import {menubarWrapper, menubarContainer, menubarItem} from "react-styles/components/menubar.module.css";
-import {Menubar, Menu, ListBox} from "nyx-react";
+import {Menubar, Menu, ListBox, Accordion, AccordionPanel} from "nyx-react";
 
 function App() {
     const menuStyle = {
@@ -64,6 +65,17 @@ function App() {
             <main>
                 <div className="mx-auto w-full p-8">
                     <ListBox styles={({...menuStyle, label: ""})} name={"test"} options={[{label: "pippo", value: 1}, {label: "pluto", value: 2},]}/>
+                </div>
+                <div className="mx-auto w-full p-8">
+                    <Accordion styles={({ wrapper: accordionWrapper, heading: accordionHeading, panel: accordionPanel})}>
+                        <AccordionPanel title={"Primo panel"}>
+                            <p>Boh questo è il contenuto di un panel</p>
+                            <button>Questo bottone può ricevere focus in effetti.</button>
+                        </AccordionPanel>
+                        <AccordionPanel title={"Secondo panel"}>
+                            <p>Boh questo è il contenuto di un panel</p>
+                        </AccordionPanel>
+                    </Accordion>
                 </div>
             </main>
         </>);

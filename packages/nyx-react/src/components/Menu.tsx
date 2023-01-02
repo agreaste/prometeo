@@ -35,7 +35,7 @@ const Menu = forwardRef<HTMLElement, PropsWithChildren<IMenu>>(({cta, children, 
 
     useEffect(() => {
         if ([wrapper, trigger, container, item].some(style => !style))
-            console.warn("Menu component doesn't come with default styles.")
+            console.warn("Menu component doesn't come with default styles.");
     }, []);
 
     useEffect(() => {
