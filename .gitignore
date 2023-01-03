@@ -1,2 +1,5 @@
 node_modules/
 /packages/*/dist/
+/packages/nyx-react/accordion/
+/packages/nyx-react/menu/
+/packages/nyx-react/listBox/

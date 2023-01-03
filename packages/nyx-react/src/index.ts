@@ -1,13 +1,3 @@
-import Menubar from "./components/Menubar";
-import Menu from "./components/Menu";
-import ListBox from "./components/ListBox";
-import Accordion from "./components/Accordion";
-import AccordionPanel from "./components/AccordionPanel";
-
-export {
-    Menubar,
-    Menu,
-    ListBox,
-    Accordion,
-    AccordionPanel
-};
+export * from "./components/menu";
+export * from "./components/listBox";
+export * from "./components/accordion";

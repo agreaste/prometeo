@@ -8,8 +8,8 @@ import {
     PropsWithChildren,
     KeyboardEventHandler, MutableRefObject
 } from "react";
-import useArrowNav from "../hooks/useArrowNav.js";
-import MenuItem from "./MenuItem.js";
+import useArrowNav from "../../hooks/useArrowNav";
+import MenuItem from "./MenuItem";
 
 export interface IMenu {
     cta: string;
@@ -23,13 +23,13 @@ export interface IMenu {
 
 const Menu = forwardRef<HTMLElement, PropsWithChildren<IMenu>>(({cta, children, styles = {}, ...props}, ref) => {
     const {wrapper = "", trigger = "", container = "", item = ""} = styles;
-    const triggerRef = ref as MutableRefObject<any>;
+    const triggerRef = ref as MutableRefObject<HTMLButtonElement>;
     const menuRef = useRef(null);
     const idPrefix = useRef(Math.random());
     const items = Children.toArray(children);
 
     const [expanded, setExpanded] = useState(false);
-    const [refs, handler, active, resetActive] = useArrowNav(items.length, "vertical");
+    const [refs, handler, active, setActive] = useArrowNav<HTMLElement>(items.length, "vertical");
 
     const id = useCallback((index: number) => idPrefix.current + "__item__" + index, [idPrefix]);
 
@@ -40,12 +40,12 @@ const Menu = forwardRef<HTMLElement, PropsWithChildren<IMenu>>(({cta, children, 
 
     useEffect(() => {
         if (expanded && active >= 0 && refs[active])
-            refs[active].current.focus();
+            refs[active].current?.focus();
     }, [expanded, active, refs]);
 
 
     const openCallback = () => {
-        resetActive();
+        setActive(0);
         setExpanded(true);
     };
 
@@ -87,13 +87,13 @@ const Menu = forwardRef<HTMLElement, PropsWithChildren<IMenu>>(({cta, children, 
             }}>{cta}</button>
         {expanded &&
             <div ref={menuRef} role="menu"
-                 onBlur={({relatedTarget, currentTarget}) => {
-                     if (!currentTarget.contains(relatedTarget))
-                         setExpanded(false);
-                 }}
-                 tabIndex={-1}
-                 className={container}
-                 onKeyUp={keyHandler}>
+                onBlur={({relatedTarget, currentTarget}) => {
+                    if (!currentTarget.contains(relatedTarget))
+                        setExpanded(false);
+                }}
+                tabIndex={-1}
+                className={container}
+                onKeyUp={keyHandler}>
                 {items && items.map((el, i) => <MenuItem
                     tabIndex={-1}
                     key={i}

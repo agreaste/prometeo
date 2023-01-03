@@ -1,7 +1,7 @@
 import {ReactElement, useEffect, KeyboardEvent, RefAttributes} from "react";
-import useArrowNav from "../hooks/useArrowNav";
+import useArrowNav from "../../hooks/useArrowNav";
 import {IAccordionPanel} from "./AccordionPanel";
-import mergeProps from "../utils/mergeProps";
+import mergeProps from "../../utils/mergeProps";
 
 export interface IAccordion {
     children: ReactElement<Omit<IAccordionPanel, "styles">>[];

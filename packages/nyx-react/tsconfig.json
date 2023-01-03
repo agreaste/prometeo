@@ -8,15 +8,15 @@
         "module": "esnext",
         "sourceMap": true,
         "declaration": true,
-        "declarationDir": "dist/types",
+        "declarationDir": "dist/esm/types",
         "declarationMap": true,
         "emitDeclarationOnly": true,
-        "outDir": "dist",
+        "outDir": "dist/esm",
         "esModuleInterop": false,
         "jsx": "react-jsx"
     },
     "include": [
-        "src"
+        "src/**/*"
     ],
     "exclude": [
         "node_modules"

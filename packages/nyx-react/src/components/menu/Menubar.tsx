@@ -1,5 +1,5 @@
 import {Children, useEffect, useRef, useCallback, PropsWithChildren} from "react";
-import useArrowNav from "../hooks/useArrowNav.js";
+import useArrowNav from "../../hooks/useArrowNav";
 import MenuItem from "./MenuItem";
 
 export interface IMenubar {
@@ -16,18 +16,18 @@ const Menubar = ({children, styles = {}}: PropsWithChildren<IMenubar>) => {
     const idPrefix = useRef(Math.random());
     const items = Children.toArray(children);
 
-    const [refs, handler, active] = useArrowNav(items.length);
+    const [refs, handler, active] = useArrowNav<HTMLElement>(items.length);
 
     const id = useCallback((index: number) => idPrefix.current + "__item__" + index, [idPrefix]);
 
     useEffect(() => {
         if ([wrapper, container, item].some(style => !style))
-            console.warn("Menubar component doesn't come with default styles.")
+            console.warn("Menubar component doesn't come with default styles.");
     }, []);
 
     useEffect(() => {
         if (menuRef.current && menuRef.current.contains(document.activeElement) && active >= 0 && refs[active])
-            refs[active].current.focus();
+            refs[active].current?.focus();
     }, [active, refs]);
 
     return (<div className={wrapper} onKeyDown={(event) => {

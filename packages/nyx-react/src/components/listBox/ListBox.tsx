@@ -8,7 +8,7 @@ import {
     KeyboardEventHandler,
     FocusEventHandler
 } from "react";
-import useArrowNav from "../hooks/useArrowNav.js";
+import useArrowNav from "../../hooks/useArrowNav";
 
 export interface IListBox<T> {
     styles: {

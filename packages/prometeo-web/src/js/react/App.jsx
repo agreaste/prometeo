@@ -10,7 +10,9 @@ import {
 import {menuWrapper, menuContainer, menuItem} from "react-styles/components/menu.module.css";
 import {accordionWrapper, accordionHeading, accordionPanel} from "react-styles/components/accordion.module.css";
 import {menubarWrapper, menubarContainer, menubarItem} from "react-styles/components/menubar.module.css";
-import {Menubar, Menu, ListBox, Accordion, AccordionPanel} from "nyx-react";
+import {Menu, Menubar} from "nyx-react/menu";
+import {Accordion, AccordionPanel} from "nyx-react/accordion";
+import {ListBox} from "nyx-react/listBox";
 
 function App() {
     const menuStyle = {
