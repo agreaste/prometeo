@@ -1,6 +1,7 @@
 import generatePackageJson from "rollup-plugin-generate-package-json";
 import packageJson from "../package.json" assert {type: "json"};
 
+// actually useless
 const subPlugins = (plugins, folderName) => [
     ...plugins,
     generatePackageJson({

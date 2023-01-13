@@ -27,7 +27,7 @@ shadowElementUtils.defineExtend("carousel-control", CarouselControl, "button");
 shadowElementUtils.defineExtend("carousel-previous", CarouselPrevious, "button");
 shadowElementUtils.defineExtend("carousel-next", CarouselNext, "button");
 shadowElementUtils.defineExtend("custom-radio", RadioGroup, "ul");
-shadowElementUtils.defineExtend("custom-checkbox", Checkbox, "button");
+shadowElementUtils.defineExtend("custom-radio", Checkbox, "button");
 shadowElementUtils.defineExtend("select-all", SelectAll, "button");
 
 // password example
@@ -58,7 +58,7 @@ showPassword.addEventListener("click", (event) => {
     password.type = password.type === "password" ? "text" : "password";
 });
 
-// checkbox fieldset example:
+// radio fieldset example:
 const fieldset = document.getElementById("n-framework-group");
 const frameworkAll = document.getElementById("n-all");
 const frameworkOptions = Array.from(fieldset.elements).filter(el => el !== frameworkAll);

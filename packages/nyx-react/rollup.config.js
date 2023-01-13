@@ -7,7 +7,6 @@ import babel from "@rollup/plugin-babel";
 import peerDepsExternal from "rollup-plugin-peer-deps-external";
 
 import getFolders from "./tools/listFolder.mjs";
-import subPlugins from "./tools/subPlugins.mjs";
 
 const plugins = [
     babel({
@@ -38,7 +37,7 @@ const folderBuilds = (await getFolders("./src/components")).flatMap((folder) => 
                 format: "cjs",
             }
         ],
-        plugins: subPlugins([...plugins, peerDepsExternal()], folder),
+        plugins: [...plugins, peerDepsExternal()],
         external: ["react", "react-dom"],
     }, {
         input: `dist/esm/${folder}/index.d.ts`,

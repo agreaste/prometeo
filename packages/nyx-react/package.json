@@ -65,6 +65,24 @@
       "node": "./dist/cjs/listBox/index.js",
       "require": "./dist/cjs/listBox/index.js",
       "default": "./dist/esm/listBox/index.js"
+    },
+    "./radio": {
+      "types": "./dist/types/radio/index.d.ts",
+      "node": "./dist/cjs/radio/index.js",
+      "require": "./dist/cjs/radio/index.js",
+      "default": "./dist/esm/radio/index.js"
+    },
+    "./checkbox": {
+      "types": "./dist/types/checkbox/index.d.ts",
+      "node": "./dist/cjs/checkbox/index.js",
+      "require": "./dist/cjs/checkbox/index.js",
+      "default": "./dist/esm/checkbox/index.js"
+    },
+    "./carousel": {
+      "types": "./dist/types/carousel/index.d.ts",
+      "node": "./dist/cjs/carousel/index.js",
+      "require": "./dist/cjs/carousel/index.js",
+      "default": "./dist/esm/carousel/index.js"
     }
   }
 }

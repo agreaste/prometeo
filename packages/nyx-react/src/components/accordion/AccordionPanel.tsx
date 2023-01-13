@@ -12,7 +12,7 @@ import {
 export interface IAccordionPanel extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, "children">, Attributes {
     title: string;
     level?: number;
-    styles: {
+    styles?: {
         heading?: string;
         panel?: string;
     }
@@ -22,7 +22,7 @@ const AccordionPanel = forwardRef<HTMLButtonElement, PropsWithChildren<IAccordio
     title,
     level,
     children,
-    styles: {heading, panel},
+    styles: {heading, panel} = {},
     ...buttonProps
 }: PropsWithChildren<IAccordionPanel>, ref) => {
     const panelRef = useRef<HTMLDivElement>(null);

@@ -1,36 +1,79 @@
-import React from "react";
-import {
-    heroBannerContainer,
-    heroBannerContent,
-    heroBannerSection,
-    heroBannerTitle,
-    heroBannerWrapper,
-    navbarWrapper
-} from "react-styles/app.module.css";
-import {menuWrapper, menuContainer, menuItem} from "react-styles/components/menu.module.css";
-import {accordionWrapper, accordionHeading, accordionPanel} from "react-styles/components/accordion.module.css";
-import {menubarWrapper, menubarContainer, menubarItem} from "react-styles/components/menubar.module.css";
+import React, {useState} from "react";
+import heroBannerStyles from "react-styles/app.module.css";
+import menuStyles from "react-styles/components/menu.module.css";
+import accordionStyles from "react-styles/components/accordion.module.css";
+import menuBarStyles from "react-styles/components/menubar.module.css";
+import carouselStyles from "../../styles/react/components/carousel.module.css";
 import {Menu, Menubar} from "nyx-react/menu";
 import {Accordion, AccordionPanel} from "nyx-react/accordion";
 import {ListBox} from "nyx-react/listBox";
+import {RadioGroup} from "nyx-react/radio";
+import {Carousel, Slide} from "nyx-react/carousel";
+
+import totoro from "../../media/studio-ghibli-film-netflix-3.jpeg";
+import castleSky from "../../media/castle-sky.jpeg";
 
 function App() {
+    const {
+        heroBanner__container,
+        heroBanner__content,
+        heroBanner__section,
+        heroBanner__title,
+        heroBanner__wrapper,
+        navbar__wrapper
+    } = heroBannerStyles;
+
+    const {
+        carousel_wrapper,
+        carousel_button,
+        carousel_buttonControl,
+        carousel_buttonNext,
+        carousel_buttonPrevious,
+        carousel_slide,
+        carousel_slideWrapper
+    } = carouselStyles;
+    const {menu__wrapper, menu__container, menu__item} = menuStyles;
+    const {accordion__wrapper, accordion__heading, accordion__panel} = accordionStyles;
+    const {menubar__wrapper, menubar__container, menubar__item} = menuBarStyles;
+
     const menuStyle = {
-        wrapper: [menuWrapper, menubarItem].join(" "),
-        trigger: menubarItem,
-        container: menuContainer,
-        item: menuItem
+        wrapper: [menu__wrapper, menubar__item].join(" "),
+        trigger: menubar__item, //
+        container: menu__container,
+        item: menu__item
     };
 
     const menubarStyle = {
-        wrapper: menubarWrapper,
-        container: menubarContainer,
-        item: menubarItem,
+        wrapper: menubar__wrapper,
+        container: menubar__container,
+        item: menubar__item,
     };
+
+    const [play, setPlay] = useState(false);
+    const [radio, setRadio] = useState("");
+
+    const playCallback = () => {
+        setPlay(!play);
+    };
+
+    const slides = [
+        {
+            img: totoro,
+            alt: "Tutti i personaggi principali de 'Il mio vicino Totoro' in una delle scene del film",
+            title: "Il mio vicino Totoro",
+            text: "Hayao Myazaki, 1988"
+        },
+        {
+            img: castleSky,
+            alt: "Una guardia robot della città di Laputa ricoperta di muschio, alcuni gatti selvatici le corrono sopra",
+            title: "Il castello nel cielo",
+            text: "Hayao Myazaki, 1986"
+        }
+    ];
 
     return (
         <>
-            <nav className={navbarWrapper}>
+            <nav className={navbar__wrapper}>
                 <Menubar styles={menubarStyle}>
                     <a href="/">WAW</a>
                     <a href="/flow.html">Contenuti di flusso</a>
@@ -45,13 +88,13 @@ function App() {
                     </Menu>
                 </Menubar>
             </nav>
-            <header className={heroBannerWrapper}>
-                <div className={heroBannerContainer}>
-                    <div className={heroBannerContent}>
+            <header className={heroBanner__wrapper}>
+                <div className={heroBanner__container}>
+                    <div className={heroBanner__content}>
                         <section
                             id="head-content"
-                            className={heroBannerSection}>
-                            <h1 className={heroBannerTitle}>Aria in React</h1>
+                            className={heroBanner__section}>
+                            <h1 className={heroBanner__title}>Aria in React</h1>
                             <p className="mb-2">Con <em>Accessible Rich Internet Applications</em> si intendono un
                                 insieme di ruoli e
                                 attributi che definiscono meccanismi per rendere contenuti web e applicazioni web più
@@ -65,11 +108,14 @@ function App() {
                 </div>
             </header>
             <main>
-                <div className="mx-auto w-full p-8">
-                    <ListBox styles={({...menuStyle, label: ""})} name={"test"} options={[{label: "pippo", value: 1}, {label: "pluto", value: 2},]}/>
-                </div>
-                <div className="mx-auto w-full p-8">
-                    <Accordion styles={({ wrapper: accordionWrapper, heading: accordionHeading, panel: accordionPanel})}>
+                <section className="mx-auto w-full p-8">
+                    <h2>List-box example</h2>
+                    <ListBox placeholder={"Seleziona un'opzione"} styles={({...menuStyle, label: ""})} name={"test"}
+                             options={[{label: "pippo", value: 1}, {label: "pluto", value: 2},]}/>
+                </section>
+                <section className="mx-auto w-full p-8">
+                    <h2>Accordion example</h2>
+                    <Accordion styles={({wrapper: accordion__wrapper, heading: accordion__heading, panel: accordion__panel})}>
                         <AccordionPanel title={"Primo panel"}>
                             <p>Boh questo è il contenuto di un panel</p>
                             <button>Questo bottone può ricevere focus in effetti.</button>
@@ -78,9 +124,38 @@ function App() {
                             <p>Boh questo è il contenuto di un panel</p>
                         </AccordionPanel>
                     </Accordion>
-                </div>
+                </section>
+                <section>
+                    <h2>Radio group example</h2>
+                    <RadioGroup label={"Personaggio Disney preferito:"} onChange={(arg) => setRadio(arg)}>
+                        <RadioGroup.Radio name={"pippo"} value={"pippo"} selected={false}><p>Pippo</p></RadioGroup.Radio>
+                        <RadioGroup.Radio name={"pluto"} value={"pluto"} selected={false}><p>Pluto</p></RadioGroup.Radio>
+                        <RadioGroup.Radio name={"paperino"} value={"paperino"} selected={false}><p>Paperino</p></RadioGroup.Radio>
+                    </RadioGroup>
+                </section>
+                <section>
+                    <h2>Carousel section</h2>
+                    <Carousel className={carousel_wrapper} playCallback={playCallback} initialAutoplay={play} slideWrapperClass={carousel_slideWrapper}>
+                        <Carousel.PlayButton aria-label={play? "Interrompi presentazione" : "Avvia presentazione"}
+                            className={[carousel_button, carousel_buttonControl].join(" ")}>{play ? "stop" : "play"}</Carousel.PlayButton>
+                        <Carousel.BackButton
+                            className={[carousel_button, carousel_buttonPrevious].join(" ")}>indietro</Carousel.BackButton>
+                        <Carousel.NextButton
+                            className={[carousel_button, carousel_buttonNext].join(" ")}>avanti</Carousel.NextButton>
+                        {
+                            slides.flatMap(({img, alt, title, text}, i) => (<Slide key={i} className={carousel_slide}>
+                                <img className="carousel_slide__image" src={img} alt={alt}/>
+                                <div className="carousel_slide__content">
+                                    <h3 className="carousel_slide__title">{title}</h3>
+                                    <p>{text}</p>
+                                </div>
+                            </Slide>))
+                        }
+                    </Carousel>
+                </section>
             </main>
-        </>);
+        </>
+    );
 }
 
 export default App;

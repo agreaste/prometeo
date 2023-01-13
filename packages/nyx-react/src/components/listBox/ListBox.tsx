@@ -20,7 +20,7 @@ export interface IListBox<T> {
     };
 
     name: string;
-    placeholder: string;
+    placeholder?: string;
     initialValue?: T;
     options: Array<IOption<T>>;
 }
@@ -103,6 +103,7 @@ const ListBox = <T extends never>({name, placeholder, options, styles = {}}: Pro
             onClick={openCallback}>{cta}</button>
         {expanded &&
             <ul ref={listRef} role="listbox"
+                aria-labelledby={idPrefix.current + "_label"}
                 onBlur={blurHandler}
                 tabIndex={-1}
                 className={container}
@@ -128,6 +129,7 @@ const ListBox = <T extends never>({name, placeholder, options, styles = {}}: Pro
                     onClick={() => {
                         setSelected(fullOptions[i]);
                         setExpanded(false);
+                        triggerRef?.current?.focus();
                     }}
                     aria-selected={el === selected}
                     className={[item].join(" ")}>

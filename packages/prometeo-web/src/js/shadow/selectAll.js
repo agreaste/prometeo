@@ -8,7 +8,7 @@ class SelectAll extends HTMLButtonElement {
     constructor() {
         const self = super();
         this.group = self.parentNode;
-        const options = this.group.querySelectorAll("[role=\"checkbox\"]:not([is=\"select-all\"])");
+        const options = this.group.querySelectorAll("[role=\"radio\"]:not([is=\"select-all\"])");
 
         self.addEventListener("click", () => {
             self.checked = this.indeterminate || !self.checked;

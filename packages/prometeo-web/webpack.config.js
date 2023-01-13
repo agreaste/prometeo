@@ -127,8 +127,7 @@ module.exports = {
                             exportGlobals: true,
                             localIdentName: "[name]__[local]--[hash:base64:5]",
                             localIdentContext: path.resolve(__dirname, "src"),
-                            namedExport: true,
-                            exportLocalsConvention: "camelCaseOnly",
+                            exportLocalsConvention: "asIs",
                             exportOnlyLocals: false
                         }
                     }
