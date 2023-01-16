@@ -3,53 +3,42 @@ import {
     useRef,
     useCallback,
     useState,
-    useMemo,
-    PropsWithChildren,
-    KeyboardEventHandler,
-    FocusEventHandler
+    KeyboardEvent,
+    FocusEventHandler, HTMLAttributes, ReactElement, RefAttributes, FC, forwardRef, RefObject
 } from "react";
 import useArrowNav from "../../hooks/useArrowNav";
+import mergeProps, {isComponent} from "../../utils/mergeProps";
+import Option, {IOption} from "./Option";
+import {FormComponent} from "../../utils/FormComponent";
+import useExtractComponent from "../../hooks/useExtractComponent";
 
-export interface IListBox<T> {
-    styles: {
-        label?: string;
-        wrapper?: string;
-        trigger?: string;
-        container?: string;
-        item?: string;
-    };
-
-    name: string;
+interface ListBox extends Omit<HTMLAttributes<HTMLDivElement>, "children"> {
+    label: string | RefObject<HTMLElement>;
     placeholder?: string;
-    initialValue?: T;
-    options: Array<IOption<T>>;
+    initialValue?: never;
+    children: ReactElement<IOption | ListBoxButton>[];
 }
 
-export interface IOption<T> {
-    label: string;
-    value: T;
-}
+export type IListBox = FormComponent<ListBox, never>;
 
-const ListBox = <T extends never>({name, placeholder, options, styles = {}}: PropsWithChildren<IListBox<T>>) => {
-    const {wrapper = "", trigger = "", container = "", item = "", label = ""} = styles;
+let ListBox: FC<IListBox> = ({
+    label,
+    className,
+    placeholder,
+    children
+}: IListBox) => {
     const listRef = useRef<HTMLUListElement>(null);
     const triggerRef = useRef<HTMLButtonElement>(null);
 
     const idPrefix = useRef(Math.random());
 
     const [expanded, setExpanded] = useState(false);
-    const [selected, setSelected] = useState<IOption<T> | null>(null);
-    const fullOptions = useMemo(() => [null, ...options], [options]);
-    const cta = useMemo(() => selected ? selected.label : placeholder ?? "Seleziona un'opzione", [selected]);
+    const [selected, setSelected] = useState<number | null>(null);
+    const items = children.flat().filter((child) => isComponent(child, Option)) as ReactElement<IOption>[];
 
-    const [refs, handler, active, resetActive] = useArrowNav<HTMLLIElement>(fullOptions.length, "vertical");
+    const [refs, handler, active, resetActive] = useArrowNav<HTMLLIElement>(items.length + 1, "vertical");
 
     const id = useCallback((index: number) => idPrefix.current + "__option__" + index, [idPrefix]);
-
-    useEffect(() => {
-        if ([wrapper, container, item].some(style => !style))
-            console.warn("ListBox component doesn't come with default styles.");
-    }, []);
 
     useEffect(() => {
         if (expanded && active >= 0 && refs[active])
@@ -61,7 +50,19 @@ const ListBox = <T extends never>({name, placeholder, options, styles = {}}: Pro
         setExpanded(true);
     };
 
-    const keyHandler: KeyboardEventHandler = (event) => {
+    const triggerButton = useExtractComponent(children, Button, {
+        ref: triggerRef,
+        onClick: openCallback,
+        role: "combobox",
+        "aria-expanded": expanded,
+        "aria-activedescendant": expanded ? id(active) : undefined,
+        ...(typeof label === "string"
+            ? {"aria-label": label}
+            : {"aria-labelledby": label.current?.id}),
+        children: selected !== null ? items[selected].props.children : placeholder
+    }, [expanded, active, label, selected]);
+
+    const keyHandler = (event: KeyboardEvent<Element>) => {
         switch (event.key) {
             case "ArrowUp":
                 if (active > 0) {
@@ -84,7 +85,26 @@ const ListBox = <T extends never>({name, placeholder, options, styles = {}}: Pro
             setExpanded(false);
     };
 
-    return (<div className={wrapper} onKeyDown={(event) => {
+    const clickHandler = (i: number | null) => {
+        setExpanded(false);
+        setSelected(i);
+        triggerRef?.current?.focus();
+    };
+
+    const keydownHandler = useCallback((event: KeyboardEvent<Element>, i: number | null) => {
+        switch (event.key) {
+            case " ":
+            case "Enter":
+                setExpanded(false);
+                setSelected(i);
+                event.preventDefault();
+                event.stopPropagation();
+                triggerRef?.current?.focus();
+                break;
+        }
+    }, [triggerRef]);
+
+    return (<div className={className} onKeyDown={(event) => {
         switch (event.key) {
             case "ArrowUp":
             case "ArrowDown":
@@ -92,51 +112,39 @@ const ListBox = <T extends never>({name, placeholder, options, styles = {}}: Pro
                 break;
         }
     }}>
-        <p id={idPrefix.current + "_label"} className={label}>{name}</p>
-        <button
-            className={trigger}
-            ref={triggerRef}
-            role={"combobox"}
-            aria-haspopup="listbox"
-            aria-expanded={expanded}
-            aria-labelledby={idPrefix.current + "_label"}
-            onClick={openCallback}>{cta}</button>
+        {
+            triggerButton
+        }
         {expanded &&
             <ul ref={listRef} role="listbox"
-                aria-labelledby={idPrefix.current + "_label"}
                 onBlur={blurHandler}
                 tabIndex={-1}
-                className={container}
                 onKeyUp={keyHandler}>
-                {fullOptions.map((el, i) => <li
-                    role={"option"}
-                    tabIndex={-1}
-                    key={i}
-                    ref={refs[i]}
-                    id={id(i)}
-                    onKeyDownCapture={(event) => {
-                        switch (event.key) {
-                            case " ":
-                            case "Enter":
-                                setSelected(fullOptions[i]);
-                                setExpanded(false);
-                                event.preventDefault();
-                                event.stopPropagation();
-                                triggerRef?.current?.focus();
-                                break;
-                        }
-                    }}
-                    onClick={() => {
-                        setSelected(fullOptions[i]);
-                        setExpanded(false);
-                        triggerRef?.current?.focus();
-                    }}
-                    aria-selected={el === selected}
-                    className={[item].join(" ")}>
-                    {el ? el.label : placeholder ?? "Seleziona un'opzione"}
-                </li>)}
+                <Option key={0} id={id(0)} ref={refs[0]} name={""} onClick={() => clickHandler(null)}
+                    onKeyDownCapture={(event: KeyboardEvent<Element>) => keydownHandler(event, null)}
+                    value={null}>{placeholder}</Option>
+                {
+                    items && items.map((el: ReactElement<IOption>, i: number) => mergeProps<IOption & RefAttributes<HTMLElement>>(el, {
+                        key: i + 1,
+                        ref: refs[i + 1],
+                        selected: i === selected,
+                        id: id(i + 1),
+                        onKeyDownCapture: (event: KeyboardEvent<Element>) => keydownHandler(event, i),
+                        onClick: () => clickHandler(i)
+                    }))
+                }
             </ul>}
     </div>);
 };
 
-export default ListBox;
+ListBox.displayName = "ListBox";
+
+type ListBoxButton = HTMLAttributes<HTMLButtonElement>;
+
+const Button = forwardRef<HTMLButtonElement, ListBoxButton>((props: ListBoxButton, ref) => {
+    return <button {...props} role={"combobox"} aria-haspopup="listbox" ref={ref}/>;
+});
+
+Button.displayName = "ListBox.Button";
+
+export default ListBox = Object.assign(ListBox, {Option, Button});

@@ -3,11 +3,11 @@ import mergeProps from "../../utils/mergeProps";
 
 export interface IRadio extends HTMLAttributes<HTMLElement>{
     name: string;
-    value: string;
-    selected: boolean;
+    value: never;
+    selected?: boolean;
 }
 
-const Radio = forwardRef<HTMLElement, PropsWithChildren<IRadio>>(({children, name, selected, ...props}, ref) => {
+const Radio = forwardRef<HTMLElement, IRadio>(({children, name, selected, ...props}, ref) => {
     return <>
         {mergeProps<HTMLAttributes<HTMLElement> & RefAttributes<HTMLElement>>(children, {
             ...props,

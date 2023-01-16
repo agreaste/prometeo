@@ -2,7 +2,7 @@ import {
     useEffect,
     useRef,
     HTMLAttributes,
-    ReactElement, RefAttributes, useState, RefObject,
+    ReactElement, RefAttributes, useState, RefObject, useMemo,
 } from "react";
 import useArrowNav from "../../hooks/useArrowNav";
 import Radio, {IRadio} from "./Radio";
@@ -15,12 +15,13 @@ interface RadioGroupProps extends Omit<HTMLAttributes<HTMLDivElement>, "children
     children: ReactElement<IRadio>[];
 }
 
-export type IRadioGroup = FormComponent<RadioGroupProps, string>;
+export type IRadioGroup = FormComponent<RadioGroupProps, never>;
 
 let RadioGroup = ({label, children, orientation, onChange, ...props}: IRadioGroup) => {
     const groupRef = useRef<HTMLDivElement>(null);
     const items = children.flat().filter(child => isComponent(child, Radio));
     const [selected, setSelected] = useState<number | null>(null);
+    const values = useMemo(() => items.map((item) => item.props.value), [items]);
 
     const [refs, handler, active, setActive] = useArrowNav<HTMLElement>(items.length, orientation);
 
@@ -38,10 +39,9 @@ let RadioGroup = ({label, children, orientation, onChange, ...props}: IRadioGrou
     }, [active, refs]);
 
     useEffect(() => {
-        onChange(typeof selected === "number"
-            ? items[selected].props.value
-            : "");
-    }, [selected]);
+        const value = typeof selected === "number" ? values[selected] : null;
+        onChange(value);
+    }, [selected, values]);
 
     const labelling: Pick<IRadioGroup, "aria-label" | "aria-labelledby"> = typeof label === "string"
         ? {"aria-label": label}

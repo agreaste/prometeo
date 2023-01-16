@@ -50,7 +50,8 @@ function App() {
     };
 
     const [play, setPlay] = useState(false);
-    const [radio, setRadio] = useState("");
+    // eslint-disable-next-line no-unused-vars
+    const [_radio, setRadio] = useState(null);
 
     const playCallback = () => {
         setPlay(!play);
@@ -110,8 +111,11 @@ function App() {
             <main>
                 <section className="mx-auto w-full p-8">
                     <h2>List-box example</h2>
-                    <ListBox placeholder={"Seleziona un'opzione"} styles={({...menuStyle, label: ""})} name={"test"}
-                             options={[{label: "pippo", value: 1}, {label: "pluto", value: 2},]}/>
+                    <ListBox label={"test"} placeholder={"Seleziona un'opzione"} styles={({...menuStyle, label: ""})} name={"test"}>
+                        <ListBox.Button>Sono un bottone per aprire questa dropdown</ListBox.Button>
+                        <ListBox.Option name={"pippo"} value={1}>pluto</ListBox.Option>
+                        <ListBox.Option name={"pluto"} value={2}>pippo</ListBox.Option>
+                    </ListBox>
                 </section>
                 <section className="mx-auto w-full p-8">
                     <h2>Accordion example</h2>
@@ -128,9 +132,9 @@ function App() {
                 <section>
                     <h2>Radio group example</h2>
                     <RadioGroup label={"Personaggio Disney preferito:"} onChange={(arg) => setRadio(arg)}>
-                        <RadioGroup.Radio name={"pippo"} value={"pippo"} selected={false}><p>Pippo</p></RadioGroup.Radio>
-                        <RadioGroup.Radio name={"pluto"} value={"pluto"} selected={false}><p>Pluto</p></RadioGroup.Radio>
-                        <RadioGroup.Radio name={"paperino"} value={"paperino"} selected={false}><p>Paperino</p></RadioGroup.Radio>
+                        <RadioGroup.Radio name={"pippo"} value={"pippo"}><p>Pippo</p></RadioGroup.Radio>
+                        <RadioGroup.Radio name={"pluto"} value={"pluto"}><p>Pluto</p></RadioGroup.Radio>
+                        <RadioGroup.Radio name={"paperino"} value={"paperino"}><p>Paperino</p></RadioGroup.Radio>
                     </RadioGroup>
                 </section>
                 <section>
