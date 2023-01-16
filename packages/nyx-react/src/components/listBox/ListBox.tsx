@@ -4,7 +4,7 @@ import {
     useCallback,
     useState,
     KeyboardEvent,
-    FocusEventHandler, HTMLAttributes, ReactElement, RefAttributes, FC, forwardRef, RefObject
+    FocusEventHandler, HTMLAttributes, ReactElement, RefAttributes, FC, forwardRef, RefObject, memo
 } from "react";
 import useArrowNav from "../../hooks/useArrowNav";
 import mergeProps, {isComponent} from "../../utils/mergeProps";
@@ -15,7 +15,7 @@ import useExtractComponent from "../../hooks/useExtractComponent";
 interface ListBox extends Omit<HTMLAttributes<HTMLDivElement>, "children"> {
     label: string | RefObject<HTMLElement>;
     placeholder?: string;
-    initialValue?: never;
+    listWrapClassName?: string;
     children: ReactElement<IOption | ListBoxButton>[];
 }
 
@@ -24,8 +24,10 @@ export type IListBox = FormComponent<ListBox, never>;
 let ListBox: FC<IListBox> = ({
     label,
     className,
+    listWrapClassName = "",
     placeholder,
-    children
+    children,
+    onChange
 }: IListBox) => {
     const listRef = useRef<HTMLUListElement>(null);
     const triggerRef = useRef<HTMLButtonElement>(null);
@@ -35,8 +37,9 @@ let ListBox: FC<IListBox> = ({
     const [expanded, setExpanded] = useState(false);
     const [selected, setSelected] = useState<number | null>(null);
     const items = children.flat().filter((child) => isComponent(child, Option)) as ReactElement<IOption>[];
+    const values = children.flat().filter((child) => isComponent(child, Option)).map((option) => (option as ReactElement<IOption>).props.value);
 
-    const [refs, handler, active, resetActive] = useArrowNav<HTMLLIElement>(items.length + 1, "vertical");
+    const [refs, handler, active, resetActive] = useArrowNav<HTMLLIElement>(items.length, "vertical");
 
     const id = useCallback((index: number) => idPrefix.current + "__option__" + index, [idPrefix]);
 
@@ -44,6 +47,13 @@ let ListBox: FC<IListBox> = ({
         if (expanded && active >= 0 && refs[active])
             refs[active].current?.focus();
     }, [expanded, active, refs]);
+
+    useEffect(() => {
+        if(selected !== null)
+            onChange(values[selected]);
+        else
+            onChange(null);
+    }, [selected]);
 
     const openCallback = () => {
         resetActive(0);
@@ -117,18 +127,16 @@ let ListBox: FC<IListBox> = ({
         }
         {expanded &&
             <ul ref={listRef} role="listbox"
+                className={listWrapClassName}
                 onBlur={blurHandler}
                 tabIndex={-1}
                 onKeyUp={keyHandler}>
-                <Option key={0} id={id(0)} ref={refs[0]} name={""} onClick={() => clickHandler(null)}
-                    onKeyDownCapture={(event: KeyboardEvent<Element>) => keydownHandler(event, null)}
-                    value={null}>{placeholder}</Option>
                 {
                     items && items.map((el: ReactElement<IOption>, i: number) => mergeProps<IOption & RefAttributes<HTMLElement>>(el, {
-                        key: i + 1,
-                        ref: refs[i + 1],
+                        key: i,
+                        ref: refs[i],
                         selected: i === selected,
-                        id: id(i + 1),
+                        id: id(i),
                         onKeyDownCapture: (event: KeyboardEvent<Element>) => keydownHandler(event, i),
                         onClick: () => clickHandler(i)
                     }))

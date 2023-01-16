@@ -36,12 +36,13 @@ let RadioGroup = ({label, children, orientation, onChange, ...props}: IRadioGrou
             setSelected(active);
         }
 
-    }, [active, refs]);
+    }, [active, refs, setSelected]);
 
     useEffect(() => {
-        const value = typeof selected === "number" ? values[selected] : null;
-        onChange(value);
-    }, [selected, values]);
+        if(selected !== null) {
+            onChange(values[selected]);
+        }
+    }, [selected]);
 
     const labelling: Pick<IRadioGroup, "aria-label" | "aria-labelledby"> = typeof label === "string"
         ? {"aria-label": label}

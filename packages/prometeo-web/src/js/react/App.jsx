@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useReducer} from "react";
 import heroBannerStyles from "react-styles/app.module.css";
 import menuStyles from "react-styles/components/menu.module.css";
 import accordionStyles from "react-styles/components/accordion.module.css";
@@ -12,6 +12,37 @@ import {Carousel, Slide} from "nyx-react/carousel";
 
 import totoro from "../../media/studio-ghibli-film-netflix-3.jpeg";
 import castleSky from "../../media/castle-sky.jpeg";
+
+const initialState = {
+    radioValue: null,
+    listValue: null,
+    play: false,
+};
+
+const reducer = (state, {type, value}) => {
+    switch (type) {
+        case "changeRadio":
+            return {
+                ...state,
+                radioValue: value
+            };
+        case "changeList":
+            return {
+                ...state,
+                listValue: value
+            };
+        case "play":
+            return {
+                ...state,
+                play: true,
+            };
+        case "stop":
+            return {
+                ...state,
+                play: false,
+            };
+    }
+};
 
 function App() {
     const {
@@ -49,12 +80,11 @@ function App() {
         item: menubar__item,
     };
 
-    const [play, setPlay] = useState(false);
-    // eslint-disable-next-line no-unused-vars
-    const [_radio, setRadio] = useState(null);
+    const [{play}, dispatch] = useReducer(reducer, initialState);
 
     const playCallback = () => {
-        setPlay(!play);
+        if (play) dispatch({type: "stop"});
+        else dispatch({type: "play"});
     };
 
     const slides = [
@@ -111,15 +141,21 @@ function App() {
             <main>
                 <section className="mx-auto w-full p-8">
                     <h2>List-box example</h2>
-                    <ListBox label={"test"} placeholder={"Seleziona un'opzione"} styles={({...menuStyle, label: ""})} name={"test"}>
-                        <ListBox.Button>Sono un bottone per aprire questa dropdown</ListBox.Button>
-                        <ListBox.Option name={"pippo"} value={1}>pluto</ListBox.Option>
-                        <ListBox.Option name={"pluto"} value={2}>pippo</ListBox.Option>
+                    <ListBox label={"test"} onChange={(arg) => dispatch({ type: "changeList", value: arg})} className={menu__wrapper}
+                             listWrapClassName={menu__container} placeholder={"Seleziona un'opzione"}>
+                        <ListBox.Button className={menu__item}/>
+                        <ListBox.Option className={menu__item} value={1} aria-label={"Seleziona un'opzione"}>Seleziona
+                            un&apos;opzione</ListBox.Option>
+                        <ListBox.Option className={menu__item} value={1} aria-label={"Pluto"}>pluto</ListBox.Option>
+                        <ListBox.Option className={menu__item} value={2} aria-label={"Pippo"}>pippo</ListBox.Option>
+                        <ListBox.Option className={menu__item} value={2}
+                                        aria-label={"Paperino"}>paperino</ListBox.Option>
                     </ListBox>
                 </section>
                 <section className="mx-auto w-full p-8">
                     <h2>Accordion example</h2>
-                    <Accordion styles={({wrapper: accordion__wrapper, heading: accordion__heading, panel: accordion__panel})}>
+                    <Accordion
+                        styles={({wrapper: accordion__wrapper, heading: accordion__heading, panel: accordion__panel})}>
                         <AccordionPanel title={"Primo panel"}>
                             <p>Boh questo è il contenuto di un panel</p>
                             <button>Questo bottone può ricevere focus in effetti.</button>
@@ -131,7 +167,7 @@ function App() {
                 </section>
                 <section>
                     <h2>Radio group example</h2>
-                    <RadioGroup label={"Personaggio Disney preferito:"} onChange={(arg) => setRadio(arg)}>
+                    <RadioGroup label={"Personaggio Disney preferito:"} onChange={(arg) => dispatch({ type: "changeRadio", value: arg})}>
                         <RadioGroup.Radio name={"pippo"} value={"pippo"}><p>Pippo</p></RadioGroup.Radio>
                         <RadioGroup.Radio name={"pluto"} value={"pluto"}><p>Pluto</p></RadioGroup.Radio>
                         <RadioGroup.Radio name={"paperino"} value={"paperino"}><p>Paperino</p></RadioGroup.Radio>
@@ -139,9 +175,10 @@ function App() {
                 </section>
                 <section>
                     <h2>Carousel section</h2>
-                    <Carousel className={carousel_wrapper} playCallback={playCallback} initialAutoplay={play} slideWrapperClass={carousel_slideWrapper}>
-                        <Carousel.PlayButton aria-label={play? "Interrompi presentazione" : "Avvia presentazione"}
-                            className={[carousel_button, carousel_buttonControl].join(" ")}>{play ? "stop" : "play"}</Carousel.PlayButton>
+                    <Carousel className={carousel_wrapper} playCallback={playCallback} initialAutoplay={play}
+                              slideWrapperClass={carousel_slideWrapper}>
+                        <Carousel.PlayButton aria-label={play ? "Interrompi presentazione" : "Avvia presentazione"}
+                                             className={[carousel_button, carousel_buttonControl].join(" ")}>{play ? "stop" : "play"}</Carousel.PlayButton>
                         <Carousel.BackButton
                             className={[carousel_button, carousel_buttonPrevious].join(" ")}>indietro</Carousel.BackButton>
                         <Carousel.NextButton
