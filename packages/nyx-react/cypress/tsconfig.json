@@ -1,0 +1,22 @@
+{
+    "compilerOptions": {
+        "target": "es2015",
+        "lib": ["es5", "es6", "dom"],
+        "strict": true,
+        "skipLibCheck": true,
+        "moduleResolution": "node",
+        "module": "esnext",
+        "sourceMap": true,
+        "esModuleInterop": true,
+        "allowJs": true,
+        "jsx": "react-jsx",
+        "types": ["cypress", "@cypress/react"]
+    },
+    "include": [
+        "**/*.tsx",
+        "cypress.d.ts"
+    ],
+    "exclude": [
+        "../node_modules"
+    ]
+}

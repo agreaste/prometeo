@@ -4,11 +4,7 @@ import menuStyles from "react-styles/components/menu.module.css";
 import accordionStyles from "react-styles/components/accordion.module.css";
 import menuBarStyles from "react-styles/components/menubar.module.css";
 import carouselStyles from "../../styles/react/components/carousel.module.css";
-import {Menu, Menubar} from "nyx-react/menu";
-import {Accordion, AccordionPanel} from "nyx-react/accordion";
-import {ListBox} from "nyx-react/listBox";
-import {RadioGroup} from "nyx-react/radio";
-import {Carousel, Slide} from "nyx-react/carousel";
+import {Menu, Menubar, Accordion, AccordionPanel, ListBox, RadioGroup, Carousel, Slide} from "nyx-react";
 
 import totoro from "../../media/studio-ghibli-film-netflix-3.jpeg";
 import castleSky from "../../media/castle-sky.jpeg";

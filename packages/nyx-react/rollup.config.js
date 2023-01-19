@@ -8,7 +8,7 @@ import peerDepsExternal from "rollup-plugin-peer-deps-external";
 
 import getFolders from "./tools/listFolder.mjs";
 
-const plugins = [
+export const plugins = [
     babel({
         babelHelpers: "bundled"
     }),

@@ -9,24 +9,24 @@ import Radio, {IRadio} from "./Radio";
 import mergeProps, {isComponent} from "../../utils/mergeProps";
 import {FormComponent} from "../../utils/FormComponent";
 
-interface RadioGroupProps extends Omit<HTMLAttributes<HTMLDivElement>, "children"> {
+interface RadioGroupProps<T = string> extends Omit<HTMLAttributes<HTMLDivElement>, "children"> {
     label: string | RefObject<HTMLElement>;
     orientation?: "horizontal" | "vertical";
-    children: ReactElement<IRadio>[];
+    children: ReactElement<IRadio<T>> | ReactElement<IRadio<T>>[];
 }
 
-export type IRadioGroup = FormComponent<RadioGroupProps, never>;
+export type IRadioGroup<T> = FormComponent<RadioGroupProps<T>, T>;
 
-let RadioGroup = ({label, children, orientation, onChange, ...props}: IRadioGroup) => {
+let RadioGroup = <T extends any = string>({label, children, orientation, onChange, ...props}: IRadioGroup<T>) => {
     const groupRef = useRef<HTMLDivElement>(null);
-    const items = children.flat().filter(child => isComponent(child, Radio));
+    const items = ("length" in children ?  children.flat() : [children]).filter(child => isComponent(child, Radio));
     const [selected, setSelected] = useState<number | null>(null);
     const values = useMemo(() => items.map((item) => item.props.value), [items]);
 
     const [refs, handler, active, setActive] = useArrowNav<HTMLElement>(items.length, orientation);
 
     useEffect(() => {
-        if (!children.every(item => isComponent(item, Radio)))
+        if ("length" in children && !children.every(item => isComponent(item, Radio)) || !items.length)
             console.warn("RadioGroup component can only accept <Radio/> elements as children");
     });
 
@@ -44,12 +44,12 @@ let RadioGroup = ({label, children, orientation, onChange, ...props}: IRadioGrou
         }
     }, [selected]);
 
-    const labelling: Pick<IRadioGroup, "aria-label" | "aria-labelledby"> = typeof label === "string"
+    const labelling: Pick<IRadioGroup<T>, "aria-label" | "aria-labelledby"> = typeof label === "string"
         ? {"aria-label": label}
         : {"aria-labelledby": label.current?.id};
 
     return (<div ref={groupRef} {...labelling} role="radiogroup" onKeyUp={handler} {...props}>
-        {items && items.map((el, i) => mergeProps<IRadio & RefAttributes<HTMLElement>>(el, {
+        {items && items.map((el, i) => mergeProps<IRadio<T> & RefAttributes<HTMLElement>>(el, {
             key: i,
             ref: refs[i],
             selected: i === selected,
@@ -60,6 +60,7 @@ let RadioGroup = ({label, children, orientation, onChange, ...props}: IRadioGrou
             },
             onKeyUp: ({key}) => {
                 switch (key) {
+                    case " ":
                     case "Enter":
                         setActive(i);
                         setSelected(i);
