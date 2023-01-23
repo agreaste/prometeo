@@ -4,16 +4,16 @@ class CheckBox extends HTMLButtonElement {
     constructor() {
         super();
 
-        this.addEventListener('click', (event) => {
+        this.addEventListener("click", (event) => {
             this.toggle(!this.checked);
 
-            this.dispatchEvent(new Event('change', {bubbles: true, cancelable: false}));
+            this.dispatchEvent(new Event("change", {bubbles: true, cancelable: false}));
         });
     }
 
     toggle(val: boolean) {
         this.checked = val;
-        this.setAttribute('aria-checked', val.toString());
+        this.setAttribute("aria-checked", val.toString());
     }
 }
 

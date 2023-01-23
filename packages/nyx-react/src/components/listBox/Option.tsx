@@ -1,13 +1,13 @@
-import {forwardRef, HTMLAttributes} from "react";
+import {forwardRef, HTMLAttributes, ReactElement, RefAttributes} from "react";
 
-export interface IOption extends Omit<HTMLAttributes<HTMLLIElement>, "aria-label">{
+export interface IOption<T = string> extends Omit<HTMLAttributes<HTMLLIElement>, "aria-label">{
     selected?: boolean;
-    value: never | null;
+    value: T;
     "aria-label": string;
 }
 
 const Option = forwardRef<HTMLLIElement, IOption>(({children, value, selected, ...props}, ref) => {
-    return <li {...props} ref={ref} tabIndex={-1} aria-selected={selected} role={"option"}>
+    return <li {...props} ref={ref} tabIndex={-1} aria-selected={selected} role={"option"} data-value={value}>
         {
             children
         }
@@ -16,4 +16,4 @@ const Option = forwardRef<HTMLLIElement, IOption>(({children, value, selected, .
 
 Option.displayName = "ListBox.Option";
 
-export default Option;
+export default Option as <T = string>(p: IOption<T> & RefAttributes<HTMLLIElement>) => ReactElement;

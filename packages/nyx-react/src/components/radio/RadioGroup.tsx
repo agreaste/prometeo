@@ -2,7 +2,7 @@ import {
     useEffect,
     useRef,
     HTMLAttributes,
-    ReactElement, RefAttributes, useState, RefObject, useMemo,
+    ReactElement, RefAttributes, useState, RefObject, useMemo, useCallback, KeyboardEvent
 } from "react";
 import useArrowNav from "../../hooks/useArrowNav";
 import Radio, {IRadio} from "./Radio";
@@ -22,8 +22,21 @@ let RadioGroup = <T extends any = string>({label, children, orientation, onChang
     const items = ("length" in children ?  children.flat() : [children]).filter(child => isComponent(child, Radio));
     const [selected, setSelected] = useState<number | null>(null);
     const values = useMemo(() => items.map((item) => item.props.value), [items]);
-
     const [refs, handler, active, setActive] = useArrowNav<HTMLElement>(items.length, orientation);
+    const onClickCallback = useCallback((i: number) =>  () => {
+        setActive(i);
+        setSelected(i);
+    }, [setActive, setSelected]);
+
+    const oncKeyUpCallback = useCallback((i: number) => ({key}: KeyboardEvent<HTMLDivElement>) => {
+        switch (key) {
+            case " ":
+            case "Enter":
+                setActive(i);
+                setSelected(i);
+                break;
+        }
+    }, [setActive, setSelected]);
 
     useEffect(() => {
         if ("length" in children && !children.every(item => isComponent(item, Radio)) || !items.length)
@@ -54,19 +67,8 @@ let RadioGroup = <T extends any = string>({label, children, orientation, onChang
             ref: refs[i],
             selected: i === selected,
             tabIndex: i === active ? 0 : -1,
-            onClick: () => {
-                setActive(i);
-                setSelected(i);
-            },
-            onKeyUp: ({key}) => {
-                switch (key) {
-                    case " ":
-                    case "Enter":
-                        setActive(i);
-                        setSelected(i);
-                        break;
-                }
-            }
+            onClick: onClickCallback(i),
+            onKeyUp: oncKeyUpCallback(i)
         }))}
     </div>);
 };
