@@ -1,6 +1,6 @@
 import ComboBox from "../../src/components/listBox/ComboBox";
 
-describe("ComboBox.tsx.tsx", () => {
+describe("ComboBox.tsx", () => {
     beforeEach(() => {
         cy.mount(<ComboBox label={"test-combobox"} onChange={(arg) => console.log(arg)} placeholder={"Test value"}>
             <ComboBox.asListBox id={"test-listbox"} data-test={"listbox"}>

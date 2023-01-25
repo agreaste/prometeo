@@ -10,7 +10,7 @@ import {DumbListBox, DumbListBoxProps} from "./ListBox";
 import Option from "./Option";
 import useArrowNav from "../../hooks/useArrowNav";
 
-interface ComboBoxProps<T = string> extends Omit<HTMLAttributes<HTMLDivElement>, "children"> {
+interface ComboBoxProps<T = string> extends Omit<HTMLAttributes<HTMLButtonElement>, "children"> {
     label: string | RefObject<HTMLElement>;
     placeholder?: string;
     listWrapClassName?: string;
@@ -27,10 +27,10 @@ interface ComboBoxComponent<T = string> {
 
 let ComboBox: ComboBoxComponent<unknown> = <T extends any = string>({
     label,
-    className,
     children,
     onChange,
-    placeholder
+    placeholder,
+    ...props
 }: IComboBox<T>) => {
     const triggerRef = useRef<HTMLButtonElement>(null);
 
@@ -47,18 +47,11 @@ let ComboBox: ComboBoxComponent<unknown> = <T extends any = string>({
     }) => ({label: children, value})), [children]);
 
     useEffect(() => {
-        if(!expanded) console.log("closing popup (somehow??)");
-        else console.log("opening popup (somehow??)");
-    }, [expanded]);
-
-    useEffect(() => {
-        console.log("selected value changed: ", selected);
         if(selected !== null)
             onChange(pairs[selected].value);
         else
             onChange(null);
 
-        console.log("closing popup");
         setExpanded(false);
     }, [selected]);
 
@@ -139,7 +132,7 @@ let ComboBox: ComboBoxComponent<unknown> = <T extends any = string>({
 
     const activeDescendant = useMemo(() => expanded ? `${idPrefix.current}_option_${active}` : undefined, [active, expanded]);
 
-    return (<div className={className} onKeyDown={(event) => {
+    return (<div onKeyDown={(event) => {
         switch (event.key) {
             case "ArrowUp":
             case "ArrowDown":
@@ -147,7 +140,9 @@ let ComboBox: ComboBoxComponent<unknown> = <T extends any = string>({
                 break;
         }
     }} onBlur={blurHandler}>
-        <button {...labelling}
+        <button
+            {...props}
+            {...labelling}
             role="combobox"
             aria-haspopup="listbox" aria-controls={idPrefix.current + "_listbox"} aria-expanded={expanded}
             aria-activedescendant={activeDescendant}
