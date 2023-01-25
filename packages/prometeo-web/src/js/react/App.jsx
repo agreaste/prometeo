@@ -4,7 +4,7 @@ import menuStyles from "react-styles/components/menu.module.css";
 import accordionStyles from "react-styles/components/accordion.module.css";
 import menuBarStyles from "react-styles/components/menubar.module.css";
 import carouselStyles from "../../styles/react/components/carousel.module.css";
-import {Menu, Menubar, Accordion, AccordionPanel, ComboBox, ListBox, RadioGroup, Carousel, Slide} from "nyx-react";
+import {Menu, Menubar, Accordion, AccordionPanel, ComboBox, RadioGroup, Carousel, Slide} from "nyx-react";
 
 import totoro from "../../media/studio-ghibli-film-netflix-3.jpeg";
 import castleSky from "../../media/castle-sky.jpeg";
@@ -137,13 +137,13 @@ function App() {
             <main>
                 <section className="mx-auto w-full p-8">
                     <h2>List-box example</h2>
-                    <ComboBox label={"test-combobox"} onChange={(arg) => console.log(arg)} placeholder={"Test value"}>
-                        <ListBox id={"test-listbox"} label="My test Combobox" onChange={(arg) => console.log(arg)}>
+                    <ComboBox label={"test-combobox"} onChange={(arg) => dispatch({ type: "changeList", value: arg})} placeholder={"Test value"}>
+                        <ComboBox.asListBox id={"test-listbox"}>
                             {[1, 2, 3].map((val, i) => (
-                                <ListBox.Option key={i} aria-label={`option ${i}`} value={val} data-test={`option-${i}`}>
+                                <ComboBox.Option key={i} aria-label={`option ${i}`} value={val} data-test={`option-${i}`}>
                                     option {i}
-                                </ListBox.Option>))}
-                        </ListBox>
+                                </ComboBox.Option>))}
+                        </ComboBox.asListBox>
                     </ComboBox>
                 </section>
                 <section className="mx-auto w-full p-8">
