@@ -7,13 +7,13 @@ export interface IOption<T = string> extends Omit<HTMLAttributes<HTMLLIElement>,
 }
 
 const Option = forwardRef<HTMLLIElement, IOption>(({children, value, selected, ...props}, ref) => {
-    return <li {...props} ref={ref} tabIndex={-1} aria-selected={selected} role={"option"} data-value={value}>
+    return <li {...props} ref={ref} aria-selected={selected} role={"option"} data-value={value}>
         {
             children
         }
     </li>;
 });
 
-Option.displayName = "ListBox.Option";
+Option.displayName = "Option";
 
 export default Option as <T = string>(p: IOption<T> & RefAttributes<HTMLLIElement>) => ReactElement;

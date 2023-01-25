@@ -13,8 +13,6 @@ import {FormComponent} from "../../utils/FormComponent";
 
 export interface ListBoxProps<T = string> extends Omit<HTMLAttributes<HTMLUListElement>, "children"> {
     label: string | RefObject<HTMLElement>;
-    placeholder?: string;
-    listWrapClassName?: string;
     children: ReactElement<IOption<T>>[];
 }
 
@@ -91,7 +89,8 @@ let ListBox = forwardRef<HTMLUListElement, IListBox>(({
                 selected: i === selected,
                 id: id(i),
                 onKeyDownCapture: (event: KeyboardEvent<Element>) => keydownHandler(event, i),
-                onClick: () => clickHandler(i)
+                onClick: () => clickHandler(i),
+                tabIndex: -1
             }))
         }
     </ul>);
@@ -100,3 +99,15 @@ let ListBox = forwardRef<HTMLUListElement, IListBox>(({
 ListBox.displayName = "Listbox";
 
 export default ListBox = Object.assign(memo(ListBox), {Option});
+
+// TODO: capire dove va questa (:
+
+export type DumbListBoxProps<T> = Omit<ListBoxProps<T>, "label">;
+
+export const DumbListBox = <T extends never>({children, ...props}: DumbListBoxProps<T> ) => {
+    return (<ul {...props} role="listbox">
+        {
+            children
+        }
+    </ul>);
+};
