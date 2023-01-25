@@ -1,9 +1,10 @@
-import React, {useReducer} from "react";
+import React, {useReducer, useRef} from "react";
 import heroBannerStyles from "react-styles/app.module.css";
 import menuStyles from "react-styles/components/menu.module.css";
 import accordionStyles from "react-styles/components/accordion.module.css";
 import menuBarStyles from "react-styles/components/menubar.module.css";
 import carouselStyles from "../../styles/react/components/carousel.module.css";
+import comboBoxStyles from "../../styles/react/components/combobox.module.css";
 import {Menu, Menubar, Accordion, AccordionPanel, ComboBox, RadioGroup, Carousel, Slide} from "nyx-react";
 
 import totoro from "../../media/studio-ghibli-film-netflix-3.jpeg";
@@ -76,6 +77,9 @@ function App() {
         item: menubar__item,
     };
 
+    const {comboBox__wrapper, comboBox__button, comboBox__container, comboBox__option} = comboBoxStyles;
+
+    const listLabelRef = useRef(null);
     const [{play}, dispatch] = useReducer(reducer, initialState);
 
     const playCallback = () => {
@@ -136,15 +140,17 @@ function App() {
             </header>
             <main>
                 <section className="mx-auto w-full p-8">
-                    <h2>List-box example</h2>
-                    <ComboBox label={"test-combobox"} onChange={(arg) => dispatch({ type: "changeList", value: arg})} placeholder={"Test value"}>
-                        <ComboBox.asListBox id={"test-listbox"}>
-                            {[1, 2, 3].map((val, i) => (
-                                <ComboBox.Option key={i} aria-label={`option ${i}`} value={val} data-test={`option-${i}`}>
-                                    option {i}
-                                </ComboBox.Option>))}
-                        </ComboBox.asListBox>
-                    </ComboBox>
+                    <h2 ref={listLabelRef}>List-box example</h2>
+                    <div className={comboBox__wrapper}>
+                        <ComboBox label={listLabelRef} onChange={(arg) => dispatch({ type: "changeList", value: arg})} placeholder={"Test value"} className={comboBox__button}>
+                            <ComboBox.asListBox id={"test-listbox"} className={comboBox__container}>
+                                {["Pippo", "Pluto", "Paperino"].map((val, i) => (
+                                    <ComboBox.Option key={i} aria-label={val} value={i} className={comboBox__option}>
+                                        {val}
+                                    </ComboBox.Option>))}
+                            </ComboBox.asListBox>
+                        </ComboBox>
+                    </div>
                 </section>
                 <section className="mx-auto w-full p-8">
                     <h2>Accordion example</h2>
@@ -162,17 +168,17 @@ function App() {
                 <section>
                     <h2>Radio group example</h2>
                     <RadioGroup label={"Personaggio Disney preferito:"} onChange={(arg) => dispatch({ type: "changeRadio", value: arg})}>
-                        <RadioGroup.Radio name={"pippo"} value={"pippo"}><p>Pippo</p></RadioGroup.Radio>
-                        <RadioGroup.Radio name={"pluto"} value={"pluto"}><p>Pluto</p></RadioGroup.Radio>
-                        <RadioGroup.Radio name={"paperino"} value={"paperino"}><p>Paperino</p></RadioGroup.Radio>
+                        <RadioGroup.Radio value={"pippo"} aria-label={"pippo"}><p>Pippo</p></RadioGroup.Radio>
+                        <RadioGroup.Radio aria-label={"pluto"} value={"pluto"}><p>Pluto</p></RadioGroup.Radio>
+                        <RadioGroup.Radio aria-label={"paperino"} value={"paperino"}><p>Paperino</p></RadioGroup.Radio>
                     </RadioGroup>
                 </section>
                 <section>
                     <h2>Carousel section</h2>
                     <Carousel className={carousel_wrapper} playCallback={playCallback} initialAutoplay={play}
-                              slideWrapperClass={carousel_slideWrapper}>
+                        slideWrapperClass={carousel_slideWrapper}>
                         <Carousel.PlayButton aria-label={play ? "Interrompi presentazione" : "Avvia presentazione"}
-                                             className={[carousel_button, carousel_buttonControl].join(" ")}>{play ? "stop" : "play"}</Carousel.PlayButton>
+                            className={[carousel_button, carousel_buttonControl].join(" ")}>{play ? "stop" : "play"}</Carousel.PlayButton>
                         <Carousel.BackButton
                             className={[carousel_button, carousel_buttonPrevious].join(" ")}>indietro</Carousel.BackButton>
                         <Carousel.NextButton

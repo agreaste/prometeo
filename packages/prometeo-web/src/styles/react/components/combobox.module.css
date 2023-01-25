@@ -1,0 +1,23 @@
+.comboBox__wrapper {
+    @apply w-full relative;
+}
+
+.comboBox__button {
+    @apply p-4 bg-white border-neutral-400 rounded-md text-black;
+}
+
+.comboBox__container {
+    @apply overflow-clip bg-white border-neutral-400 w-full rounded-md absolute border;
+}
+
+.comboBox__option {
+    @apply text-black p-4;
+}
+
+.comboBox__option:not(:focus-visible) {
+    @apply  hover:bg-blue-100;
+}
+
+.comboBox__container.active:focus-visible .comboBox__option--active {
+    @apply ring ring-pink-400 ring-inset;
+}
