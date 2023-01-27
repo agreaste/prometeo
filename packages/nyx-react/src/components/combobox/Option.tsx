@@ -27,6 +27,18 @@ const Option: OptionComponent<unknown> = <T extends unknown = string>({id, "aria
                     content: children
                 }
             });
+
+        return () => {
+            dispatch({
+                type: "option/unregister",
+                payload: {
+                    id,
+                    label,
+                    value,
+                    content: children
+                }
+            });
+        };
     }, [options]);
 
     const hoverCallback = () => {

@@ -21,6 +21,7 @@ export interface ComboBoxSlice<T = string> {
 }
 
 type RegisterOption = { type: "option/register", payload: IOption<unknown>};
+type UnregisterOption = { type: "option/unregister", payload: IOption<unknown>};
 type ActivateOption = { type: "option/activate", payload: string };
 type SelectOption = { type: "option/select", payload: string };
 type RegisterPopup = { type: "popup/register", payload: { popup: PopupType, id: string } };
@@ -29,6 +30,7 @@ type ClosePopup = { type: "popup/close" };
 
 export type ComboBoxAction =
     RegisterOption
+    | UnregisterOption
     | ActivateOption
     | SelectOption
     | RegisterPopup
@@ -47,6 +49,11 @@ export const comboBoxReducer = <T extends any = string>(state: ComboBoxSlice<T>,
                     ...state.options,
                     action.payload
                 ]
+            };
+        case "option/unregister":
+            return {
+                ...state,
+                options: state.options.filter((option) => option !== action.payload)
             };
         case "option/activate":
             return {
