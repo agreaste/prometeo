@@ -7,7 +7,8 @@ const packageJson = require("./package.json");
 const {DefinePlugin} = require("webpack");
 
 const globalTemplateVars = {
-  version: packageJson.version
+    version: packageJson.version,
+    githubRepoHome: "https://github.com/agreaste/prometeo/blob/master/packages"
 };
 
 const templateConfig = (title, template, templateVars = {}) => new HtmlWebpackPlugin({

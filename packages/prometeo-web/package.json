@@ -63,6 +63,7 @@
   },
   "homepage": "https://agreaste.github.io/prometeo",
   "repository": {
+    "type": "git",
     "url": "git+https://github.com/agreaste/prometeo.git"
   }
 }

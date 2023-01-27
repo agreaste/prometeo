@@ -143,9 +143,10 @@ function App() {
                     <h2 ref={listLabelRef}>List-box example</h2>
                     <div className={comboBox__wrapper}>
                         <ComboBox label={listLabelRef} onChange={(arg) => dispatch({ type: "changeList", value: arg})} placeholder={"Test value"} className={comboBox__button}>
+                            <ComboBox.Button>test listbox</ComboBox.Button>
                             <ComboBox.asListBox id={"test-listbox"} className={comboBox__container}>
                                 {["Pippo", "Pluto", "Paperino"].map((val, i) => (
-                                    <ComboBox.Option key={i} aria-label={val} value={i} className={comboBox__option}>
+                                    <ComboBox.Option id={val + "_id"} key={i} aria-label={val} value={i} className={comboBox__option}>
                                         {val}
                                     </ComboBox.Option>))}
                             </ComboBox.asListBox>

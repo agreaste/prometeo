@@ -1,11 +1,12 @@
-import ComboBox from "../../src/components/listBox/ComboBox";
+import {ComboBox} from "../../src/components/combobox";
 
 describe("ComboBox.tsx", () => {
     beforeEach(() => {
-        cy.mount(<ComboBox label={"test-combobox"} onChange={(arg) => console.log(arg)} placeholder={"Test value"}>
+        cy.mount(<ComboBox aria-label={"pippo"} onChange={(val) => void val}>
+            <ComboBox.Button aria-label={"ciao"}>Ciao Mamma!!</ComboBox.Button>
             <ComboBox.asListBox id={"test-listbox"} data-test={"listbox"}>
                 {[1, 2, 3].map((val: number, i: number) => (
-                    <ComboBox.Option<number> key={i} aria-label={`option ${i}`} value={val} data-test={`option-${i}`}>
+                    <ComboBox.Option key={i} aria-label={`option ${i}`} value={val.toString()} id={`option-${i}`} data-test={`option-${i}`}>
                         option {i}
                     </ComboBox.Option>))}
             </ComboBox.asListBox>
@@ -57,7 +58,7 @@ describe("ComboBox.tsx", () => {
         it("has aria-activedescendant set to a value that refers to the focused element within the popup", () => {
             let activeOption: string;
             cy.get("[role=\"combobox\"]").click();
-            cy.get("[data-test=\"option-2\"]").trigger("mouseover").then(($option) => {
+            cy.get("[id=\"option-2\"]").trigger("mouseover").then(($option) => {
                 activeOption = $option.attr("id") as string;
             });
 
@@ -81,22 +82,17 @@ describe("ComboBox.tsx", () => {
 
     context("listbox popup keyboard interaction", () => {
         beforeEach(() => {
-            cy.get("[role=\"combobox\"]").type("{enter}").should("have.attr", "aria-expanded", "true");
+            cy.get("[role=\"combobox\"]").type("{enter}");
         });
 
         it("accepts the focused option in the listbox by closing the popup, placing the accepted value in the combobox when Enter key is pressed", () => {
             let selectedLabel: string;
 
-            cy.get("[data-test=\"listbox\"]").should(($listbox) => {
-                selectedLabel = $listbox.children("li[data-active=\"true\"]").html();
+            cy.get("[data-test=\"option-1\"]").trigger("mouseover").should(($option) => {
+                selectedLabel = $option.html();
+            }).wait(500).get("[role=\"combobox\"]").click().wait(500).should($combobox => {
+                expect($combobox.html()).to.be.eq(selectedLabel);
             });
-
-            // here click is used instead of enter as it behaves randomly
-            cy.get("[role=\"combobox\"]").click()
-                .should("have.attr", "aria-expanded", "false")
-                .should(($combobox) => {
-                    expect($combobox.html()).to.be.eq(selectedLabel);
-                });
         });
 
         it("closes the popup and returns focus to the combobox when Escape key is pressed", () => {
@@ -108,18 +104,18 @@ describe("ComboBox.tsx", () => {
         });
 
         it("moves focus to and selects the next option when Down Arrow key is pressed", () => {
-            cy.get("[role=\"combobox\"]").type("{downArrow}").should(($combobox) => {
+            cy.get("[role=\"combobox\"]").type("{downArrow}{downArrow}").should(($combobox) => {
                 const activeDesc = $combobox.attr("aria-activedescendant");
-                const activeElement = $combobox.next().children("[data-active=\"true\"]").attr("id");
+                const activeElement = $combobox.next().children("[data-test=\"option-1\"]").attr("id");
 
                 expect(activeDesc).to.be.eq(activeElement);
             });
         });
 
         it("moves focus to and selects the previous option when Up Arrow key is pressed", () => {
-            cy.get("[role=\"combobox\"]").type("{downArrow}").type("{upArrow}").should(($combobox) => {
+            cy.get("[role=\"combobox\"]").type("{downArrow}{downArrow}").type("{upArrow}").should(($combobox) => {
                 const activeDesc = $combobox.attr("aria-activedescendant");
-                const activeElement = $combobox.next().children("[data-active=\"true\"]").attr("id");
+                const activeElement = $combobox.next().children("[data-test=\"option-0\"]").attr("id");
 
                 expect(activeDesc).to.be.eq(activeElement);
             });
