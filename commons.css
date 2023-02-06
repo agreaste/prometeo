@@ -616,9 +616,6 @@ html {
 .aspect-video{
   aspect-ratio: 16 / 9 !important;
 }
-.aspect-potrait{
-  aspect-ratio: 9 / 16 !important;
-}
 .h-screen{
   height: 100vh !important;
 }
@@ -1903,6 +1900,17 @@ html {
     --tw-bg-opacity: 1;
     background-color: rgba(239, 68, 68, var(--tw-bg-opacity));
     animation: load-like infinite 4s linear;
+}
+
+.carousel_slide-wrapper[aria-live="polite"]::after {
+    content: '';
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    height: 0.25rem;
+    --tw-bg-opacity: 1;
+    background-color: rgba(239, 68, 68, var(--tw-bg-opacity));
+    animation: none;
 }
 
 @keyframes load-like {
