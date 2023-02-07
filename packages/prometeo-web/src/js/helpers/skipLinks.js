@@ -1,6 +1,5 @@
 export default function (ctx) {
-    console.log('ctx: ', ctx);
-    return ''
+    return "";
 /*
     return Array.from(document.querySelectorAll('main, header, footer'))
         .filter(({id}) => !!id)

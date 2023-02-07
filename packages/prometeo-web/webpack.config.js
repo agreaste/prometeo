@@ -178,5 +178,9 @@ module.exports = {
     ],
     optimization: {
         chunkIds: "named",
+        runtimeChunk: "single"
     },
+    devServer: {
+        liveReload: true
+    }
 };
