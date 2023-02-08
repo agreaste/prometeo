@@ -5,7 +5,7 @@ import accordionStyles from "react-styles/components/accordion.module.css";
 import menuBarStyles from "react-styles/components/menubar.module.css";
 import carouselStyles from "../../styles/react/components/carousel.module.css";
 import comboBoxStyles from "../../styles/react/components/combobox.module.css";
-import {Menu, Menubar, Accordion, AccordionPanel, ComboBox, RadioGroup, Carousel, Slide} from "nyx-react";
+import {Menu, Menubar, Accordion, AccordionPanel, ComboBox, RadioGroup, Carousel} from "nyx-react";
 
 import totoro from "../../media/studio-ghibli-film-netflix-3.jpeg";
 import castleSky from "../../media/castle-sky.jpeg";
@@ -142,11 +142,13 @@ function App() {
                 <section className="mx-auto w-full p-8">
                     <h2 ref={listLabelRef}>List-box example</h2>
                     <div className={comboBox__wrapper}>
-                        <ComboBox label={listLabelRef} onChange={(arg) => dispatch({ type: "changeList", value: arg})} placeholder={"Test value"} className={comboBox__button}>
+                        <ComboBox label={listLabelRef} onChange={(arg) => dispatch({type: "changeList", value: arg})}
+                            placeholder={"Test value"} className={comboBox__button}>
                             <ComboBox.Button>test listbox</ComboBox.Button>
                             <ComboBox.asListBox id={"test-listbox"} className={comboBox__container}>
                                 {["Pippo", "Pluto", "Paperino"].map((val, i) => (
-                                    <ComboBox.Option id={val + "_id"} key={i} aria-label={val} value={i} className={comboBox__option}>
+                                    <ComboBox.Option id={val + "_id"} key={i} aria-label={val} value={i}
+                                        className={comboBox__option}>
                                         {val}
                                     </ComboBox.Option>))}
                             </ComboBox.asListBox>
@@ -168,7 +170,8 @@ function App() {
                 </section>
                 <section>
                     <h2>Radio group example</h2>
-                    <RadioGroup label={"Personaggio Disney preferito:"} onChange={(arg) => dispatch({ type: "changeRadio", value: arg})}>
+                    <RadioGroup label={"Personaggio Disney preferito:"}
+                        onChange={(arg) => dispatch({type: "changeRadio", value: arg})}>
                         <RadioGroup.Radio value={"pippo"} aria-label={"pippo"}><p>Pippo</p></RadioGroup.Radio>
                         <RadioGroup.Radio aria-label={"pluto"} value={"pluto"}><p>Pluto</p></RadioGroup.Radio>
                         <RadioGroup.Radio aria-label={"paperino"} value={"paperino"}><p>Paperino</p></RadioGroup.Radio>
@@ -176,23 +179,25 @@ function App() {
                 </section>
                 <section>
                     <h2>Carousel section</h2>
-                    <Carousel className={carousel_wrapper} playCallback={playCallback} initialAutoplay={play}
-                        slideWrapperClass={carousel_slideWrapper}>
+                    <Carousel className={carousel_wrapper} onAutoplayChange={playCallback} initialAutoplay={play}>
                         <Carousel.PlayButton aria-label={play ? "Interrompi presentazione" : "Avvia presentazione"}
                             className={[carousel_button, carousel_buttonControl].join(" ")}>{play ? "stop" : "play"}</Carousel.PlayButton>
-                        <Carousel.BackButton
+                        <Carousel.BackButton aria-label={"slide precedente"}
                             className={[carousel_button, carousel_buttonPrevious].join(" ")}>indietro</Carousel.BackButton>
-                        <Carousel.NextButton
+                        <Carousel.NextButton aria-label={"slide successiva"}
                             className={[carousel_button, carousel_buttonNext].join(" ")}>avanti</Carousel.NextButton>
-                        {
-                            slides.flatMap(({img, alt, title, text}, i) => (<Slide key={i} className={carousel_slide}>
-                                <img className="carousel_slide__image" src={img} alt={alt}/>
-                                <div className="carousel_slide__content">
-                                    <h3 className="carousel_slide__title">{title}</h3>
-                                    <p>{text}</p>
-                                </div>
-                            </Slide>))
-                        }
+                        <Carousel.SlideWrapper className={carousel_slideWrapper}>
+                            {
+                                slides.flatMap(({img, alt, title, text}, i) => (
+                                    <Carousel.Slide key={i} className={carousel_slide}>
+                                        <img className="carousel_slide__image" src={img} alt={alt}/>
+                                        <div className="carousel_slide__content">
+                                            <h3 className="carousel_slide__title">{title}</h3>
+                                            <p>{text}</p>
+                                        </div>
+                                    </Carousel.Slide>))
+                            }
+                        </Carousel.SlideWrapper>
                     </Carousel>
                 </section>
             </main>

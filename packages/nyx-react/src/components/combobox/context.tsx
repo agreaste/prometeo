@@ -97,4 +97,4 @@ export const initialComboBoxState: ComboBoxSlice<unknown> = {
 };
 
 export const ComboBoxContext = createContext<ComboBoxSlice<unknown>>(initialComboBoxState);
-export const ComboBoxDispatchContext = createContext<Dispatch<ComboBoxAction>>((a: unknown) => void a);
+export const ComboBoxDispatchContext = createContext<Dispatch<ComboBoxAction>>((a: ComboBoxAction) => void a);

@@ -18,7 +18,7 @@ export interface IAccordionPanel extends Omit<ButtonHTMLAttributes<HTMLButtonEle
     }
 }
 
-const AccordionPanel = forwardRef<HTMLButtonElement, PropsWithChildren<IAccordionPanel>>(({
+const Panel = forwardRef<HTMLButtonElement, PropsWithChildren<IAccordionPanel>>(({
     title,
     level,
     children,
@@ -51,6 +51,6 @@ const AccordionPanel = forwardRef<HTMLButtonElement, PropsWithChildren<IAccordio
     </>;
 });
 
-AccordionPanel.displayName = "AccordionPanel";
+Panel.displayName = "Panel";
 
-export default AccordionPanel;
+export default Panel;
