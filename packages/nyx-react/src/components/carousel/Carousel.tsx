@@ -1,101 +1,113 @@
 import {
     FC,
     HTMLAttributes,
-    ReactElement,
-    useMemo,
-    useState,
     useRef,
-    useEffect
+    useEffect, useContext, useReducer
 } from "react";
-import Slide, {ISlide} from "./Slide";
-import {isComponent} from "../../utils/mergeProps";
-import useExtractComponent, {useExtractComponents} from "../../hooks/useExtractComponent";
+import Slide from "./Slide";
+import {CarouselContext, CarouselDispatchContext, carouselReducer, initialCarouselState} from "./context";
 
-export interface ICarousel extends Omit<HTMLAttributes<HTMLDivElement>, "children"> {
-    children: ReactElement<ISlide | ControlComponent>[];
+export interface ICarousel extends HTMLAttributes<HTMLDivElement> {
     delay?: number;
     initialAutoplay?: boolean;
-    playCallback?: () => void;
-    slideWrapperClass?: string;
+    onAutoplayChange?: (value: boolean) => void;
 }
 
-const isCallable = (fn: (() => void) | undefined): fn is () => void => (fn as () => void).apply !== undefined;
+const Carousel: FC<ICarousel> = ({
+    delay = 5000,
+    children,
+    initialAutoplay = false,
+    onAutoplayChange,
+    ...props
+}: ICarousel) => {
+    const [state, dispatch] = useReducer(carouselReducer, {...initialCarouselState, autoplay: initialAutoplay});
+    const autoplayRef = useRef<NodeJS.Timer | null>(null);
 
-const Carousel: FC<ICarousel> = ({initialAutoplay = false, playCallback, delay = 5000, slideWrapperClass = "", children, ...props}: ICarousel) => {
-    const [activeSlide, setActiveSlide] = useState(0);
-    const [manageAutoplay, setManageAutoplay] = useState(initialAutoplay);
-    const slides = useExtractComponents(children, Slide);
-    const autoPlayId = useRef<null | NodeJS.Timer>(null);
-
-    const nextClick = () => setActiveSlide(Math.min(slides.length - 1, activeSlide + 1));
-    const backClick = () => setActiveSlide(Math.max(0, activeSlide - 1));
-    const playClick = () => {
-        if (isCallable(playCallback)) {
-            playCallback();
-            setManageAutoplay(!manageAutoplay);
-        }
-    };
-
-    // timer change on play click
     useEffect(() => {
-        if (playCallback && manageAutoplay) {
-            autoPlayId.current = setInterval(() => {
-                setActiveSlide((activeSlide + 1) % slides.length); // cyclic slide rotation
+        if(state.autoplay) {
+            autoplayRef.current = setInterval(() => {
+                dispatch({
+                    type: "slide/select",
+                    payload: state.active + 1
+                });
             }, delay);
-        } else if (autoPlayId.current) {
-            clearInterval(autoPlayId.current);
+        } else {
+            if(autoplayRef.current)
+                clearInterval(autoplayRef.current);
         }
 
-        return () => void (autoPlayId.current && clearInterval(autoPlayId.current));
-    }, [manageAutoplay, playCallback, activeSlide]);
+        if(onAutoplayChange)
+            onAutoplayChange(state.autoplay);
 
-    const nextButton = useExtractComponent(children, NextButton, {onClick: nextClick});
-    const backButton = useExtractComponent(children, BackButton, {onClick: backClick});
-    const playButton = useExtractComponent(children, PlayButton, {
-        onClick: playCallback ? playClick : undefined,
-    });
+        return () => {
+            if(autoplayRef.current)
+                clearInterval(autoplayRef.current);
+        };
+    }, [state.autoplay]);
 
-    useEffect(() => {
-        if (!nextButton) console.warn("Carousel is missing next button");
-        if (!backButton) console.warn("Carousel is missing back button");
-        if (playCallback && !playButton) console.warn("Carousel is missing play button");
-    }, [nextButton, backButton, playButton]);
-
-    return <div {...props} role={"group"} aria-roledescription={"carousel"}>
-        {playCallback && playButton} {backButton} {nextButton}
-        <div aria-atomic={"false"} aria-live={manageAutoplay ? "off" : "polite"} className={slideWrapperClass}>
-            {slides[activeSlide]}
-        </div>
-    </div>;
+    return <CarouselContext.Provider value={state}>
+        <CarouselDispatchContext.Provider value={dispatch}>
+            <div {...props} role={"group"} aria-roledescription={"carousel"}>
+                {children}
+            </div>
+        </CarouselDispatchContext.Provider>
+    </CarouselContext.Provider>;
 };
 
 Carousel.displayName = "Carousel";
 
-type CarouselButton = HTMLAttributes<HTMLButtonElement>;
-type CarouselNavigation = CarouselButton;
+export const SlideWrapper = ({children, ...props}: HTMLAttributes<HTMLDivElement>) => {
+    const {autoplay} = useContext(CarouselContext);
+    return <div {...props} aria-atomic={"false"} aria-live={autoplay ? "off" : "polite"}>
+        {children}
+    </div>;
+};
 
-interface CarouselPlay extends Exclude<CarouselButton, "aria-label"> {
+interface CarouselButton extends Exclude<HTMLAttributes<HTMLButtonElement>, "aria-label"> {
     "aria-label": string;
 }
 
-const NextButton: FC<CarouselNavigation> = (props) => {
-    return <button {...props}/>;
+const NextButton: FC<CarouselButton> = (props) => {
+    const dispatch = useContext(CarouselDispatchContext);
+
+    const clickCallback = () => {
+        dispatch({
+            type: "slide/next"
+        });
+    };
+
+    return <button {...props} onClick={clickCallback}/>;
 };
 
 NextButton.displayName = "NextButton";
 
-const BackButton: FC<CarouselNavigation> = (props) => {
-    return <button aria-label={"Next slide"} {...props}/>;
+const BackButton: FC<CarouselButton> = (props) => {
+    const dispatch = useContext(CarouselDispatchContext);
+
+    const clickCallback = () => {
+        dispatch({
+            type: "slide/previous"
+        });
+    };
+
+    return <button {...props} onClick={clickCallback}/>;
 };
 
 BackButton.displayName = "BackButton";
 
-const PlayButton: FC<CarouselPlay> = (props) => {
-    return <button {...props}/>;
-};
+const PlayButton: FC<CarouselButton> = (props) => {
+    const {autoplay} = useContext(CarouselContext);
+    const dispatch = useContext(CarouselDispatchContext);
 
-type ControlComponent = typeof NextButton | typeof BackButton | typeof PlayButton;
+    const clickCallback = () => {
+        dispatch({
+            type: autoplay ? "slideshow/stop" : "slideshow/start"
+        });
+    };
+
+    return <button {...props} onClick={clickCallback}/>;
+};
 
 PlayButton.displayName = "PlayButton";
 
-export default Object.assign(Carousel, {NextButton, BackButton, PlayButton});
+export default Object.assign(Carousel, {NextButton, BackButton, PlayButton, SlideWrapper, Slide});
