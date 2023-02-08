@@ -1,4 +1,4 @@
-import {HTMLAttributes, ReactElement, useContext, useEffect, useMemo} from "react";
+import {HTMLAttributes, memo, ReactElement, useContext, useEffect, useMemo} from "react";
 import {ComboBoxContext, ComboBoxDispatchContext, IOption} from "./context";
 
 type OmittedProps = "aria-label" | "id" | "role" | "aria-selected" | "onmouseover";
@@ -39,7 +39,7 @@ const Option: OptionComponent<unknown> = <T extends unknown = string>({id, "aria
                 }
             });
         };
-    }, [options]);
+    }, []);
 
     const hoverCallback = () => {
         dispatch({
@@ -57,4 +57,4 @@ const Option: OptionComponent<unknown> = <T extends unknown = string>({id, "aria
 
 Option.displayName = "Option";
 
-export default Option;
+export default memo(Option);
