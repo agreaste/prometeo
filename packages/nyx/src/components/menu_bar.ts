@@ -8,7 +8,7 @@ class Menubar extends HTMLUListElement {
     constructor() {
         super();
         this.root = this;
-        this.items = Array.from<HTMLElement>(this.querySelectorAll(' [role="menuitem"]:not([role="menu"] [role="menuitem"])'));
+        this.items = Array.from<HTMLElement>(this.querySelectorAll(" [role=\"menuitem\"]:not([role=\"menu\"] [role=\"menuitem\"])"));
         this.activeItem = new BehaviorSubject(this.items[0]);
         this.shadowBuilder(this);
     }
@@ -19,7 +19,7 @@ class Menubar extends HTMLUListElement {
             ...acc
         }), {});
 
-        this.items[0].addEventListener('focus', ({target}) => {
+        this.items[0].addEventListener("focus", ({target}) => {
             this.activeItem = new BehaviorSubject(target as HTMLElement);
             this.activeItem.asObservable().subscribe((target) => {
                 target.focus();

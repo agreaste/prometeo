@@ -1,14 +1,11 @@
 import {
-    Children,
     createElement,
     ElementType,
     forwardRef,
     HTMLAttributes,
-    PropsWithChildren,
     ReactElement,
     RefAttributes
 } from "react";
-import mergeProps from "../../utils/mergeProps";
 
 export interface IRadio<T = string> extends Omit<HTMLAttributes<HTMLElement>, "aria-label" | "aria-labelledby">{
     "aria-label": string;

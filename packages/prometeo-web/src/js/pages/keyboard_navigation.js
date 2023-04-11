@@ -37,7 +37,7 @@ const nameField = form.elements.namedItem("name");
 const orderClasses = new Array(total).fill("").map((el, i) => `order-${i}`);
 
 namePosition.addEventListener("change", (event) => {
-    const value = event.target.value;
+    const {value} = event.target;
 
     nameField.parentNode.classList.remove(...orderClasses);
     nameField.parentNode.classList.add(`order-${Math.abs(value) - 1}`);

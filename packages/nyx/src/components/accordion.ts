@@ -18,8 +18,8 @@ class Accordion extends HTMLDivElement { //
     constructor() {
         super();
 
-        this.tabs = this.querySelectorAll<HTMLDivElement>('.accordion__header');
-        this.panels = this.querySelectorAll<HTMLDivElement>('.accordion__panel');
+        this.tabs = this.querySelectorAll<HTMLDivElement>(".accordion__header");
+        this.panels = this.querySelectorAll<HTMLDivElement>(".accordion__panel");
 
         this.shadowBuilder(this);
     }
@@ -30,16 +30,16 @@ class Accordion extends HTMLDivElement { //
         this.activeTab = new BehaviorSubject(this.panels[0]);
         this.activeTab.asObservable().subscribe((target) => {
             this.tabs.forEach((tab) => {
-                tab.setAttribute('aria-expanded', (target === tab).toString());
+                tab.setAttribute("aria-expanded", (target === tab).toString());
             });
 
 
             this.panels.forEach((panel) => {
-                if (target.getAttribute('aria-controls') === panel.id) {
-                    panel.classList.add('accordion__panel--active');
+                if (target.getAttribute("aria-controls") === panel.id) {
+                    panel.classList.add("accordion__panel--active");
                     panel.focus();
                 } else
-                    panel.classList.remove('accordion__panel--active');
+                    panel.classList.remove("accordion__panel--active");
             });
         });
 
@@ -53,9 +53,9 @@ class Accordion extends HTMLDivElement { //
 
         this.tabs.forEach((el, i) => {
             const targetPanel = `${id}__panel__${i}`;
-            el.setAttribute('id', `${id}__tab__${i}`);
-            el.setAttribute('aria-controls', targetPanel);
-            el.setAttribute('aria-selected', (i === 0).toString());
+            el.setAttribute("id", `${id}__tab__${i}`);
+            el.setAttribute("aria-controls", targetPanel);
+            el.setAttribute("aria-selected", (i === 0).toString());
 
             el.addEventListener('click', (event) => {
                 event.preventDefault();

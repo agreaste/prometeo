@@ -1,5 +1,18 @@
+.fieldset-heading {
+    @apply text-lg font-bold text-neutral-400 p-4 pb-2;
+}
+
 .field-wrapper {
     @apply relative w-full;
+}
+
+.field-wrapper--with-message {
+    @apply pb-8;
+}
+
+.field-wrapper--with-message input:valid + label,
+.field-wrapper--with-message input:focus + label{
+    @apply top-1/3;
 }
 
 .field-wrapper--textarea {
@@ -63,4 +76,12 @@ progress::-moz-progress-bar {
 
 #form-elements-list ul {
     @apply pl-4 py-2 border-l-2 border-orange-400 ml-2
+}
+
+.field-message.show {
+    @apply block;
+}
+
+.field-message {
+    @apply absolute bottom-2 left-4 text-xs hidden;
 }

@@ -57,4 +57,4 @@ const Option: OptionComponent<unknown> = <T extends unknown = string>({id, "aria
 
 Option.displayName = "Option";
 
-export default memo(Option);
+export default Option;
